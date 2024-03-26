@@ -1,2 +1,0 @@
-# KanbanFinal
-FInal Kanban Project 

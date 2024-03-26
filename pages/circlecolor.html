@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Colored Circles</title>
+    
+</head>
+<body>
+    <div class="canvas-container ">
+        <div class="candiv" id="cand1"><span>1st </span>
+            <canvas id="canvas1" width="25" height="25" class="canvas " data-color="#d16bca" data-cand="cand1"></canvas>
+        </div>
+        <div class="candiv" id="cand2"><span>2nd </span>
+            <canvas id="canvas2" width="25" height="25" class="canvas " data-color="#795ce0" data-cand="cand2"></canvas>
+        </div>
+        <div class="candiv" id="cand3"><span>3rd </span>
+            <canvas id="canvas3" width="25" height="25" class="canvas " data-color="#30d1d9" data-cand="cand3"></canvas>
+        </div>
+    </div>
+
+    <!-- <script src="app.js"></script> -->
+
+    <!-- <script>
+        function drawCircle(canvasId, color, centerX, centerY) {
+            var canvas = document.getElementById(canvasId);
+            var ctx = canvas.getContext("2d");
+            var radius = 70;
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.closePath();
+
+            canvas.addEventListener("click", function(event) {
+               
+                    alert("Clicked inside the circle of " + color + "!");
+                
+            });
+
+           
+        }
+
+
+        drawCircle("canvas1", "blue", 100, 100); // First circle on canvas1
+        drawCircle("canvas2", "red", 100, 100); // Second circle on canvas1
+        drawCircle("canvas3", "green", 100, 100); // Third circle on canvas2
+
+      
+    </script> -->
+</body>
+</html>
