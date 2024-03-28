@@ -1,8 +1,7 @@
 <?php 
 $isAdminMemberFromPJwebpage = true;
-require_once('../header&footer/header.php');
+require_once('../header_footer/header.php');
 ?>
-
 <!Doctype html>
 <head>
   <!-- fontawesome -->
@@ -11,9 +10,6 @@ require_once('../header&footer/header.php');
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!-- title logo  -->
     <link rel="icon" type="image/png" href="../image/logo.PNG">
-
-
-
  </head>
  <body class="YHomeBodyColor">
 
@@ -50,14 +46,7 @@ require_once('../header&footer/header.php');
 
     </div>
   </div>
-</section>
-
-      
-<?php 
-     require_once('../header&footer/footer.php');
-    ?>
-
-   
-
+</section>  
+<?php require_once('../header_footer/footer.php'); ?>
   </body>
 </html>

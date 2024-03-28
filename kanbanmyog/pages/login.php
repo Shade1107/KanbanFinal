@@ -1,8 +1,3 @@
-<?php
-session_start();
-$LoginError = isset($_SESSION['LoginError']) ? $_SESSION['LoginError'] : ''; 
-unset($_SESSION['LoginError']);
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +25,7 @@ unset($_SESSION['LoginError']);
 
       </div>
       <div class="loginForm  col-lg-6 ee92a9 ">
-            <form action="Funcz4login.php" method="POST">
+            <form action="addProjectAdmin.php" method="">
                 <h1 class="loginFormText">⟁ Kanban Board</h1>
 
                 <span class="Yloginspan">Welcome to our Kanban</span>
@@ -38,42 +33,26 @@ unset($_SESSION['LoginError']);
                       <div class="mt-5 Yinputf">
                         
                           
-                          <input type="email" name="email" id="email" class="input-field mb-5" placeholder="Enter Email">
+                          <input type="email" id="email" class="input-field mb-5" placeholder="Enter Email">
                         
                           <div class="psw-eye">
-                            <input type="password" name="password" id="password" class="input-field-psw mb-5" placeholder="Enter Password">
-                            <i class="fa fa-eye toggle-password" onclick="togglePassword()" aria-hidden="true"></i>
+                            <input type="password" id="password" class="input-field-psw  mb-5" placeholder="Enter Password">
+                           
+                            <i class="fas fa-eye" ></i>
                           
                         </div>
-                        <?php if (isset($LoginError)) echo '<div style="color:red;">'.$LoginError.'</div>';?>
-                          <button type="submit" class="button mt-1" name="signin" id="signin">Login</button>
+
+
+                          <button type="submit" class="button mt-1">Login</button>
                           
                         </div>
                 </div> 
-                <span class="Yloginspan mt-3"><a href="signup.php" class="YColor3e306b">CREAT A NEW ACCOUNT ?</a></span>
+                <span class="Yloginspan mt-3">Create a <a href="#" class="YColor3e306b">NEW ACCOUNT ?</a></span>
              </form>
 
       </div>
 
   </div>
-
-  <script>
-        function togglePassword() {
-            var passwordField = document.getElementById("password");
-            var icon = document.querySelector(".toggle-password");
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            } else {
-                passwordField.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            }
-        }
-    </script>
-</body>
-
+ 
 </body>
 </html>

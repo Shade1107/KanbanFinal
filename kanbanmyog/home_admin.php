@@ -1,6 +1,7 @@
 <?php 
 $isAdmin = true;
 require_once('header&footer/header.php');
+
 ?>
 <!Doctype html>
 <head>
@@ -14,11 +15,48 @@ require_once('header&footer/header.php');
 
 
  </head>
- <body class="YHomeBodyColor">
+ <body >
 
   
+  <section class="Ysummary_des row">
+    <div class="col-lg-4 bg-info">
+      <h3 class="text-center mt-3">Total Tasks</h3>
 
-    <section class="column-container">
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+    </div>
+
+    <div class="col-lg-4 bg-danger">
+    <div></div>
+    </div>
+
+    <div class="col-lg-4 bg-warning">
+    <div></div>
+    </div>
+
+  </section>
+    <section class="column-container row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
           <div class="task-column "   id="planning">
             <h4 class="text-center"> Planning</h4>
             <hr class="custom-hr" />
@@ -289,9 +327,10 @@ require_once('header&footer/header.php');
 
               
         </div>
+         </div>
       </div>
     
-
+      <div class="col-lg-3 col-md-3 col-sm-3">
       <div class="task-column"   id="doing">
       <h4 class="text-center"> Doing Task</h4>
         <hr class="custom-hr" />
@@ -299,17 +338,33 @@ require_once('header&footer/header.php');
         
         </div>
       </div>
+      </div>
 
-      <div class="task-column"   id="done">
-      <h4 class="text-center"> Done</h4>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="task-column"   id="report">
+      <h4 class="text-center"> Report</h4>
         <hr class="custom-hr" />
         <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist3">
         
         </div>
       </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="task-column"   id="done">
+      <h4 class="text-center"> Done</h4>
+        <hr class="custom-hr" />
+        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist4">
+        
+        </div>
+      </div>
+      </div>
+
+
     </section>
 
-    <div class="error-container"></div>
+    
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -323,6 +378,7 @@ require_once('header&footer/header.php');
     <script src="js/lightbox.js"></script>
    
     <?php 
+    $isAdmin = true;
      require_once('header&footer/footer.php');
     ?>
 

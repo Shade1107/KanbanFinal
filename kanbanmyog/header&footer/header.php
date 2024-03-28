@@ -1,15 +1,12 @@
 <?php 
 $isMember = $isMember??'';
 $isAdmin = $isAdmin??'';
+// echo $isAdmin;
+// echo "<hr>";
 
 $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
-// if ($isMember) {
-//   // Display content for members
-//   echo "<script>alert('Welcome, Member!');</script>";
-// } else {
-//   // Display content for guests
-//   echo "Welcome, Guest!";
-// }
+// echo $isAdminMemberFromPJwebpage;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,13 +22,18 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
 
 
 
-    <link rel="stylesheet" href="css/style.css" />
+  <!-- custom css  -->
+
+
+      <!-- <link rel="stylesheet" href="css/style.css" /> -->
+     
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
   <body>
     <header>
       <div class="info-container">
-        <h1>⟁ Kanban <span class="YspanBoard">Board</span></h1>
+        <h1>Kanban <span class="YspanBoard">Board</span></h1>
         <p>
            Organise tasks  as well as add new ones and
           delete old ones.
@@ -43,17 +45,27 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
              <a href="#" class="btn  mt-3 ">Add Task</a>
             <?php } ?>
           
-          <a href="#" class="btn  mt-3 ">Member List</a>
-          <a href="#" class="btn  mt-3 ">LogOut</a>
+            <?php
+             if(!$isAdminMemberFromPJwebpage){?>
+              <a href="#" class="btn  mt-3 ">Member List</a>
+              <a href="#" class="btn  mt-3 ">LogOut</a>
+              <?php }else{?> 
+                <a href="#" class="btn  mt-3 ">LogOut</a>
+              
+              <?php } ?>
+         
+          
           <div class="d-flex Profilecircle mr-3">
                 <a href="#" class="circle-container">
 
                 <?php 
                     if ($isAdminMemberFromPJwebpage) { ?>
                      <img src="../image/p2.jpg">
-                    <?php } ?>
+                    <?php }else {?> 
 
                     <img src="image/p2.jpg">
+
+                    <?php } ?>
                 </a>
                 
           </div>

@@ -1,6 +1,6 @@
 <?php 
 $isAdminMemberFromPJwebpage = true;
-require_once('../header&footer/header.php');
+require_once('../header_footer/header.php');
 ?>
 
 <!Doctype html>
@@ -56,11 +56,6 @@ require_once('../header&footer/header.php');
     </div>
   </div>
 </section>
-<?php 
-     require_once('../header&footer/footer.php');
-    ?>
-
-   
-
+<?php require_once('../header_footer/footer.php'); ?>
   </body>
 </html>
