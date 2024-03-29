@@ -1,6 +1,6 @@
 <?php 
-require_once('../header&footer/header.php');
-include('DB_connection.php');
+require_once('../header_footer/header.php');
+// include('DB_connection.php');
 // require_once('header&footer/footer.php');
 
 ?>
@@ -35,7 +35,17 @@ include('DB_connection.php');
              <input type="text" id="" class="Miinput-field" placeholder="add task"><br>
 
                <!-- add member -->
-              <div class="addmember">    
+              <div class="addmember">  
+              <table class="searchtable">
+                  <tr>
+                  <td><i class="fa-solid fa-magnifying-glass searchicon"></i></td>
+                  
+                  <td><input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "></td>
+                  
+                  <td><input type="submit" name="" value="search" class="mt-4 buttonsearch"></td><br>
+
+                  </tr>
+                </table>   
             <?php 
              //check to see if the keyword will provided
             if (isset($_GET['k']) && $_GET['k'] != '' ) {
@@ -88,21 +98,21 @@ include('DB_connection.php');
              <!-- discription -->
              <textarea placeholder="detail description..." class="Mitext_area mt-4" ></textarea>
 
-              <!-- create date -->
+<!-- create date -->
               <div class="datecontainer">
                   <div class="input-group mt-4 ">
                     <span class="input-group-text" id="basic-addon3">Choose your create date</span>
                     <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                   </div>
-                  </div>
+              </div>
                 
                <!-- target date -->   
                <div class="datecontainer">        
-                      <div class="input-group mt-4" >
+                  <div class="input-group mt-4" >
                       <span class="input-group-text" id="basic-addon3">Choose your target date</span>
                       <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                      </div>
-                  </div>  
+                  </div>
+                </div>  
 
 
                   <!-- Priorty color -->
@@ -139,17 +149,11 @@ include('DB_connection.php');
                               <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#fab5b5" data-cand="cand3" ></canvas>
                               <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
-                        </div>
-                    </div>
-             
-          
-               <!-- button -->
-                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
-                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Create</a></button>
-          
-              
-              
+                        </div>                                                             
               </div>
+              <!-- button -->
+              <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
+              <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Create</a></button>
         </div>
         
           
@@ -171,9 +175,9 @@ include('DB_connection.php');
 <script>
 var settings = {
   plugins: ['remove_button'],
-	persist: false,
-	createOnBlur: true,
-	create: false
+  persist: false,
+  createOnBlur: true,
+  create: false
 };
 new TomSelect('#tselect',settings);
 </script>

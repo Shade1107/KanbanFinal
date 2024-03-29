@@ -144,9 +144,7 @@ require_once('header&footer/header.php');
                   <p>The submit button has stopped working since the last release.</p>
                   <a href="#" class="">Details</a>
                 </div>
-              </div>
-
-              
+              </div>  
         </div>
       </div>
     
