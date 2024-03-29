@@ -19,17 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signin'])){
             $role_id = $user['role_id'];
 
             if ($role_id == '1') {
-                header("Location: addProjectAdmin.php");
+                header("Location: ../pages/addProjectAdmin.php");
                 exit;
             } else {
-                header("Location: addProjectMember.php");
+                header("Location: ../pages/addProjectMember.php");
                 exit;
             }
         } else {
         $LoginError = 'Login Error ! invalid email or password please try again';
         session_start();
         $_SESSION['LoginError'] = $LoginError; 
-            header("Location: login.php");
+            header("Location: ../pages/login.php");
         }
     }
 }

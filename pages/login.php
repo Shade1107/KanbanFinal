@@ -30,7 +30,7 @@ unset($_SESSION['LoginError']);
 
       </div>
       <div class="loginForm  col-lg-6 ee92a9 ">
-            <form action="Funcz4login.php" method="POST">
+            <form action="../Functions4Kanban/Funcz4login.php" method="POST">
                 <h1 class="loginFormText">⟁ Kanban Board</h1>
 
                 <span class="Yloginspan">Welcome to our Kanban</span>
@@ -47,7 +47,6 @@ unset($_SESSION['LoginError']);
                         </div>
                         <?php if (isset($LoginError)) echo '<div style="color:red;">'.$LoginError.'</div>';?>
                           <button type="submit" class="button mt-1" name="signin" id="signin">Login</button>
-                          
                         </div>
                 </div> 
                 <span class="Yloginspan mt-3"><a href="signup.php" class="YColor3e306b">CREAT A NEW ACCOUNT ?</a></span>
