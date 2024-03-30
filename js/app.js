@@ -5,7 +5,6 @@ const descriptionInput = document.querySelector('#description')
 // const submitButton = document.querySelector('#submit-button')
 const errorContainer = document.querySelector('.error-container')
 
-
 let tasks = [
   {
     id: 0,
