@@ -37,7 +37,7 @@
                         <th>Email</th>
                         <th>Password</th>
                         <th>Gender</th>
-                    <   th>Role</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                     <tbody>
