@@ -93,7 +93,8 @@
                                 <input type="checkbox" name="user_id[]" value="<?=$u->id?>" id="user<?=$u->id?>" <?=$checked?> />
                                 <?=$u->name?>
                             </label>
-                        <?php } ?>
+                        <?php 
+					} ?>
                 <?php endforeach?>
             </div>
         </div>

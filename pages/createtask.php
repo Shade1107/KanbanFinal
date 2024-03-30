@@ -1,12 +1,12 @@
 <?php 
 require_once('../header_footer/header.php');
-// include('DB_connection.php');
-// require_once('header&footer/footer.php');
+require_once('../Repositories/UserRepository.php');
+
+
 
 ?>
-<!-- <!Doctype html>
+<!Doctype html>
 <head>
-  <!-- fontawesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- custom css  -->
     <link rel="stylesheet" href="../css/style.css" type="text/css">
@@ -14,6 +14,36 @@ require_once('../header_footer/header.php');
     <link rel="icon" type="../image/png" href="image/logo.PNG">
 
   
+    <style>
+  .select{
+  width: 400px;
+  
+ }
+
+ .p-4 {
+  padding: 0px !important;
+  
+}
+
+  .buttonMi{
+    text-align: center;
+     /* display: block; */
+     margin-left: 60px;
+   font-size: 15px;
+   background: #3e306b;
+   height: 40px;
+   width: 100px;
+   color: #c4aef4;
+   border-radius: 20px;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   border: 1px solid #3e306b;
+   position: relative;
+   overflow: hidden;
+   transition: transform 0.3s ease;
+   font-size: 12px;
+   }
+</style>
 
  </head>  
  <body class="YHomeBodyColor">
@@ -25,94 +55,84 @@ require_once('../header_footer/header.php');
 
   <!-- form -->
     <div class="Miprojectform  ee92a9 mt-5">
-        <form action="" method="GET" name="">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
             <h1 class="loginFormText">⟁ Add Task</h1>
+            <?php
+        require_once ('../Repositories/ProjectRepository.php');
+
+        if (isset($_GET["id"])) {
+            $id = intval($_GET["id"]);
+            $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
+            $project = $prorepo->find($id);
+
+            if (isset($project)) {
+        ?>
+          <input type="hidden" name="id" value="<?php echo $project->id;?>">
+      <?php
+            } else {
+                echo "<p>not found.</p>";
+            }
+        }
+        ?>
+
 
         <div class="Yinputfieldcenter">
               <div class="mt-5 Miinput">
                 
               <!-- task name -->
-             <input type="text" id="" class="Miinput-field" placeholder="add task"><br>
+             <input type="text" id="" class="Miinput-field" placeholder="add task" name="task_name"><br>
 
                <!-- add member -->
-              <div class="addmember">  
-              <table class="searchtable">
-                  <tr>
-                  <td><i class="fa-solid fa-magnifying-glass searchicon"></i></td>
-                  
-                  <td><input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "></td>
-                  
-                  <td><input type="submit" name="" value="search" class="mt-4 buttonsearch"></td><br>
-
-                  </tr>
-                </table>   
-            <?php 
-             //check to see if the keyword will provided
-            if (isset($_GET['k']) && $_GET['k'] != '' ) {
-
-              //save the keyword from url
-              $k = trim($_GET['k']);
-
-              //create a base query word string
-              $query_string = " SELECT * FROM users WHERE ";
-              $display_word = "";
-              // echo  $query_string ;
-              //sperate each of keyword
-              $keyword = explode(' ',$k);
-
-              foreach($keyword as $word){
-                $query_string .= " name LIKE '%".$word."%' OR ";
-                $display_word .= $word." "; 
-              }
-            
-              $query_string = substr($query_string, 0, strlen($query_string) - 3);
-             
-             //connect database
-              $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-           
-                $query = mysqli_query($conn,$query_string);
-                $result_count = mysqli_num_rows($query);
-
-                //check to see is any results were returned
-                if($result_count > 0){
-                  
-                 
-                  echo '<select id="tselect"  multiple placeholder="search member to add">';
-                  while($row = mysqli_fetch_assoc($query)){
-                             
-                    echo'  <option value='.$row['id'].'>'.$row['name'].'</option>';
-                 
-                  }
-                  echo '</select>';
-                  echo '<div></table>';
-                }
-
-              
-                else
-                echo "No result found! Please search something else.";
-              }
+            <div class="addmember">  
           
+          <table class="searchtable">
+          <?php
+            // require_once ("../Repositories/Task_memberRepository.php");
+            // $task_id = 3;
+
+            // $taskMemberRepo = new taskMemberRepository(DatabaseConnection::getInstance());
+            // $taskMembersTaskId = $taskMemberRepo->findWithTaskID($task_id);
+        
+            // $taskmember_id = array();
+        
+            // foreach($taskMembersTaskId as $p){
+            //     $user_id = $p->user_id;
+            //     $taskmember_id[] = $user_id; 
+            // }
+
+            $userRepo = new projectMemberRepository(DatabaseConnection::getInstance());
+            $member = $userRepo->getAll();
             ?>
-            </div>
+         <tr>
+         <td><i class="fa-solid fa-magnifying-glass searchicon"></i></td>
+         
+         <td>
+          <!-- <input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "> -->
+          <select id="tselect" class="select" placeholder="search member to add" name="members" multiple>
+<?php foreach ($member as $m) : ?>
+                    ?>
+    <option value="<?php echo htmlspecialchars($m->user_id); ?>">
+        <?php echo htmlspecialchars($m->getUser()->name); ?>
+    </option>
+
+<?php endforeach; ?>
+</select>
+
+        </td>
+         
+         <!-- <td><input type="submit" name="" value="search" class="mt-4 buttonsearch"></td><br> -->
+
+         </tr>
+       </table> 
+
+  
+   </div>
             
              <!-- discription -->
-             <textarea placeholder="detail description..." class="Mitext_area mt-4" ></textarea>
+             <textarea placeholder="detail description..." class="Mitext_area mt-4" name="short_description" ></textarea>
 
-<!-- create date -->
-              <div class="datecontainer">
-                  <div class="input-group mt-4 ">
-                    <span class="input-group-text" id="basic-addon3">Choose your create date</span>
-                    <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                  </div>
-              </div>
-                
-               <!-- target date -->   
-               <div class="datecontainer">        
-                  <div class="input-group mt-4" >
-                      <span class="input-group-text" id="basic-addon3">Choose your target date</span>
-                      <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                  </div>
-                </div>  
+              <!-- create date -->
+              
 
 
                   <!-- Priorty color -->
@@ -122,7 +142,7 @@ require_once('../header_footer/header.php');
                 </div>  
 
                <div class="d-flex">
-                        <!-- <div class="canvas-containerMi ">
+                        <div class="canvas-containerMi ">
                           <div class="candivMi" id="cand1"><span>1st </span>
                               <canvas id="canvas1" width="40" height="40" class="canvas " data-color="#d16bca" data-cand="cand1"></canvas>
                           </div> 
@@ -133,27 +153,18 @@ require_once('../header_footer/header.php');
                               <canvas id="canvas3" width="40" height="40  " class="canvas " data-color="#30d1d9" data-cand="cand3"></canvas>
                           </div>
 
-                        </div> -->
-
-
-                        <div class="canvas-container ">
-                          <div class="candiv" >
-                              <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#edacc5" data-cand="cand1"></canvas>
-                              <div class="YCanvasExtra YFirstExtra">1st Priority</div>
-                            </div>
-                          <div class="candiv" >
-                              <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#b4b8fc" data-cand="cand2" ></canvas>
-                              <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
-                          </div> 
-                          <div class="candiv" >
-                              <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#fab5b5" data-cand="cand3" ></canvas>
-                              <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
-                          </div>
-                        </div>                                                             
+                        </div>
+                        </div>
+                        </div>
+             
+          
+               <!-- button -->
+                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
+                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="HomeAdmin.php">Create</a></button>
+          
+              
+              
               </div>
-              <!-- button -->
-              <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
-              <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Create</a></button>
         </div>
         
           
@@ -169,15 +180,14 @@ require_once('../header_footer/header.php');
    </div>
    </div>
 
- 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script> 
 <script>
 var settings = {
   plugins: ['remove_button'],
-  persist: false,
-  createOnBlur: true,
-  create: false
+	persist: false,
+	createOnBlur: true,
+	create: true
 };
 new TomSelect('#tselect',settings);
 </script>
