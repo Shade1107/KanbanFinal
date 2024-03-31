@@ -74,6 +74,7 @@
             $genderRepo = new GenderRepository();
             return $genderRepo->find($user->gender_id);
         }
+
         public function CheckEmail($email) {
             $count = null;
             $query = "SELECT COUNT(*) FROM users WHERE email = ?";
@@ -85,6 +86,7 @@
             $stmt->close();
             return $count > 0;
         }
+
         public function LoginValid($email,$password){
             // $count = null;
             // $query = "SELECT * FROM ". self::$table_name . "WHERE email = ? AND password = ?";
