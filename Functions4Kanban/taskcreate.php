@@ -17,14 +17,14 @@
 
     $result = $taskRepo->create($project_id, $short_description, $task_name, $user_id);
     if ($result) {
-        return true;
-        // 
-        echo "success";
+       
+        header('Location: ../pages/HomeAdmin.php');
+        exit;
     } else {
         echo "Error inserting project.";
     }
 } else {
-    echo "One or more required fields are missing.";
+    echo "error";
 }
 
     //  $taskMemberRepo = new taskMemberRepository(DatabaseConnection::getInstance());
