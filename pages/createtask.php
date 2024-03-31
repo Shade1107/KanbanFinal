@@ -1,6 +1,8 @@
 <?php 
 require_once('../header_footer/header.php');
 require_once('../Repositories/UserRepository.php');
+require_once('../Repositories/Project_memberRepository.php');
+$projectMemberRepo = new projectMemberRepository(DatabaseConnection::getInstance());
 
 
 
@@ -55,27 +57,25 @@ require_once('../Repositories/UserRepository.php');
 
   <!-- form -->
     <div class="Miprojectform  ee92a9 mt-5">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <form action="../Functions4Kanban/taskcreate.php" method="POST">
             <h1 class="loginFormText">⟁ Add Task</h1>
             <?php
         require_once ('../Repositories/ProjectRepository.php');
 
         if (isset($_GET["id"])) {
-            $id = intval($_GET["id"]);
-            $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
-            $project = $prorepo->find($id);
-
-            if (isset($project)) {
-        ?>
-          <input type="hidden" name="id" value="<?php echo $project->id;?>">
+          $id = intval($_GET["id"]);
+          $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
+          $project = $prorepo->find($id);
+          if (isset($project)) {
+      ?>
+      <input type="hidden" name="project_id" value="<?php echo $project->id; ?>">
       <?php
-            } else {
-                echo "<p>not found.</p>";
-            }
-        }
-        ?>
-
-
+          } else {
+              echo "<p>Not found.</p>";
+          }
+      }
+      ?>
+      
         <div class="Yinputfieldcenter">
               <div class="mt-5 Miinput">
                 
@@ -87,18 +87,6 @@ require_once('../Repositories/UserRepository.php');
           
           <table class="searchtable">
           <?php
-            // require_once ("../Repositories/Task_memberRepository.php");
-            // $task_id = 3;
-
-            // $taskMemberRepo = new taskMemberRepository(DatabaseConnection::getInstance());
-            // $taskMembersTaskId = $taskMemberRepo->findWithTaskID($task_id);
-        
-            // $taskmember_id = array();
-        
-            // foreach($taskMembersTaskId as $p){
-            //     $user_id = $p->user_id;
-            //     $taskmember_id[] = $user_id; 
-            // }
 
             $userRepo = new projectMemberRepository(DatabaseConnection::getInstance());
             $member = $userRepo->getAll();
@@ -108,15 +96,22 @@ require_once('../Repositories/UserRepository.php');
          
          <td>
           <!-- <input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "> -->
-          <select id="tselect" class="select" placeholder="search member to add" name="members" multiple>
-<?php foreach ($member as $m) : ?>
-                    ?>
-    <option value="<?php echo htmlspecialchars($m->user_id); ?>">
-        <?php echo htmlspecialchars($m->getUser()->name); ?>
+          <select id="tselect" class="select" placeholder="search member to add" name="user_id[]" multiple>
+          <?php
+if (isset($project)) {
+    $projectMembers = $projectMemberRepo->findWithProjectID($project->id);
+    foreach ($projectMembers as $member) {
+        $user = $projectMemberRepo->find($member->user_id);
+        if ($user) {
+?>
+    <option value="<?php echo htmlspecialchars($user->id); ?>">
+        <?php echo htmlspecialchars($user->getUser()-> name); ?>
     </option>
-
-<?php endforeach; ?>
-</select>
+<?php
+        }
+    }
+}
+?>
 
         </td>
          
@@ -160,7 +155,7 @@ require_once('../Repositories/UserRepository.php');
           
                <!-- button -->
                   <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
-                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="HomeAdmin.php">Create</a></button>
+                  <button type="submit" class="buttonMi mt-4" ><a class="buttonlink" href="#">Create</a></button>
           
               
               
