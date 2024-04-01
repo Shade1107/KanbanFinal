@@ -137,15 +137,18 @@
 }
 
 .YFirstCardBorder{
-  border: 3px solid #ca648a;
+  /* border: 3px solid #ca648a; */
+  border: 3px solid #bb679a;
 }
 
 .YSecondCardBorder{
-  border: 3px solid #787ed5;
+  /* border: 3px solid #787ed5; */
+  border: 3px solid #7864c0;
 }
 
 .YThirdCardBorder{
-  border: 3px solid #e16666;
+  /* border: 3px solid #e16666; */
+  border: 3px solid #82abab;
 }
 
   header {
@@ -176,8 +179,11 @@
 
   .circle-container {
 
-    width: 70px;
-    height: 70px;
+    /* myo change  */
+    width: 50px;
+     height: 50px;
+     /* myo change  */
+
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -275,10 +281,13 @@
    
 
     /* background-color: #f8deec; */
-    background-color: #fff1fd;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-
+   
     border: 3px solid rgb(198, 146, 174);
+    background-color: #fce5ff;
+  
+    border: 3px solid rgb(185, 146, 203);
+
+    transition: all 0.5s ease;
      
   }
   
@@ -329,18 +338,27 @@
   }
 
   .YfirstPriority{
-    background-color: #edacc5;
-    border-bottom: 4px solid #ca648a;
+    /* background-color: #edacc5;
+    border-bottom: 4px solid #ca648a; */
+    background-color: #ffa4db;
+    border-bottom: 4px solid #bb679a;
+    color: #77297a;
   }
 
   .YsecondPriority{
-    background-color: #b4b8fc;
-    border-bottom: 4px solid #787ed5;
+    /* background-color: #b4b8fc;
+    border-bottom: 4px solid #787ed5; */
+    background-color: #baa7ff;
+  border-bottom: 4px solid #7864c0;
+  color: #4e2d65;
   }
 
   .YthirdPriority{
-    background-color: #fab5b5;
-    border-bottom: 4px solid #e16666;
+    /* background-color: #fab5b5;
+    border-bottom: 4px solid #e16666; */
+
+    background-color: #c6fbfb;
+  border-bottom: 4px solid #82abab;
   }
 
   .task-header p{
@@ -463,8 +481,8 @@ canvas:hover + .tooltip {
 
 
 .canvas1{
-  background-color: #edacc5;
-  
+  /* background-color: #edacc5; */
+  background-color: #ffa4db;
   z-index: 6;
 
 }
@@ -474,7 +492,8 @@ canvas:hover + .tooltip {
   font-size: 5px;
   opacity: 0;
   width: 30px;
-  background-color: #edacc5;
+  /* background-color: #edacc5; */
+  background-color: #ffa4db;
   z-index: 5;
   transition: all 0.5s ease;
 }
@@ -497,7 +516,8 @@ canvas:hover + .tooltip {
 
 .canvas2{
   /* left: 30px; */
-  background-color: #b4b8fc;
+  /* background-color: #b4b8fc; */
+  background-color: #baa7ff;
   z-index: 5;
 }
 .YSecondExtra{
@@ -506,7 +526,8 @@ canvas:hover + .tooltip {
   opacity: 0;
   width: 30px;
   transition: all 0.5s ease;
-  background-color: #b4b8fc;
+  /* background-color: #b4b8fc; */
+  background-color: #baa7ff;
   z-index: 4;
 }
 
@@ -530,7 +551,8 @@ canvas:hover + .tooltip {
 .canvas3{
   /* left: 60px; */
   z-index: 4;
-  background-color: #fab5b5;
+  /* background-color: #fab5b5; */
+  background-color: #c6fbfb;
 }
 
 .YThirdExtra{
@@ -540,7 +562,8 @@ canvas:hover + .tooltip {
   opacity: 0;
   width: 30px;
   transition: all 0.5s ease;
-  background-color: #fab5b5;
+  /* background-color: #fab5b5; */
+  background-color: #c6fbfb;
   z-index: 3;
 }
 .canvas3:hover + .YThirdExtra{
@@ -1243,8 +1266,12 @@ li {
  }
 
  .searchicon{
-  padding-top: 30px;
+  padding-top: 5px;
   /* padding-right: 30px; */
+ }
+
+ .select{
+  width: 380px;
  }
 
 
@@ -1483,4 +1510,286 @@ li {
 
     .table{
       background-color: #fed1dc !important; 
+      
     }
+
+    /* /// yoon add */
+    .select{
+      width: 400px;
+      
+     }
+    
+     .p-4 {
+      padding: 0px !important;
+      
+    }
+    
+      .buttonMi{
+        text-align: center;
+         /* display: block; */
+         margin-left: 60px;
+       font-size: 15px;
+       background: #3e306b;
+       height: 40px;
+       width: 100px;
+       color: #c4aef4;
+       border-radius: 20px;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+       border: 1px solid #3e306b;
+       position: relative;
+       overflow: hidden;
+       transition: transform 0.3s ease;
+       font-size: 12px;
+       }
+       /* yoon add  */
+    /* //////for home page */
+
+    .Ykanban_linechart{
+    
+      /* background-color: #a8a8a8; */
+      height: 310px;
+     
+      display: flex;
+      justify-content: center;
+    }
+
+    .Ytotal_task{
+      margin-top: 50px;
+      height: 70%;
+      padding-bottom: 50px;
+      border-radius: 20px;
+      /* background-color: #e4deff; */
+      /* border: 1px solid #470c4f; */
+      /* border-right: 3px solid rgb(159, 83, 158); */
+    }
+    
+
+    .Ytotal_task_bg_color{
+      background-color: #3e306b;
+      color: #dbd3f3;
+      /* border-radius: 25px; */
+    }
+
+    .Ytotal_task table{
+      width: 100%;
+      /* height: 77%; */
+      font-size: 18px;
+      /* padding-right: 20px; */
+      color: #3e306b;
+      /* margin: 0 auto; */
+      padding: 0;
+      margin: 0;
+      
+    }
+
+    .Ytotal_task table tr{
+      /* border-bottom: 1px solid #3e306b; */
+      transition: background-color 0.3s ease-in-out;
+    } 
+
+    .Ytotal_task table tr:hover{
+      background-color: #bbb1e9;
+    } 
+
+    .Ytotal_task table tr{
+    padding: 30px 0px; 
+        /* text-align: center;  */
+      }
+
+      .Ytotal_task table td{
+        padding-top: 10px ; 
+        padding-bottom: 10px ;
+            /* text-align: center;  */
+          }
+
+    .Ypadding_left{
+      padding-left: 30px;
+    }
+
+    .Ypadding_right{
+      padding-right: 10px;
+
+    }
+
+    #page-content {
+      display: none; /* Hide the content by default */
+    }
+
+    .Yleft_side_bar{
+    
+      /* background-color: #f9dbe2; */
+      background-color: #e4deff;
+      
+    }
+
+    .Ynear_deadline {
+      background-color: #eb6ccc;
+     
+      color: #ffff;
+    }
+
+    .Ymember_card{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      height: 210px;
+     
+      background-color: #fff1fd;
+      border-radius: 25px;
+      border: 1px double #725e9d;
+
+      transition: all 0.5s ease;
+
+      /* position: relative; */
+    }
+
+    .Ymember_card:hover{
+      /* background-color: #e4deff; */
+      background-color: #d8ffff;
+      box-shadow: 0 4px 10px -2px #89a6d3;
+      /* box-shadow: 0 4px 10px -2px #a699e4; */
+    }
+
+    .Ydashboard_list{
+      
+      font-size: 18px;
+      margin-top: 25px;
+      padding: 0;
+    }
+    .Ydashboard_list a{
+      text-decoration: none;
+      color: #3e306b;
+    }
+
+    .Ydashboard_list li{
+      margin-top: 10px;
+      padding: 20px;
+      /* background-color: #d6cff8; */
+      /* background-color: #fcfbff; */
+      /* background-color: #ffe9fb; */
+      background-color: #ffc7f4;
+
+
+      transition: all 0.5s ease;
+      
+    }
+
+    .Ydashboard_list li:hover{
+      /* background-color: #ffc7f4; */
+      /* background-color: #c064ff; */
+      background-color: #8ec5ff;
+      /* color: #ffffff; */
+      box-shadow: 0 4px 10px -2px #a599df;
+      /* box-shadow: 0 4px 10px -2px #a699e4; */
+    }
+
+   .Ymember_img{
+    width: 40px;
+    height: 40px;
+    border: 1px solid #483151;
+    border-radius: 50%;
+   
+   }
+
+   .Ymember_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+   }
+
+   .Ymember_img_name{
+    padding: 15px;
+   }
+
+   .Ymember{
+    display: block;
+    margin: 10px;
+    color: #65598e;
+   }
+
+   .YlineChart_home_page{
+    width: 100%;
+   }
+
+
+   
+.Ycontainer {
+
+  overflow-x: hidden;
+}
+
+.Yrow {
+  display: flex;
+}
+
+
+
+.Ycol-lg-3 {
+  /* flex: 0 0 auto; */
+
+   display: inline-block;
+  width: calc(100% / 4);
+  transition: transform 0.5s ease-in-out;
+ 
+}
+
+
+@keyframes YslideInLeft {
+from {
+transform: translateX(-100%);
+}
+to {
+transform: translateX(0);
+}
+}
+
+@keyframes YslideOutRight {
+from {
+transform: translateX(0);
+}
+to {
+transform: translateX(100%);
+}
+}
+
+.Yslide-in-left {
+animation: YslideInLeft 0.5s ease-in-out forwards;
+}
+
+.Yslide-out-right {
+animation: YslideOutRight 0.5s ease-in-out forwards;
+}
+
+
+
+
+.Yscroll-buttons {
+  /* position: absolute; */
+  
+  /* left: 0; */
+  /* top: 0;/ */
+ /* font-size: 100px; */
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+}
+
+.Yscroll-buttons span{
+  display: block;
+  cursor: pointer;
+  color: #3e306b;
+   /* font-size: 100px; */
+}
+
+
+.task-column.hover {
+  background-color:#d4f4ff;/* Change this to the desired hover color */
+  border:3px solid #8cb6b5;
+  /* padding: 20px; */
+  box-shadow: 0 4px 15px rgba(60, 95, 125, 0.437);
+
+}
+
+
+

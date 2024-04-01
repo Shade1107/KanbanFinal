@@ -76,8 +76,77 @@
 
       return $donepercentage;
     }
+  
+?>
+
+<?php 
+    // bar chart for home page overview for all task (test_data)
+
+    $total_stages[] = ["stage"=>"planning","task"=>0];
+    $total_stages[] = ["stage"=>"doing","task"=>2];
+    $total_stages[] = ["stage"=>"done","task"=>4];
+    $total_stages[] = ["stage"=>"report","task"=>5];
+    
+
+    echo "<script>";
+    echo "var barChartData = " . json_encode($total_stages) . ";" ; //barChartData was use by the home_admin/home_member page
+    echo "</script>";
+
+
+
+?>
+
+
+<?php 
+    // line chart for home page_member task (test_data)
+
+    $member1[] = ["stage"=>"planning","task"=>0];
+    $member1[] = ["stage"=>"doing","task"=>2];
+    $member1[] = ["stage"=>"done","task"=>4];
+    $member1[] = ["stage"=>"report","task"=>5];
+    
+
+    $member2[] = ["stage"=>"planning","task"=>1];
+    $member2[] = ["stage"=>"doing","task"=>2];
+    $member2[] = ["stage"=>"done","task"=>3];
+    $member2[] = ["stage"=>"report","task"=>0];
     
 
 
+    $member3[] = ["stage"=>"planning","task"=>2];
+    $member3[] = ["stage"=>"doing","task"=>1];
+    $member3[] = ["stage"=>"done","task"=>5];
+    $member3[] = ["stage"=>"report","task"=>8];
+    
+
+    $member4[] = ["stage"=>"planning","task"=>10];
+    $member4[] = ["stage"=>"doing","task"=>2];
+    $member4[] = ["stage"=>"done","task"=>34];
+    $member4[] = ["stage"=>"report","task"=>55];
+    
+
+    $member5[] = ["stage"=>"planning","task"=>10];
+    $member5[] = ["stage"=>"doing","task"=>22];
+    $member5[] = ["stage"=>"done","task"=>54];
+    $member5[] = ["stage"=>"report","task"=>15];
+    
+
+    $member6[] = ["stage"=>"planning","task"=>30];
+    $member6[] = ["stage"=>"doing","task"=>2];
+    $member6[] = ["stage"=>"done","task"=>44];
+    $member6[] = ["stage"=>"report","task"=>15];
+    
+
+    $member7[] = ["stage"=>"planning","task"=>10];
+    $member7[] = ["stage"=>"doing","task"=>2];
+    $member7[] = ["stage"=>"done","task"=>34];
+    $member7[] = ["stage"=>"report","task"=>55];
+
+
+    $member8[] = ["stage"=>"planning","task"=>2];
+    $member8[] = ["stage"=>"doing","task"=>1];
+    $member8[] = ["stage"=>"done","task"=>5];
+    $member8[] = ["stage"=>"report","task"=>8];
+    
 
 ?>
