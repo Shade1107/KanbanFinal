@@ -1,10 +1,7 @@
 <?php 
-$isAdmin = true;
-require_once('header&footer/header.php');
-
-require_once('pages/chart_data_function.php');
-
-
+$isMember = true;
+require_once('../header_footer/header.php');
+require_once('../pages/chart_data_function.php');
 ?>
 <!Doctype html>
 <head>
@@ -14,9 +11,9 @@ require_once('pages/chart_data_function.php');
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  
   <!-- custom chart.js  -->
-   <script src="js/charts.js"></script> 
+   <script src="../js/charts.js"></script> 
 <!-- cssloader -->
-<link rel="stylesheet" href="css/css_loader.css">
+<link rel="stylesheet" href="../css/css_loader.css">
 
   <!-- custom css  -->
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -46,8 +43,6 @@ require_once('pages/chart_data_function.php');
   
   <section class="Ysummary_des container-fluid ">
     <div class="row">
-
-   
 
     <div class="col-lg-3 Yleft_side_bar">
       <div class="Ytotal_task">
@@ -298,15 +293,15 @@ require_once('pages/chart_data_function.php');
                     </div>
                     <div class="d-flex">
                         <div class="canvas-container ">
-                          <div class="candiv">
+                          <div class="candiv" >
                               <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#edacc5" data-cand="cand1" onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YFirstExtra">1st Priority</div>
                             </div>
-                          <div class="candiv">
+                          <div class="candiv" >
                               <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#b4b8fc" data-cand="cand2"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
                           </div> 
-                          <div class="candiv">
+                          <div class="candiv" >
                               <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#fab5b5" data-cand="cand3"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
@@ -582,7 +577,7 @@ require_once('pages/chart_data_function.php');
    
     <?php 
     $isAdmin = true;
-     require_once('header&footer/footer.php');
+     require_once('../header_footer/footer.php');
     ?>
 
  <script>
@@ -742,9 +737,6 @@ function updateVisibility() {
     div.style.display = isVisible ? 'inline-block' : 'none';
   });
 }
-
-
-
   });
 </script>
 

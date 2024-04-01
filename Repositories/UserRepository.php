@@ -51,7 +51,7 @@
         public function update($id, $img, $name, $email, $password, $gender_id, $role_id){
             $query = "
                         UPDATE ".self::$table_name."
-                        SET img = '$img', name = '$name', email = '$email', password = '$password', gender_id = '$gender_id', role_id = $role_id
+                        SET img = '$img', name = '$name', email = '$email', password = '$password', gender_id = $gender_id, role_id = $role_id
                         WHERE id = $id
                     ";
             $result = $this->connection->query($query);
