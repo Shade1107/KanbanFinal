@@ -45,7 +45,7 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
             <?php } ?>
 
           <a href="#" class="btn  mt-3 ">Member List</a>
-          <a href="#" class="btn  mt-3 ">LogOut</a>
+          <a href="../Functions4Kanban/signout.php" class="btn  mt-3 ">LogOut</a>
           <div class="d-flex Profilecircle mr-3">
                 <a href="#" class="circle-container">
 
