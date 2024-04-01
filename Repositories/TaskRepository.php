@@ -40,36 +40,37 @@
             return true;
         }
 
-        public function create($project_id, $short_description, $task_name, $user_id){
-            $query = "
-                INSERT INTO ".self::$table_name." (id, project_id, stage_id, short_description, task_name) 
-                VALUES (null, $project_id, 1, '$short_description', '$task_name');
-            ";
-        
-            $results = $this->connection->query($query);
+        public function create($project_id, $short_description, $task_name, $user_ids){
+    $query = "
+        INSERT INTO ".self::$table_name." (project_id, stage_id, short_description, task_name) 
+        VALUES ($project_id, 1, '$short_description', '$task_name');
+    ";
 
-            $last_insert_id = $this->connection->insert_id;
-        
-            foreach ($user_id as $u) {
+    $results = $this->connection->query($query);
+
+    if($results){
+        $last_insert_id = $this->connection->insert_id;
+
+        if(is_array($user_ids)){ // Check if $user_ids is an array
+            foreach ($user_ids as $user_id) {
                 $query = "
-                    INSERT INTO ".taskMemberRepository::$table_name." (id, user_id, task_id) 
-                    VALUES (null, $u, $last_insert_id);
+                    INSERT INTO ".taskMemberRepository::$table_name." (user_id, task_id) 
+                    VALUES ($user_id, $last_insert_id);
                 ";
-        
-                $results = $this->connection->query($query);
-            }
-            return true;
-        }
 
-        public function update($id, $project_id, $stage_id, $short_description, $task_name){
-            $query = "
-                        UPDATE ".self::$table_name."
-                        SET project_id = $project_id, stage_id = $stage_id, short_description = $short_description, task_name = $task_name 
-                        WHERE id = $id
-                    ";
-            $result = $this->connection->query($query);
-            return true;
+
+            $results = $this->connection->query($query);
+            if(!$results){
+                // Handle the error or rollback the transaction if necessary
+                return false;
+            }
         }
+        return true;
+    }
+    
+    return false;
+}
+}   
 
         public function toModel($obj){
             $task = null;
