@@ -1,3 +1,8 @@
+<?php 
+session_start();
+$emailError = isset($_SESSION['emailError']) ? $_SESSION['emailError'] : ''; 
+unset($_SESSION['emailError']);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,11 +17,12 @@
         <!-- Name -->
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br>
-        
+
         <!-- Email -->
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-        
+        <input type="email" name="email" require><br>
+		<?php if (isset($emailError)) echo '<div style="color:red;">'.$emailError.'</div>';?>
+
         <!-- Password -->
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br>
@@ -28,7 +34,7 @@
             <option value="2">Female</option>
         </select><br>
         
-        <input type="submit" value="Register">
+        <input type="submit" name="signup" id="signup" value="Register">
     </form>
 </body>
 
