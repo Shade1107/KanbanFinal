@@ -6,7 +6,6 @@
         private static $database    = 'kanban';
 
         private static $connection = null;
-
         public static function getInstance(){
             if(self::$connection == null){
                 $dbConnection = new DatabaseConnection();
@@ -14,8 +13,10 @@
             }
             return self::$connection;
         }
-        private function __construct(){
+        public function __construct(){
         }
+
+        
     }
 ?>
 
