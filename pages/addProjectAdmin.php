@@ -50,9 +50,6 @@ require_once('../header_footer/header.php');
       <a href="#" class="text-decoration-none "><h3>+</h3></a>
       <hr>
       </div>
-
-      
-
     </div>
   </div>
 </section>
