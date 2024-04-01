@@ -47,7 +47,7 @@ require_once('../header_footer/header.php');
       </div>
 
       <div class="Ytask-column" id="backlog">
-      <a href="#" class="text-decoration-none "><h3>+</h3></a>
+      <a href="createproject.php" class="text-decoration-none "><h3>+</h3></a>
       <hr>
       </div>
     </div>
