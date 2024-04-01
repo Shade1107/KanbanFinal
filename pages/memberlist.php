@@ -29,10 +29,10 @@
         <h3>✔ Member list ✔</h3>
         <hr class="custom-hr" />
             <table class="table table-striped" >
-                <thead class="table-light">
+                <thead class="table-danger">
                     <tr class="h5">
                         <th>User_ID</th>
-                        <th> </th>
+                        <th></th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Password</th>
@@ -58,3 +58,4 @@
 </section>
 </body>
 </html>
+ 
