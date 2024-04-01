@@ -28,30 +28,5 @@
         public function getName(){
             return $this->admin;    
         }
-
-        public static function create($project){
-            $query = "
-                INSERT INTO projects (admin_id, name, description, detail_descrip, create_date, due_date) 
-                VALUES ('$project->admin_id', '$project->name', '$project->description', '$project->detail_descrip', '$project->create_date', '$project->due_date')
-            ";
-            $conn = DatabaseConnection::getInstance();
-            //$result = $conn->query($query);
-
-            //$last_insert_id = $conn->insert_id;
-            $results = mysqli_query($conn,$query);
-
-            //$last_insert_id = $this->connection->insert_id;
-        
-            // foreach ($user_id as $u) {
-            //     $query2 = "
-            //         INSERT INTO project_members (id, user_id, project_id) 
-            //         VALUES (null, $u, $last_insert_id);
-            //     ";
-        
-            //     $results = $conn->query($query2);
-            // }
-        
-            return true;
-        }
     }
 ?>

@@ -2,40 +2,8 @@
 require_once('../header_footer/header.php');
 require_once('../Repositories/UserRepository.php');
 require_once('../Models/Project.php');
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
-  //$admin_id = htmlspecialchars(($_GET["id"]));
-  $projectName = htmlspecialchars($_POST["projectName"]);
-  $membersArray = htmlspecialchars($_POST["members"]);
-  $description = htmlspecialchars($_POST["Description"]);
-  $detail_description = htmlspecialchars($_POST["Detail_Description"]);
-  $createDate = htmlspecialchars($_POST["createDate"]);
-  $targetDate = htmlspecialchars($_POST["targetDate"]);
+require_once('../Functions4Kanban/projectcreate.php')
 
-  echo "Jive";
-  echo $projectName."<br>";
-  print_r($membersArray)."<br>";
-  echo $description."<br>";
-  echo $detail_description."<br>";
-  echo $createDate."<br>";
-  echo $targetDate."<br>";
-
-  $project = new Project(2,$projectName,$description,$detail_description,$createDate,$targetDate);
-  
-  // $project->admin_id = 2;
-  // $project->name = $projectName;
-  // $project->description = $description;
-  // $project->detail_descrip = $detail_description;
-  // $project->create_date = $createDate;
-  // $project->due_date = $targetDate;
-
-  $result = Project::create($project);
-  if ($result) {
-    header("Location: addProjectAdmin.php");
-    exit();
-}
-
-
-}
 ?>
 <!Doctype html>
 <head>

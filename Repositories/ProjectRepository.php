@@ -41,8 +41,8 @@
 
         public function create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $completed_date, $user_id){
             $query = "
-                INSERT INTO ".self::$table_name." (id, admin_id, name, description, detail_descrip, create_date, due_date, completed_date) 
-                VALUES (null, $admin_id, '$name', '$description', '$detail_descrip', '$create_date', '$due_date', '$completed_date');
+                INSERT INTO ".self::$table_name." (admin_id, name, description, detail_descrip, create_date, due_date, completed_date) 
+                VALUES ($admin_id, '$name', '$description', '$detail_descrip', '$create_date', '$due_date', '$completed_date');
             ";
         
             $results = $this->connection->query($query);
