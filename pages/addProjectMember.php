@@ -30,10 +30,11 @@ $projects = $projectRepository->getAll();
     <?php if (isset($projects) && !empty($projects)) : ?>
       <?php foreach ($projects as $project) : ?>
         <div class="Ytask-columns-container mt-3" id="taskColumnsContainer">
+          <div class="Ytask-column" id="backlog">
           <a href="project_details.php?project_id=<?= $project->id ?>" class="text-decoration-none">
-            <h3><?= $project->name ?></h3>
+            <h3><?= $project->name?></h3>
           </a>
-          <p>  </p>
+        </div>
         </div>
       <?php endforeach; ?>
     <?php else : ?>
