@@ -1,6 +1,7 @@
 <?php
     require_once("Model.php");
     require_once("../Repositories/ProjectRepository.php");
+    require_once("../Database/DatabaseConnection.php");
 
     class Project extends Model{
         public $id;
@@ -13,9 +14,8 @@
         public $due_date;
         public $completed_date;
         
-        public function __construct($id, $admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $completed_date)
+        public function __construct($admin_id, $name, $description, $detail_descrip, $create_date, $due_date)
         {
-            $this->id               = $id;
             $this->admin_id         = $admin_id;
             $this->admin            = ProjectRepository::getAdminName($this);
             $this->name             = $name;
@@ -23,7 +23,6 @@
             $this->detail_descrip   = $detail_descrip;
             $this->create_date      = $create_date;
             $this->due_date         = $due_date;
-            $this->completed_date   = $completed_date;
         }
 
         public function getName(){

@@ -133,7 +133,6 @@ require_once('../header&footer/footer.php');
     <?php endforeach; ?>
 
     <?php foreach($donePercentage as $dp): ?>
-       
         data5.push(<?=$dp?>);
     <?php endforeach; ?>
 
