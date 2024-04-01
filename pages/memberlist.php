@@ -35,7 +35,7 @@
                         <th></th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
+                        <th onclick="togglePassword()">Password</th>
                         <th>Gender</th>
                         <th>Role</th>
                     </tr>
@@ -47,7 +47,7 @@
                                 <td><?= $m->img?></td>
                                 <td><?= $m->name ?></td>
                                 <td><?= $m->email ?></td>  
-                                <td><?= $m->password ?></td>   
+                                <td data-password="<?= $m->password ?>">***</td>   
                                 <td><?= ($m->gender_id == 1) ? 'Male' : 'Female' ?></td>     
                                 <td><?= ($m->role_id == 1 ) ? 'Admin' : 'Member' ?></td>        
                             </tr>
@@ -56,6 +56,24 @@
             </table>
     </div>
 </section>
+
+<script>
+        function togglePassword() {
+            // Get all the password cells
+            var passwordCells = document.querySelectorAll('td[data-password]');
+
+            // Toggle the visibility of the password value for each password cell
+            passwordCells.forEach(function(cell) {
+                if (cell.textContent === '***') {
+                    // Get the actual password value from the "data-password" attribute
+                    var password = cell.getAttribute('data-password');
+                    cell.textContent = password; // Display the actual password value
+                } else {
+                    cell.textContent = '***'; // Hide the password value and display asterisks
+                }
+            });
+        }
+        </script>
 </body>
 </html>
  

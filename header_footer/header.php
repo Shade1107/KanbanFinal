@@ -1,7 +1,12 @@
-<?php 
+<?php
+session_start(); 
 $isMember = $isMember??'';
 $isAdmin = $isAdmin??'';
 
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
+{
+  $userID = $_SESSION['user_id'];
+}
 $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
 // if ($isMember) {
 //   // Display content for members
@@ -10,6 +15,9 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
 //   // Display content for guests
 //   echo "Welcome, Guest!";
 // }
+
+
+// Find the user with the specified ID
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,9 +53,9 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
             <?php } ?>
 
           <a href="#" class="btn  mt-3 ">Member List</a>
-          <a href="#" class="btn  mt-3 ">LogOut</a>
+          <a href="../Functions4Kanban/signout.php" class="btn  mt-3 ">LogOut</a>
           <div class="d-flex Profilecircle mr-3">
-                <a href="#" class="circle-container">
+                <a href="viewprofile.php?id=<?= $userID ?>" class="circle-container">
 
                 <?php 
                     if ($isAdminMemberFromPJwebpage) { ?>

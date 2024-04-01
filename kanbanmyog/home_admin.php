@@ -298,15 +298,15 @@ require_once('pages/chart_data_function.php');
                     </div>
                     <div class="d-flex">
                         <div class="canvas-container ">
-                          <div class="candiv" >
+                          <div class="candiv">
                               <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#edacc5" data-cand="cand1" onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YFirstExtra">1st Priority</div>
                             </div>
-                          <div class="candiv" >
+                          <div class="candiv">
                               <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#b4b8fc" data-cand="cand2"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
                           </div> 
-                          <div class="candiv" >
+                          <div class="candiv">
                               <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#fab5b5" data-cand="cand3"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
