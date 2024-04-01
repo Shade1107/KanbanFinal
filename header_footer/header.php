@@ -2,7 +2,8 @@
 session_start(); 
 $isMember = $isMember??'';
 $isAdmin = $isAdmin??'';
-if($_SESSION['loggedin'] == True)
+
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
 {
   $userID = $_SESSION['user_id'];
 }
