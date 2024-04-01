@@ -4,7 +4,7 @@
     require_once("../Database/DatabaseConnection.php");
 ?>
 <?php
-    $project_id = $_GET['id'];
+    $project_id = $_GET['id']?? '2';
 
     $projectMemberRepo = new projectMemberRepository(DatabaseConnection::getInstance());
     $projectMembersProjectId = $projectMemberRepo->findWithProjectID($project_id);

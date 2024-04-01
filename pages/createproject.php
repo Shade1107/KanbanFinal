@@ -1,7 +1,6 @@
 <?php 
 require_once('../header_footer/header.php');
-// include('DB_connection.php');
-// require_once('header&footer/footer.php');
+require_once('../Repositories/UserRepository.php');
 
 ?>
 <!Doctype html>
@@ -12,6 +11,38 @@ require_once('../header_footer/header.php');
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!-- title logo  -->
     <link rel="icon" type="image/png" href="../image/logo.PNG">
+
+    <style>
+  .select{
+  width: 400px;
+  
+ }
+
+ .p-4 {
+  padding: 0px !important;
+  
+}
+
+  .buttonMi{
+    text-align: center;
+     /* display: block; */
+     margin-left: 60px;
+   font-size: 15px;
+   background: #3e306b;
+   height: 40px;
+   width: 100px;
+   color: #c4aef4;
+   border-radius: 20px;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   border: 1px solid #3e306b;
+   position: relative;
+   overflow: hidden;
+   transition: transform 0.3s ease;
+   font-size: 12px;
+   }
+</style>
+
  </head>  
  <body class="YHomeBodyColor">
     <div class="container-fluid row">
@@ -33,63 +64,48 @@ require_once('../header_footer/header.php');
             <div class="addmember">  
           
                    <table class="searchtable">
-                  <tr>
-                  <td><i class="fa-solid fa-magnifying-glass searchicon"></i></td>
-                  
-                  <td><input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "></td>
-                  
-                  <td><input type="submit" name="" value="search" class="mt-4 buttonsearch"></td><br>
-
-                  </tr>
-                </table> 
-            <?php 
-             //check to see if the keyword will provided
-            if (isset($_GET['k']) && $_GET['k'] != '' ) {
-
-              //save the keyword from url
-              $k = trim($_GET['k']);
-
-              //create a base query word string
-              $query_string = " SELECT * FROM users WHERE ";
-              $display_word = "";
-              // echo  $query_string ;
-              //sperate each of keyword
-              $keyword = explode(' ',$k);
-
-              foreach($keyword as $word){
-                $query_string .= " name LIKE '%".$word."%' OR ";
-                $display_word .= $word." "; 
-              }
-            
-              $query_string = substr($query_string, 0, strlen($query_string) - 3);
-             
-             //connect database
-              $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-           
-                $query = mysqli_query($conn,$query_string);
-                $result_count = mysqli_num_rows($query);
-
-                //check to see is any results were returned
-                if($result_count > 0){
-                  
-                 
-                  echo '<select id="tselect"  multiple placeholder="search member to add">';
-                  while($row = mysqli_fetch_assoc($query)){
-                             
-                    echo'  <option value='.$row['id'].'>'.$row['name'].'</option>';
-                 
-                  }
-                  echo '</select>';
-                  echo '<div></table>';
-                }
-
-              
-                else
-                echo "No result found! Please search something else.";
-              }
-          
+                    <?php
+                   $userRepo = new UserRepository(DatabaseConnection::getInstance());
+            $member = $userRepo->getAll();
             ?>
+         <tr>
+         <td><i class="fa-solid fa-magnifying-glass searchicon"></i></td>
+         
+         <td>
+          <!-- <input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "> -->
+          <select id="tselect" class="select" placeholder="search member to add" name="members" multiple>
+<?php foreach ($member as $m) : ?>
+                    ?>
+    <option value="<?php echo htmlspecialchars($m->id); ?>">
+        <?php echo htmlspecialchars($m->name); ?>
+    </option>
+
+<?php endforeach; ?>
+</select>
+
+        </td>
+         
+         <!-- <td><input type="submit" name="" value="search" class="mt-4 buttonsearch"></td><br> -->
+
+         </tr>
+       </table>  
+            
             </div>
+
+            <div class="datecontainer">
+                  <div class="input-group mt-4 ">
+                    <span class="input-group-text" id="basic-addon3">Choose your create date</span>
+                    <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                  </div>
+                  </div>
+                
+               <!-- target date -->   
+               <div class="datecontainer">        
+                      <div class="input-group mt-4" >
+                      <span class="input-group-text" id="basic-addon3">Choose your target date</span>
+                      <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                      </div>
+                  </div>  
 
                   <button type="button" class="buttonMi mt-5"><a class="buttonlink" href="addProjectAdmin.php">Back</a></button>
                    <button type="button" class="buttonMi mt-5"><a class="buttonlink" href="addProjectAdmin.php">Create</a</button>
