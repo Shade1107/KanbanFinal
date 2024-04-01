@@ -1,76 +1,3 @@
-
-function changecolor(canvas) {
-    // console.log("Canvas class:", canvas.classList);
-    const hasCanvas1 = canvas.classList.contains("canvas1");
-    const hasCanvas2 = canvas.classList.contains("canvas2");
-    // const hasCanvas3 = canvas.classList.contains("canvas3");
-    // Get the parent task-container element
-    if (hasCanvas1) {
-        const taskContainer = canvas.closest('.task-container');
-
-        // Check if the task-container element exists
-        if (taskContainer) {
-           
-             // Remove all existing classes from the task-container element
-            taskContainer.className = 'task-container';
-            
-            // Add 'YFirstCardBorder' class to the task-container element    
-            taskContainer.classList.add('YFirstCardBorder');
-
-            // Find the task-header element within the task-container
-            const taskHeader = taskContainer.querySelector('.task-header');
-
-            // Set the background color of the task-header element
-            if (taskHeader) {
-                taskHeader.className = 'task-header';    
-                taskHeader.classList.add('YfirstPriority');
-            }
-        }
-    }else if(hasCanvas2){
-
-        const taskContainer = canvas.closest('.task-container');
-
-        // Check if the task-container element exists
-        if (taskContainer) {
-           
-            taskContainer.className = 'task-container';
-            taskContainer.classList.add('YSecondCardBorder');
-
-           
-            const taskHeader = taskContainer.querySelector('.task-header');
-
-           
-            if (taskHeader) {
-                taskHeader.className = 'task-header';    
-                taskHeader.classList.add('YsecondPriority');
-            }
-        }
-
-    }else {
-
-        const taskContainer = canvas.closest('.task-container');
-
-        // Check if the task-container element exists
-        if (taskContainer) {
-            // Remove all existing classes from the task-container element
-            taskContainer.className = 'task-container';
-
-            // Add 'YFirstCardBorder' class to the task-container element
-            taskContainer.classList.add('YThirdCardBorder');
-
-            // Find the task-header element within the task-container
-            const taskHeader = taskContainer.querySelector('.task-header');
-
-            // Set the background color of the task-header element
-            if (taskHeader) {
-                taskHeader.className = 'task-header';    
-                taskHeader.classList.add('YthirdPriority');
-            }
-        }
-    }
-}
-
-
 function Delete(task){
     const TasktoDelete = task.closest('.task-container');
     // alert('Are you sure?');
@@ -130,8 +57,56 @@ function drop(event) {
       }
     }
   }
-  
-  
 
+  function changecolor(canvas, color) {
+    // console.log("Canvas class:", canvas.classList);
+    const hasCanvas1 = canvas.classList.contains("canvas1");
+    const hasCanvas2 = canvas.classList.contains("canvas2");
+ 
+    if (hasCanvas1) {
+        const taskContainer = canvas.closest('.task-container');
 
+        if (taskContainer) {
+            taskContainer.className = 'task-container';
+            taskContainer.classList.add('YFirstCardBorder');
+            taskContainer.classList.add(color);
 
+            const taskHeader = taskContainer.querySelector('.task-header');
+
+            if (taskHeader) {
+                taskHeader.className = 'task-header';    
+                taskHeader.classList.add('YfirstPriority');
+            }
+        }
+    } else if (hasCanvas2) {
+        const taskContainer = canvas.closest('.task-container');
+
+        if (taskContainer) {
+            taskContainer.className = 'task-container';
+            taskContainer.classList.add('YSecondCardBorder');
+            taskContainer.classList.add(color);
+
+            const taskHeader = taskContainer.querySelector('.task-header');
+
+            if (taskHeader) {
+                taskHeader.className = 'task-header';    
+                taskHeader.classList.add('YsecondPriority');
+            }
+        }
+    } else {
+        const taskContainer = canvas.closest('.task-container');
+
+        if (taskContainer) {
+            taskContainer.className = 'task-container';
+            taskContainer.classList.add('YThirdCardBorder');
+            taskContainer.classList.add(color);
+
+            const taskHeader = taskContainer.querySelector('.task-header');
+
+            if (taskHeader) {
+                taskHeader.className = 'task-header';    
+                taskHeader.classList.add('YthirdPriority');
+            }
+        }
+    }
+}

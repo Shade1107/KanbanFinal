@@ -30,7 +30,7 @@ $stages    =  $stageRepo -> getAll();
         <hr class="custom-hr">
         <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist<?=$t->id?>">
         <div class="task-container YDefaultCardBorder" draggable="true" ondragstart="drag(event)" id="tasklist<?=$t->id?>"  >
-        <div class="task-header YPrimaryTaskColor">
+        <div class="task-header <?=$t->task_priority_color?>">
         <div class="titleDeletIconDiv">
         <h5><?=$t->task_name?></h5>
         <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal<?=$t->id?>"></i></p>
@@ -56,20 +56,22 @@ $stages    =  $stageRepo -> getAll();
                       <!--  -->
                     </div>
                     <div class="d-flex">
+
                     <div class="canvas-container">
                           <div class="candiv">
                               <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#d16bca" data-cand="cand1"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YFirstExtra">1st Priority</div>
                             </div>
-                          <div class="candiv" >
+                          <div class="candiv">
                               <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#795ce0" data-cand="cand2"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
                           </div> 
-                          <div class="candiv" >
+                          <div class="candiv">
                               <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#30d1d9" data-cand="cand3"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
-                        </div>
+                    </div>
+
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
                             <img src="../image/p1.jpg"/>
