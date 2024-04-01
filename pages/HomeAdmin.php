@@ -28,20 +28,17 @@ $stages    =  $stageRepo -> getAll();
     <div class="task-column" id="<?=$t->getStage()->name?>">
         <h4 class="text-center"><?=$t->getStage()->name?></h4>
         <hr class="custom-hr">
-        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <div class="task-container YDefaultCardBorder" draggable="true" ondragstart="drag(event)">
+        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist<?=$t->id?>">
+        <div class="task-container YDefaultCardBorder" draggable="true" ondragstart="drag(event)" id="tasklist<?=$t->id?>"  >
         <div class="task-header YPrimaryTaskColor">
         <div class="titleDeletIconDiv">
         <h5><?=$t->task_name?></h5>
-        <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="<?=$t->id?>"></i></p>
-        <!--  -->
-            <!-- Button trigger modal -->
-                      <!-- Modal -->
-                              <div class="modal fade" id="<?=$t->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal<?=$t->id?>"></i></p>
+                              <div class="modal fade" id="modal<?=$t->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                   <div class="modal-content ">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="<?=$t->task_name?></h5>
+                                      <h5 class="modal-title" id="<?=$t->task_name?>"><?=$t->task_name?></h5>
                                       <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
@@ -59,8 +56,8 @@ $stages    =  $stageRepo -> getAll();
                       <!--  -->
                     </div>
                     <div class="d-flex">
-                    <div class="canvas-container ">
-                          <div class="candiv" >
+                    <div class="canvas-container">
+                          <div class="candiv">
                               <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#d16bca" data-cand="cand1"  onclick="changecolor(this)"></canvas>
                               <div class="YCanvasExtra YFirstExtra">1st Priority</div>
                             </div>
