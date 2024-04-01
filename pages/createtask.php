@@ -2,7 +2,6 @@
 require_once('../header_footer/header.php');
 require_once('../Repositories/UserRepository.php');
 require_once('../Repositories/Project_memberRepository.php');
-$projectMemberRepo = new projectMemberRepository(DatabaseConnection::getInstance());
 
 
 
@@ -87,7 +86,7 @@ $projectMemberRepo = new projectMemberRepository(DatabaseConnection::getInstance
           
           <table class="searchtable">
           <?php
-
+            
             $userRepo = new projectMemberRepository(DatabaseConnection::getInstance());
             $member = $userRepo->getAll();
             ?>
@@ -98,6 +97,7 @@ $projectMemberRepo = new projectMemberRepository(DatabaseConnection::getInstance
           <!-- <input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "> -->
           <select id="tselect" class="select" placeholder="search member to add" name="user_id[]" multiple>
           <?php
+          $projectMemberRepo = new projectMemberRepository(DatabaseConnection::getInstance());
 if (isset($project)) {
     $projectMembers = $projectMemberRepo->findWithProjectID($project->id);
     foreach ($projectMembers as $member) {
