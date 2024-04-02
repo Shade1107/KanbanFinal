@@ -47,7 +47,8 @@ border-radius: 50%;
     $userRepo = new UserRepository(DatabaseConnection::getInstance());
     // Find the user with the specified ID
     $user = $userRepo->find($id);
- 
+
+    //print_r($user);
 
     ?>
 <div class="container bootstrap snippets bootdey">
@@ -57,7 +58,7 @@ border-radius: 50%;
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar img-circle img-thumbnail" alt="avatar">        
+          <img src="../image/<?= $user->img ?>" class="avatar img-circle img-thumbnail" alt="avatar">        
         </div>
       </div>
       
