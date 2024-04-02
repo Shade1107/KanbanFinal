@@ -59,7 +59,7 @@
               Useful links
             </h6>
             <p>
-              <a href="#">Your Account</a>
+              <a href="../pages/viewprofile.php">Your Account</a>
             </p>
             <p>
               <a href="#">Member List</a>
