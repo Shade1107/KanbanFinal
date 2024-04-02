@@ -1,4 +1,5 @@
 <?php
+
     require_once("../Database/DatabaseConnection.php");
     require_once("../Repositories/StageRepository.php");
     require_once("../Repositories/TaskRepository.php");
@@ -7,10 +8,11 @@
     $task_id = $_GET['task_id'] ?? 0 ;//need to vlidate more deeply
     $stage_id = $_GET['stage_id'] ?? 0 ;//need to vlidate more deeply
 
-    $taskRepo = new TaskRepository();
-    $stageRepo = new StageRepository();
+    $taskRepo = new TaskRepository(DatabaseConnection::getInstance());
+    $stageRepo = new StageRepository(DatabaseConnection::getInstance());
     $task = $taskRepo->find($task_id);
-    $stagee = $stageRepo->find($stage_id);
+    
+    $stage = $stageRepo->find($stage_id);
 
     
     //need to check $task and $stage..

@@ -68,7 +68,7 @@ require_once('../Repositories/Project_memberRepository.php');
       <div class="Miprojectform  col-lg-6 ee92a9 mt-5">
       <form action="../Functions4Kanban/taskcreate.php" method="POST">
           <h1 class="loginFormText">⟁ Add Task</h1>
-          <!-- <span class="Yloginspan">Welcome to our Kanban</span> -->
+         
 
           <?php
                 require_once('../Repositories/ProjectRepository.php');
@@ -117,7 +117,7 @@ require_once('../Repositories/Project_memberRepository.php');
         </option>
     <?php } ?>
 </select>
-                                    </td>
+                  </td>
                   </tr>
                 </table>
                   </div>
@@ -154,7 +154,7 @@ require_once('../Repositories/Project_memberRepository.php');
          
               <!-- button -->
                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
-                 <button type="submit" class="buttonMi mt-4" ><a class="buttonlink" href="#">Create</a></button>
+                 <button type="submit" class="buttonMi mt-4" ><a class="buttonlink" href="../Functions4Kanban/taskcreate.php">Create</a></button>
          
              
              

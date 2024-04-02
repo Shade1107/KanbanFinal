@@ -14,8 +14,9 @@
         public $due_date;
         public $completed_date;
         
-        public function __construct($admin_id, $name, $description, $detail_descrip, $create_date, $due_date)
+        public function __construct($id, $admin_id, $name, $description, $detail_descrip, $create_date, $due_date)
         {
+            $this->id               = $id;
             $this->admin_id         = $admin_id;
             $this->admin            = ProjectRepository::getAdminName($this);
             $this->name             = $name;
@@ -26,7 +27,7 @@
         }
 
         public function getName(){
-            
+
             return $this->admin;    
         }
     }
