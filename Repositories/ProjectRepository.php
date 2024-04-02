@@ -39,17 +39,17 @@
             return true;
         }
 
-        public function create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $completed_date, $user_id){
+        public function create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $membersarray){
             $query = "
-                INSERT INTO ".self::$table_name." (admin_id, name, description, detail_descrip, create_date, due_date, completed_date) 
-                VALUES ($admin_id, '$name', '$description', '$detail_descrip', '$create_date', '$due_date', '$completed_date');
+                INSERT INTO ".self::$table_name." (id, admin_id, name, description, detail_descrip, create_date, due_date, completed_date) 
+                VALUES (null, $admin_id, '$name', '$description', '$detail_descrip', $create_date, $due_date, null);
             ";
         
             $results = $this->connection->query($query);
 
             $last_insert_id = $this->connection->insert_id;
         
-            foreach ($user_id as $u) {
+            foreach ($membersarray as $u) {
                 $query = "
                     INSERT INTO ".projectMemberRepository::$table_name." (id, user_id, project_id) 
                     VALUES (null, $u, $last_insert_id);
