@@ -20,9 +20,9 @@
             $result = $this->connection->query($query);
 
             if($result === false){
-                throw new Exception(mysqli_error($conn), -1);
+                throw new Exception(mysqli_error($this->connection), -1);
             }else{
-                $task       = Task::find($task->id);
+                $task       = TaskRepository::find($task->id);
             }
             return $task;
         }
@@ -55,36 +55,47 @@
         }
 
         public function create($project_id, $short_description, $task_name, $user_ids){
-    $query = "
-        INSERT INTO ".self::$table_name." (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border) 
-        VALUES ($project_id, 1, '$short_description', '$task_name', 'YPrimaryTaskColor', 'YDefaultCardBorder');
-    ";
-
-    $results = $this->connection->query($query);
-
-    if($results){
-        $last_insert_id = $this->connection->insert_id;
-
-        if(is_array($user_ids)){ // Check if $user_ids is an array
-            foreach ($user_ids as $user_id) {
-                $query = "
-                    INSERT INTO ".taskMemberRepository::$table_name." (user_id, task_id) 
-                    VALUES ($user_id, $last_insert_id);
-                ";
-
-
+            // Escape inputs to prevent SQL injection
+            $project_id = $this->connection->real_escape_string($project_id);
+            $short_description = $this->connection->real_escape_string($short_description);
+            $task_name = $this->connection->real_escape_string($task_name);
+        
+            // Perform the main task insertion
+            $query = "INSERT INTO " . self::$table_name . " (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border)  
+                          VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}','YPrimaryTaskColor', 'YDefaultCardBorder')";
+        
             $results = $this->connection->query($query);
+        
+            // Check for errors
             if(!$results){
-                // Handle the error or rollback the transaction if necessary
+                // Handle the error or log it
+                echo "Error inserting task: " . $this->connection->error;
                 return false;
             }
-        }
-        return true;
-    }
-    
-    return false;
-}
-}   
+        
+            // Get the ID of the last inserted task
+            $last_insert_id = $this->connection->insert_id;
+        
+            // Insert task members
+            foreach ($user_ids as $user_id) {
+                //user_id to prevent SQL injection
+                $user_id = $this->connection->real_escape_string($user_id);
+        
+                // Insert task member
+                $query = "INSERT INTO " . TaskMemberRepository::$table_name . " (user_id, task_id) 
+                              VALUES ('{$user_id}', '{$last_insert_id}')";
+        
+                $results = $this->connection->query($query);
+        
+                // Check for errors
+                if(!$results){
+                    echo "Error inserting task member: " . $this->connection->error;
+                    return false;
+                }
+            }
+        
+            return true;
+        }   
 
         public function toModel($obj){
             $task = null;
