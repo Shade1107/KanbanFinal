@@ -42,8 +42,8 @@
 
         public function create($project_id, $short_description, $task_name, $user_ids){
     $query = "
-        INSERT INTO ".self::$table_name." (project_id, stage_id, short_description, task_name) 
-        VALUES ($project_id, 1, '$short_description', '$task_name');
+        INSERT INTO ".self::$table_name." (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border) 
+        VALUES ($project_id, 1, '$short_description', '$task_name', 'YPrimaryTaskColor', 'YDefaultCardBorder');
     ";
 
     $results = $this->connection->query($query);
@@ -75,7 +75,7 @@
         public function toModel($obj){
             $task = null;
             if($obj)
-                $task = new Task($obj->id, $obj->project_id, $obj->stage_id, $obj->short_description, $obj->task_name);
+                $task = new Task($obj->id, $obj->project_id, $obj->stage_id, $obj->short_description, $obj->task_name, $obj->task_priority_color, $obj->task_priority_border);
             return $task;
         }
 

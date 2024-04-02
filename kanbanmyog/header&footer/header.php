@@ -63,7 +63,7 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
                      <img src="../image/p2.jpg">
                     <?php }else {?> 
 
-                    <img src="image/p2.jpg">
+                    <img src="../image/p2.jpg">
 
                     <?php } ?>
                 </a>

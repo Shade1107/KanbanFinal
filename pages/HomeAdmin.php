@@ -23,14 +23,19 @@ $stages    =  $stageRepo -> getAll();
  <body>
  <section class="column-container row">
 <?php
-  foreach($tasks as $t): ?>
-  <div class="col-lg-3 col-md-3 col-sm-3">
-    <div class="task-column" id="<?=$t->getStage()->name?>">
-        <h4 class="text-center"><?=$t->getStage()->name?></h4>
+foreach($stages as $stage):?>
+<div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="task-column" id="<?=$stage->id?>">
+        <h4 class="text-center"><?=$stage->name?></h4>
         <hr class="custom-hr">
-        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist<?=$t->id?>">
-        <div class="task-container YDefaultCardBorder" draggable="true" ondragstart="drag(event)" id="tasklist<?=$t->id?>"  >
+    <?php foreach($tasks as $t):
+      if ($t->stage_id == $stage->id) {
+    ?>
+        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="task-container <?=$t->task_priority_border?>" draggable="true" ondragstart="drag(event)">
         <div class="task-header <?=$t->task_priority_color?>">
+        <form method="POST" action="../Functions4Kanban/DeleteTask.php">
+        <input type="hidden" name="task_id" value="<?= $t->id ?>">  
         <div class="titleDeletIconDiv">
         <h5><?=$t->task_name?></h5>
         <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal<?=$t->id?>"></i></p>
@@ -48,13 +53,14 @@ $stages    =  $stageRepo -> getAll();
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="button" data-dismiss="modal">Cancel</button>
-                                      <button type="button" class="button" onclick="Delete(this)">Delete</button>
+                                      <button type="submit" class="button mt-1" name="DeleteTask" id="DeleteTask">Delete</button>
                                     </div>
                                   </div>
                                 </div>
                               </div> 
                       <!--  -->
                     </div>
+      </form>
                     <div class="d-flex">
 
                     <div class="canvas-container">
@@ -94,6 +100,7 @@ $stages    =  $stageRepo -> getAll();
     </div>
   </div>
 </div>
+<?php } endforeach; ?>
 <?php endforeach; ?>
 </section>
 
@@ -107,22 +114,8 @@ $stages    =  $stageRepo -> getAll();
     <?php 
     $isAdmin = true;
      require_once('../header_footer/footer.php');
-    ?>
+    ?>  
+    <script>
+    </script>
   </body>
 </html>
-
-  <!-- <tr>
-      <td><?=$t->id?></td>
-      <td><?=$t->getPjName()->name?></td>
-      <td><?=$t->getStage()->name?></td>
-      <td><?=$t->short_description?></td>
-      <td><?=$t->task_name?></td>
-      <td>
-          <a href="deletetasks.php?id=<?=$t->id?>">
-              <button>Delete</button>
-          </a>
-          <a href="updatetaskspage.php?id=<?=$t->id?>">
-              <button>update</button>
-          </a>
-      </td>
-  </tr> -->
