@@ -52,7 +52,7 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
              <a href="createtask.php" class="btn  mt-3 ">Add Task</a>
             <?php } ?>
 
-          <a href="#" class="btn  mt-3 ">Member List</a>
+          <a href="../pages/memberlist.php" class="btn  mt-3 ">Member List</a>
           <a href="../Functions4Kanban/signout.php" class="btn  mt-3 ">LogOut</a>
           <div class="d-flex Profilecircle mr-3">
                 <a href="viewprofile.php?id=<?= $userID ?>" class="circle-container">
