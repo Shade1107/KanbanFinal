@@ -43,7 +43,6 @@ console.log(task_div);
     //ajax things
     update_task_stage(task_id, new_stage_id, task_div, target);
 
-
 }
 function update_task_stage(task_id, new_stage_id, task_div, new_stage_div) {
     //get requerst formal querystring  => task_id=1&stage_id=2...

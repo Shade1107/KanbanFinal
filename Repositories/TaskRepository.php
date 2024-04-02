@@ -112,5 +112,17 @@
             $projectRepo = new ProjectRepository(DatabaseConnection::getInstance());
             return $projectRepo->find($task->project_id);
         }
-    }
+
+        public function ChgPriorColor($color,$borderColor,$task_id){
+            $query  = "UPDATE tasks SET task_priority_color =$color, task_priority_border =$borderColor WHERE id =$task_id";
+            $result = $this->connection->query($query);
+
+            if($result === false){
+                throw new Exception(mysqli_error($this->connection), -1);
+            }else{
+                $task = $task_id;
+            }
+            return $task;
+        }
+}
 ?>  
