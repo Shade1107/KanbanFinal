@@ -36,15 +36,36 @@ $projects = $projectRepository->getAll();
         <div class="Ytask-columns-container mt-3" id="taskColumnsContainer">
           <div class="Ytask-column" id="backlog">
             <a href="HomeAdmin.php?project_id=<?= $project->id ?>" class="text-decoration-none">
-              <h3><?= $project->description?></h3>
+              <h3><?= $project->name?></h3>
+              <div class="d-350">
+                <canvas id="pie-chart"></canvas>
+            </div>
+              <?php 
+                      $project_id = $project->id;
+
+                      $conn = DatabaseConnection::getInstance();
+                      $query = "select s.name stage, count(t.id) count 
+                                  from stages s
+                                  left join tasks t on t.stage_id  = s.id
+                                  WHERE t.project_id = '$project_id' AND s.project_id = '$project_id'
+                                  group by s.id
+                              ";
+                      $result = $conn->query($query);
+                      $stages = [];
+                      while($row = mysqli_fetch_assoc($result)){
+                          $stages[] = $row;
+                      }
+              ?>
             </a> 
           </div>
+          <div>
       <?php endforeach; ?>
     <?php else : ?>
       <p>No projects found</p>
     <?php endif; ?>
   </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
 
 <?php 
 $isAdminMemberFromPJwebpage = true;

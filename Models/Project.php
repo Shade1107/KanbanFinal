@@ -26,6 +26,7 @@
         }
 
         public function getName(){
+            
             return $this->admin;    
         }
     }
