@@ -7,56 +7,7 @@ function Delete(task){
     $('.modal-backdrop').remove(); // Remove the backdrop
 }
 
-function allowDrop(ev) {
-    ev.preventDefault();
-  }
-  
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
-  
-//   function drop(ev) {
-//     ev.preventDefault();
-//     var data = ev.dataTransfer.getData("text");
-//     ev.target.appendChild(document.getElementById(data));
-//   }
 
-
-function drop(event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("text");
-    
-    event.target.appendChild(document.getElementById(data));
-    var draggedElement = document.getElementById(data);
-    var target = event.target.closest('.task-container');
-    var tasks = target.closest('.task-list').querySelectorAll('.task-container');
-  
-    // Get the index of the dropped task
-    var droppedIndex = Array.from(tasks).indexOf(draggedElement);
-  
-    // Get the index of the target task (if dropping onto another task)
-    var targetIndex = Array.from(tasks).indexOf(target);
-  
-    // If dropping onto another task, adjust the target index
-    if (targetIndex !== -1) {
-      if (droppedIndex < targetIndex) {
-        targetIndex--; // Adjust index for dropping above the target task
-      }else {
-      targetIndex = tasks.length; // Append to the end if dropping at the bottom of the column
-    }
-}
-  
-    // Insert the dragged task at the correct position
-    if (droppedIndex < targetIndex) {
-      target.parentNode.insertBefore(draggedElement, target);
-    } else {
-      if (targetIndex === 0) {
-        target.parentNode.insertBefore(draggedElement, tasks[0]);
-      } else {
-        target.parentNode.insertBefore(draggedElement, tasks[targetIndex]);
-      }
-    }
-  }
 
   function changecolor(canvas, color, borderColor) {
     // console.log("Canvas class:", canvas.classList);
