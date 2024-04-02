@@ -14,15 +14,23 @@
             $this->connection = $connection;        
         }
 
+        public function find($id){
+            $task   = null;
+            $query  = "SELECT * FROM ".self::$table_name." WHERE id = $id;";
+            $result = $this->connection->query($query);
+            if($result) $task = $this->toModel(mysqli_fetch_object($result));
+            return $task;
+        }
+
         public function assignStage(Task $task, Stage $stage){
 
             $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
             $result = $this->connection->query($query);
 
             if($result === false){
-                throw new Exception(mysqli_error($conn), -1);
+                throw new Exception(mysqli_error($this->connection), -1);
             }else{
-                $task       = Task::find($task->id);
+                $task       = TaskRepository::find($task->id);
             }
             return $task;
         }
@@ -38,14 +46,6 @@
                 }
             }
             return $tasks;
-        }
-
-        public function find($id){
-            $task   = null;
-            $query  = "SELECT * FROM ".self::$table_name." WHERE id = $id;";
-            $result = $this->connection->query($query);
-            if($result) $task = $this->toModel(mysqli_fetch_object($result));
-            return $task;
         }
 
         public function delete($id){

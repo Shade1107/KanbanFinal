@@ -19,6 +19,8 @@ $stages    =  $stageRepo -> getAll();
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!-- title logo  -->
     <link rel="icon" type="image/png" href="../image/logo.PNG">
+    
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  </head>
  <body>
  <section class="column-container row">
