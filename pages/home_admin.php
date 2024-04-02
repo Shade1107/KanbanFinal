@@ -1,9 +1,6 @@
 <?php 
 $isAdmin = true;
-require_once('./header_footer/header.php');
-
-require_once('./pages/chart_data_function.php');
-
+require_once('header&footer/header.php');
 
 require_once('pages/chart_data_function.php');
 
@@ -17,24 +14,14 @@ require_once('pages/chart_data_function.php');
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  
   <!-- custom chart.js  -->
-<<<<<<< HEAD
-   <script src="./js/charts.js"></script> 
-<!-- cssloader -->
-<link rel="stylesheet" href="./css/css_loader.css">
-=======
    <script src="js/charts.js"></script> 
 <!-- cssloader -->
 <link rel="stylesheet" href="css/css_loader.css">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
 
   <!-- custom css  -->
-    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- title logo  -->
-<<<<<<< HEAD
-    <link rel="icon" type="image/png" href="./image/logo2_2.PNG">
-=======
     <link rel="icon" type="image/png" href="image/logo2_2.PNG">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
 
 <style>
 
@@ -117,11 +104,7 @@ require_once('pages/chart_data_function.php');
                     <div class="Ymember_card">
                       <div class="Ymember_img_name d-flex">
                           <div class="Ymember_img">
-<<<<<<< HEAD
-                            <img src="./image/p1.jpg" width="120px" height="50px">
-=======
                             <img src="image/p1.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                           </div>
                           <span class=" Ymember"> Yin Myo Myat</span>
                       </div>
@@ -138,11 +121,7 @@ require_once('pages/chart_data_function.php');
                       <div class="Ymember_card">
                           <div class="Ymember_img_name d-flex">
                               <div class="Ymember_img">
-<<<<<<< HEAD
-                                <img src="./image/p2.jpg" width="120px" height="50px">
-=======
                                 <img src="image/p2.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                               </div>
                               <span class=" Ymember"> Yoon Mi</span>
                           </div>
@@ -158,11 +137,7 @@ require_once('pages/chart_data_function.php');
                       <div class="Ymember_card">
                           <div class="Ymember_img_name d-flex">
                               <div class="Ymember_img">
-<<<<<<< HEAD
-                                <img src="./image/p1.jpg" width="120px" height="50px">
-=======
                                 <img src="image/p1.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                               </div>
                               <span class=" Ymember"> Ei ThinZar</span>
                           </div>
@@ -178,11 +153,7 @@ require_once('pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember"> May Phoo</span>
                         </div>
@@ -199,11 +170,7 @@ require_once('pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p1.jpg" width="120px" height="50px">
-=======
                               <img src="image/p1.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember"> Myo Gyi</span>
                         </div>
@@ -219,11 +186,7 @@ require_once('pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember">Htet Htet Htun</span>
                         </div>
@@ -239,11 +202,7 @@ require_once('pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember">Su Myat Aung</span>
                         </div>
@@ -259,11 +218,7 @@ require_once('pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember">Hnin Htet</span>
                         </div>
@@ -358,13 +313,13 @@ require_once('pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
@@ -422,13 +377,13 @@ require_once('pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
@@ -488,13 +443,13 @@ require_once('pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
@@ -554,13 +509,13 @@ require_once('pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>

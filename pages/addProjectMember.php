@@ -2,9 +2,6 @@
 require_once('../Models/Project.php');
 require_once('../Repositories/ProjectRepository.php');
 require_once('../Database/DatabaseConnection.php');
-require_once('../Repositories/StageRepository.php');
-require_once('../Repositories/TaskRepository.php');
-require_once('../pages/chart_data_function.php');
 
 $isAdminMemberFromPJwebpage = true;
 require_once('../header_footer/header.php');
@@ -26,7 +23,7 @@ $projects = $projectRepository->getAll();
     <!-- Include the JavaScript file -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- custom js  -->
-    <script src="charts_js/pie_chart.php"></script>
+    <script src="../js/charts.js"></script>
  </head>
  <body class="YHomeBodyColor">
  <section class="Ycolumn-container row">
@@ -34,64 +31,45 @@ $projects = $projectRepository->getAll();
     <h3 class="text-center mt-5">Projects</h3>
   </div>
   <div class="col-lg-9">
-    <?php if (isset($projects) && !empty($projects)) : ?>
+    <?php if(isset($projects) && !empty($projects)) : ?>
       <?php foreach ($projects as $project) : ?>
         <div class="Ytask-columns-container mt-3" id="taskColumnsContainer">
           <div class="Ytask-column" id="backlog">
             <a href="HomeAdmin.php?project_id=<?= $project->id ?>" class="text-decoration-none">
               <h3><?= $project->name?></h3>
+              <div class="d-350">
+                <canvas id="pie-chart"></canvas>
+            </div>
+              <?php 
+                      $project_id = $project->id;
+
+                      $conn = DatabaseConnection::getInstance();
+                      $query = "select s.name stage, count(t.id) count 
+                                  from stages s
+                                  left join tasks t on t.stage_id  = s.id
+                                  WHERE t.project_id = '$project_id' AND s.project_id = '$project_id'
+                                  group by s.id
+                              ";
+                      $result = $conn->query($query);
+                      $stages = [];
+                      while($row = mysqli_fetch_assoc($result)){
+                          $stages[] = $row;
+                      }
+              ?>
             </a> 
-            <div class="Ytask-column">
-                <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
-              </div>
-              <script>
-                fetch('pie_chart.php?id=<?= $project->id ?>')
-                  .then(response => response.json())
-                  .then(data => {
-                    generatePieChart('YmyChart<?= $project->id ?>', data);
-                  })
-                  .catch(error => console.error('Error fetching chart data:', error));
-              </script>
           </div>
+          <div>
       <?php endforeach; ?>
     <?php else : ?>
       <p>No projects found</p>
     <?php endif; ?>
   </div>
 </section>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
 
 <?php 
 $isAdminMemberFromPJwebpage = true;
 require_once('../header_footer/footer.php');
 ?>
-
-<script>
-     // Generate the fourth pie chart
-    var labels = [];
-    var data = [];
-    <?php foreach($project as $r): ?>
-        labels.push("<?=$r["stage"]?>");
-        data.push(<?=$r["task"]?>);
-    <?php endforeach; ?>
-    generatePieChart('YmyChart4', labels4, data4,'Project4');
-
-    // Generate the line chart
-    var labels5 = [];
-    var data5 = [];
-    <?php foreach($totalProject as $tp): ?>
-        labels5.push("<?=$tp["project"]?>");
-       
-    <?php endforeach; ?>
-
-    <?php foreach($donePercentage as $dp): ?>
-        data5.push(<?=$dp?>);
-    <?php endforeach; ?>
-
-    
-
-    generateLineChart('YmylineChart', labels5, data5,'Done percentage for each project');
-
-</script>
 </body>
 </html>
