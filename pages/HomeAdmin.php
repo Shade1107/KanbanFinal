@@ -27,12 +27,11 @@ foreach($stages as $stage):?>
 <div class="col-lg-3 col-md-3 col-sm-3">
     <div class="task-column" id="<?=$stage->id?>">
         <h4 class="text-center"><?=$stage->name?></h4>
-        <hr class="custom-hr">
-    <?php foreach($tasks as $t):
-      if ($t->stage_id == $stage->id) {
-    ?>
-        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <div class="task-container <?=$t->task_priority_border?>" draggable="true" ondragstart="drag(event)">
+        <hr class="custom-hr" />
+    <?php foreach($tasks as $t):?>
+      <?php if ($t->stage_id == $stage->id):?>
+        <div id="s_<?=$stage->id?>" stage_id="<?=$stage->id?>" class="task-list" ondrop="drop(event)" ondragleave="dragLeave(event);" ondragover="allowDrop(event)">
+        <div id="t_<?=$t->id?>" task_id="<?=$t->id?>" stage_id="<?=$stage->id?>" class="task-container <?=$t->task_priority_border?>" draggable="true" ondragstart="drag(event)">
         <div class="task-header <?=$t->task_priority_color?>">
         <form method="POST" action="../Functions4Kanban/DeleteTask.php">
         <input type="hidden" name="task_id" value="<?= $t->id ?>">  
@@ -98,9 +97,11 @@ foreach($stages as $stage):?>
                 </div>
               </div>
     </div>
+    <?php endif;?>
+<?php  endforeach; ?>
   </div>
 </div>
-<?php } endforeach; ?>
+
 <?php endforeach; ?>
 </section>
 
@@ -108,6 +109,7 @@ foreach($stages as $stage):?>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- <script src="js/app.js"></script> -->
+    <script src="../js/drag_drop.js"></script>
     <script src="../js/changecolor.js"></script>
     <script src="../js/lightbox.js"></script>
 

@@ -1,5 +1,6 @@
 <?php
     require_once('../Models/Task.php');
+    require_once('../Models/Stage.php');
     require_once('../Database/DatabaseConnection.php');
     require_once('ProjectRepository.php');
     require_once('StageRepository.php');
@@ -11,6 +12,19 @@
 
         public function __construct($connection){
             $this->connection = $connection;        
+        }
+
+        public function assignStage(Task $task, Stage $stage){
+
+            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
+            $result = $this->connection->query($query);
+
+            if($result === false){
+                throw new Exception(mysqli_error($conn), -1);
+            }else{
+                $task       = Task::find($task->id);
+            }
+            return $task;
         }
 
         public function getAll(){
