@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2024 at 03:46 PM
+-- Generation Time: Apr 02, 2024 at 06:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kanban_board`
+-- Database: `kanban`
 --
 
 -- --------------------------------------------------------
@@ -158,23 +158,23 @@ CREATE TABLE `tasks` (
   `project_id` int(100) NOT NULL,
   `stage_id` int(100) NOT NULL,
   `short_description` varchar(250) NOT NULL,
-  `task_name` varchar(50) NOT NULL
+  `task_name` varchar(50) NOT NULL,
+  `task_priority_color` varchar(100) NOT NULL,
+  `task_priority_border` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `project_id`, `stage_id`, `short_description`, `task_name`) VALUES
-(1, 3, 1, 'UI for EPDA\'s kanban project which is we need to present to our japanese CEO ', 'For UI'),
-(2, 3, 2, 'Database for EPDA\'s kanban project which is we need to present to our japanese CEO', 'For Database'),
-(3, 3, 3, 'Functions for EPDA\'s kanban project which is we need to present to our japanese CEO', 'For Functions'),
-(10, 2, 4, 'Project 2 Task 1', 'Task 1'),
-(11, 2, 5, 'Project 2 Task 2', 'Task 2'),
-(12, 2, 6, 'Project 2 Task 3', 'Task 3'),
-(15, 2, 7, 'Project 2 Task 4', 'Task 4'),
-(16, 2, 4, 'h', 'h'),
-(17, 2, 6, 'h', 'h');
+INSERT INTO `tasks` (`id`, `project_id`, `stage_id`, `short_description`, `task_name`, `task_priority_color`, `task_priority_border`) VALUES
+(1, 3, 1, 'UI for EPDA\'s kanban project which is we need to present to our japanese CEO ', 'For UI', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
+(2, 3, 2, 'Database for EPDA\'s kanban project which is we need to present to our japanese CEO', 'For Database', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
+(3, 3, 3, 'Functions for EPDA\'s kanban project which is we need to present to our japanese CEO', 'For Functions', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
+(10, 2, 4, 'Project 2 Task 1', 'Task 1', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
+(11, 2, 5, 'Project 2 Task 2', 'Task 2', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
+(12, 2, 6, 'Project 2 Task 3', 'Task 3', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
+(15, 2, 7, 'Project 2 Task 4', 'Task 4', 'YPrimaryTaskColor', 'YDefaultCardBorder');
 
 -- --------------------------------------------------------
 
@@ -396,7 +396,7 @@ ALTER TABLE `task_members`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
