@@ -13,7 +13,6 @@
         public function __construct($connection){
             $this->connection = $connection;        
         }
-<<<<<<< HEAD
 
         public function find($id){
             $task   = null;
@@ -22,22 +21,6 @@
             if($result) $task = $this->toModel(mysqli_fetch_object($result));
             return $task;
         }
-
-        public function assignStage(Task $task, Stage $stage){
-
-            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
-            $result = $this->connection->query($query);
-
-            if($result === false){
-                throw new Exception(mysqli_error($this->connection), -1);
-            }else{
-                $task       = TaskRepository::find($task->id);
-            }
-            return $task;
-        }
-
-=======
->>>>>>> 40cbc66399833b2a08eeb727168299a198e6e535
         public function getAll(){
             $tasks = [];
             $query = "SELECT * FROM ". self::$table_name . ";";
