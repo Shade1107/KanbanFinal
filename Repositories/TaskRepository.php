@@ -14,19 +14,13 @@
             $this->connection = $connection;        
         }
 
-        public function assignStage(Task $task, Stage $stage){
-
-            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
+        public function find($id){
+            $task   = null;
+            $query  = "SELECT * FROM ".self::$table_name." WHERE id = $id;";
             $result = $this->connection->query($query);
-
-            if($result === false){
-                throw new Exception(mysqli_error($this->connection), -1);
-            }else{
-                $task       = TaskRepository::find($task->id);
-            }
+            if($result) $task = $this->toModel(mysqli_fetch_object($result));
             return $task;
         }
-
         public function getAll(){
             $tasks = [];
             $query = "SELECT * FROM ". self::$table_name . ";";
@@ -40,18 +34,23 @@
             return $tasks;
         }
 
-        public function find($id){
-            $task   = null;
-            $query  = "SELECT * FROM ".self::$table_name." WHERE id = $id;";
-            $result = $this->connection->query($query);
-            if($result) $task = $this->toModel(mysqli_fetch_object($result));
-            return $task;
-        }
-
         public function delete($id){
             $query  = "DELETE FROM ".self::$table_name." WHERE id = $id limit 1;";
             $result = $this->connection->query($query);
             return true;
+        }
+
+        public function assignStage(Task $task, Stage $stage){
+
+            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
+            $result = $this->connection->query($query);
+
+            if($result === false){
+                throw new Exception(mysqli_error($this->connection), -1);
+            }else{
+                $task       = TaskRepository::find($task->id);
+            }
+            return $task;
         }
 
         public function create($project_id, $short_description, $task_name, $user_ids){
@@ -113,5 +112,17 @@
             $projectRepo = new ProjectRepository(DatabaseConnection::getInstance());
             return $projectRepo->find($task->project_id);
         }
-    }
+
+        public function ChgPriorColor($color,$borderColor,$task_id){
+            $query  = "UPDATE tasks SET task_priority_color =$color, task_priority_border =$borderColor WHERE id =$task_id";
+            $result = $this->connection->query($query);
+
+            if($result === false){
+                throw new Exception(mysqli_error($this->connection), -1);
+            }else{
+                $task = $task_id;
+            }
+            return $task;
+        }
+}
 ?>  

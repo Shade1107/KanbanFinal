@@ -9,34 +9,34 @@ $role_id= $user->role_id;
 $result = false;
   // Check if the form has been submitted
   
-  if (isset($_POST['save']) && isset($_FILES['profilePic'])) {
-   
-    // Retrieve the form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $gender = $_POST['gender'];
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])){
+   if(!empty($_FILES['profilePic']['name'])){
     $img_name = $_FILES['profilePic']['name'];
     $tmp_name = $_FILES['profilePic']['tmp_name'];
-
+     
     $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
 			$img_ex_lc = strtolower($img_ex);
 
 			$allowed_exs = array("jpg", "jpeg", "png"); 
 
 			if (in_array($img_ex_lc, $allowed_exs)) {
-        //print_r($_FILES);
-        
-				//$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
         $new_img_name = "IMG-". $id . '.'.$img_ex_lc;
 				$img_upload_path = '../image/'.$new_img_name;
-				// echo "<h1>$new_img_name</h1>";
-        // echo "<h1>$img_upload_path</h1>";
         $r = move_uploaded_file($tmp_name, $img_upload_path);
-        // var_dump($r);
-        // exit();
-         $result = $userRepo->update($id, $new_img_name, $name, $email, $password, $gender, $role_id);
-      }
+     }
+    }else
+    {
+      $userRepo = new UserRepository(DatabaseConnection::getInstance());
+      $user = $userRepo->find($id);
+      $new_img_name = $user->img;
+    }
+    // Retrieve the form data
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $gender = $_POST['gender'];
+    $result = $userRepo->update($id, $new_img_name, $name, $email, $password, $gender, $role_id);
+
      // exit();
     if($result){
     header('Location: viewprofile.php');
