@@ -16,13 +16,13 @@
 
         public function assignStage(Task $task, Stage $stage){
 
-            $query  = "UPDATE " . Task::TABLE . " SET stage_id = '$stage->id' WHERE id = $task->id";
+            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
             $result = $this->connection->query($query);
 
             if($result === false){
                 throw new Exception(mysqli_error($conn), -1);
             }else{
-                $task       = Task::find('id', $task->id);
+                $task       = Task::find($task->id);
             }
             return $task;
         }

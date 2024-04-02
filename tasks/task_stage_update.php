@@ -9,8 +9,8 @@
 
     $taskRepo = new TaskRepository();
     $stageRepo = new StageRepository();
-    $task = $taskRepo->find("id", $task_id);
-    $stagee = $stageRepo->find("id", $stage_id);
+    $task = $taskRepo->find($task_id);
+    $stagee = $stageRepo->find($stage_id);
 
     
     //need to check $task and $stage..
