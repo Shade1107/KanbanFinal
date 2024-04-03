@@ -68,6 +68,13 @@ require_once('../Functions4Kanban/taskcreate.php');
       <!-- form -->
       <div class="Miprojectform  col-lg-6 ee92a9 mt-5">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+
+      <!-- error message -->
+      <?php if(isset($error_message)) { ?>
+                      <div style="color: red;"><?php echo $error_message; ?></div>
+                      <?php
+                       } ?>
+
           <h1 class="loginFormText">⟁ Add Task</h1>
          
 
@@ -149,8 +156,10 @@ require_once('../Functions4Kanban/taskcreate.php');
                          </div>
 
                        </div>
+                       
                        </div>
                        </div>
+                       
             
          
               <!-- button -->

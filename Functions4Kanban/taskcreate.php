@@ -26,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header('Location: ../pages/HomeAdmin.php');
             exit;
         } else {
-            echo "Error inserting task.";
+            $error_message= "Error inserting task.";
         }
     } else {
-        echo "One or more required fields are missing.";
+        $error_message= "One or more required fields are missing.";
     }
 }
 ?>
