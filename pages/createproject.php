@@ -2,8 +2,11 @@
 require_once('../header_footer/header.php');
 require_once('../Repositories/UserRepository.php');
 require_once('../Models/Project.php');
-require_once('../Functions4Kanban/projectcreate.php')
+require_once('../Database/DatabaseConnection.php')
 
+?>
+<?php
+  $admin_id = $_GET['id']??'1';
 ?>
 <!Doctype html>
 <head>
@@ -65,7 +68,7 @@ require_once('../Functions4Kanban/projectcreate.php')
 
       <!-- form -->
       <div class="Miprojectform  col-lg-6 ee92a9 mt-5">
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <form method="POST" action="../Functions4Kanban/projectcreate.php">
           <h1 class="loginFormText">⟁ Add Project</h1>
           <!-- <span class="Yloginspan">Welcome to our Kanban</span> -->
           <div class="Yinputfieldcenter">
@@ -83,7 +86,7 @@ require_once('../Functions4Kanban/projectcreate.php')
          
                     <td>
                       <!-- <input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "> -->
-                      <select id="tselect" class="select" placeholder="search member to add" name="members" multiple>
+                      <select id="tselect" class="select" placeholder="search member to add" name="members[]" multiple>
                         <?php foreach ($member as $m) : ?>
                           <option value="<?php echo htmlspecialchars($m->id); ?>">
                             <?php echo htmlspecialchars($m->name); ?>
@@ -95,6 +98,11 @@ require_once('../Functions4Kanban/projectcreate.php')
                       <!-- <td><input type="submit" name="" value="search" class="mt-4 buttonsearch"></td><br> -->
                   </tr>
                 </table>  
+              </div>
+
+              <!-- admin_id -->
+              <div>
+                <input type="text" id="admin_id" name="admin_id" value="<?php echo $admin_id ?>" hidden><br>
               </div>
 
               <div class="desContainer">
@@ -122,12 +130,12 @@ require_once('../Functions4Kanban/projectcreate.php')
               <div class="datecontainer">        
                 <div class="input-group mt-4" >
                   <span class="input-group-text" id="basic-addon3">Choose your target date</span>
-                  <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="targetDate">
+                  <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="dueDate">
                 </div>
               </div>  
 
               <button type="button" class="buttonMi mt-5"><a class="buttonlink" href="addProjectAdmin.php">Back</a></button>
-              <button type="submit" class="buttonMi mt-5"><a class="buttonlink" href="addProjectAdmin.php">Create</a</button>
+              <button type="submit" class="buttonMi mt-5" value="submit">Create</button>
                   
             </div>
           </div>  
