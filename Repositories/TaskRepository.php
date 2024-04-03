@@ -53,7 +53,7 @@
             return $task;
         }
 
-        public function create($project_id, $short_description, $task_name, $user_ids){
+        public function create($project_id, $short_description, $task_name, $user_ids,$task_priority_color){
             // Escape inputs to prevent SQL injection
             $project_id = $this->connection->real_escape_string($project_id);
             $short_description = $this->connection->real_escape_string($short_description);
@@ -61,7 +61,7 @@
         
             // Perform the main task insertion
             $query = "INSERT INTO " . self::$table_name . " (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border)  
-                          VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}','YPrimaryTaskColor', 'YDefaultCardBorder')";
+                          VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}','{$task_priority_color}', 'YDefaultCardBorder')";
         
             $results = $this->connection->query($query);
         
