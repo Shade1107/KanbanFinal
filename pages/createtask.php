@@ -3,6 +3,7 @@ require_once('../header_footer/header.php');
 require_once('../Repositories/TaskRepository.php');
 require_once('../Repositories/UserRepository.php');
 require_once('../Repositories/Project_memberRepository.php');
+require_once('../Functions4Kanban/taskcreate.php');
 
 
 ?>
@@ -66,7 +67,7 @@ require_once('../Repositories/Project_memberRepository.php');
 
       <!-- form -->
       <div class="Miprojectform  col-lg-6 ee92a9 mt-5">
-      <form action="../Functions4Kanban/taskcreate.php" method="POST">
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
           <h1 class="loginFormText">⟁ Add Task</h1>
          
 
@@ -154,7 +155,7 @@ require_once('../Repositories/Project_memberRepository.php');
          
               <!-- button -->
                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
-                 <button type="submit" class="buttonMi mt-4" ><a class="buttonlink" href="../Functions4Kanban/taskcreate.php">Create</a></button>
+                 <button type="submit" class="buttonMi mt-4" >Create</button>
          
              
              

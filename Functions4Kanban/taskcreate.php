@@ -1,5 +1,5 @@
 <?php
-// require_once('../header_footer/header.php');
+require_once('../header_footer/header.php');
 require_once('../Repositories/TaskRepository.php');
 require_once('../Repositories/Task_memberRepository.php');
 require_once('../Repositories/UserRepository.php');
@@ -7,7 +7,6 @@ require_once('../Repositories/Project_memberRepository.php');
 require_once('../Database/DatabaseConnection.php');
 
 $taskRepo = new TaskRepository(DatabaseConnection::getInstance());
-$taskMemberRepo = new TaskMemberRepository();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (
