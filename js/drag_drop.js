@@ -1,4 +1,3 @@
-
 function allowDrop(ev) {
     ev.preventDefault();
     ev.target.classList.add('drag-over');
@@ -7,7 +6,6 @@ function dragLeave(ev) {
     ev.preventDefault();
     ev.target.classList.remove('drag-over');
 }
-
 function drag(ev) {
     let taskDiv = document.getElementById(ev.target.id);
 console.log("drag");
@@ -20,9 +18,7 @@ console.log("drag");
     ev.dataTransfer.setData("task_div_id", task_div_id);
     ev.dataTransfer.setData("task_id", task_id);
     ev.dataTransfer.setData("stage_id", stage_id);
-
 }
-
 function drop(ev) {
     console.log(ev.target.closest('.drop_stage').id);
     ev.preventDefault();
@@ -42,7 +38,6 @@ console.log(task_div);
     //but before move the div in ui, request server to update task role.
     //ajax things
     update_task_stage(task_id, new_stage_id, task_div, target);
-
 }
 function update_task_stage(task_id, new_stage_id, task_div, new_stage_div) {
     //get requerst formal querystring  => task_id=1&stage_id=2...

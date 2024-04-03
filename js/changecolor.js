@@ -1,5 +1,5 @@
 function Delete(task){
-    const TasktoDelete = task.closest('.task-container');
+    let TasktoDelete = task.closest('.task-container');
     // alert('Are you sure?');
     TasktoDelete.remove();
 
@@ -8,12 +8,15 @@ function Delete(task){
 }
 function changecolor(canvas) {
     // console.log("Canvas class:", canvas.classList);
-    const hasCanvas1 = canvas.classList.contains("canvas1");
-    const hasCanvas2 = canvas.classList.contains("canvas2");
-    // const hasCanvas3 = canvas.classList.contains("canvas3");
+    let task_id           =     document.classList("task_id");
+    let hasCanvas1        =     canvas.classList.contains("canvas1");
+    let hasCanvas2        =     canvas.classList.contains("canvas2");
+    let new_taskContainer =     '';
+    let new_taskHeader    =     '';
+    // let hasCanvas3 = canvas.classList.contains("canvas3");
     // Get the parent task-container element
     if (hasCanvas1) {
-        const taskContainer = canvas.closest('.task-container');
+        let taskContainer = canvas.closest('.task-container');
   
         // Check if the task-container element exists
         if (taskContainer) {
@@ -25,7 +28,7 @@ function changecolor(canvas) {
             taskContainer.classList.add('YFirstCardBorder');
   
             // Find the task-header element within the task-container
-            const taskHeader = taskContainer.querySelector('.task-header');
+            let taskHeader = taskContainer.querySelector('.task-header');
   
             // Set the background color of the task-header element
             if (taskHeader) {
@@ -33,9 +36,11 @@ function changecolor(canvas) {
                 taskHeader.classList.add('YfirstPriority');
             }
         }
+        new_taskContainer =  'task-container YFirstCardBorder';
+        new_taskHeader    =  'task-header YfirstPriority';
     }else if(hasCanvas2){
   
-        const taskContainer = canvas.closest('.task-container');
+        let taskContainer = canvas.closest('.task-container');
   
         // Check if the task-container element exists
         if (taskContainer) {
@@ -44,7 +49,7 @@ function changecolor(canvas) {
             taskContainer.classList.add('YSecondCardBorder');
   
            
-            const taskHeader = taskContainer.querySelector('.task-header');
+            let taskHeader = taskContainer.querySelector('.task-header');
   
            
             if (taskHeader) {
@@ -52,10 +57,11 @@ function changecolor(canvas) {
                 taskHeader.classList.add('YsecondPriority');
             }
         }
-  
+        new_taskContainer =  'task-container YSecondCardBorder';
+        new_taskHeader    =  'task-header YsecondPriority';
     }else {
   
-        const taskContainer = canvas.closest('.task-container');
+        let taskContainer = canvas.closest('.task-container');
   
         // Check if the task-container element exists
         if (taskContainer) {
@@ -66,7 +72,7 @@ function changecolor(canvas) {
             taskContainer.classList.add('YThirdCardBorder');
   
             // Find the task-header element within the task-container
-            const taskHeader = taskContainer.querySelector('.task-header');
+            let taskHeader = taskContainer.querySelector('.task-header');
   
             // Set the background color of the task-header element
             if (taskHeader) {
@@ -74,41 +80,25 @@ function changecolor(canvas) {
                 taskHeader.classList.add('YthirdPriority');
             }
         }
+        new_taskContainer =  'task-container YThirdCardBorder';
+        new_taskHeader    =  'task-header YthirdPriority';
     }
+    console.log(task_id);
+    console.log(new_taskContainer);
+    console.log(new_taskHeader);
+    ChgPColor4Tasks(task_id,new_taskContainer,new_taskHeader);
   }
-  function ChgPColor4Tasks(task_id,taskContainer,taskHeader) {
-    //get requerst formal querystring  => task_id=1&stage_id=2...
-    let url = '../tasks/task_stage_update.php?task_id=' + task_id + '&stage_id=' + new_stage_id;
+  
+  function ChgPColor4Tasks(task_id,new_taskContainer,new_taskHeader) {
+    let url = '../Functions4Kanban/TasksPColorChg.php?task_id=' + task_id + '&=taskContainer' + new_taskContainer +'&=taskHeader' + new_taskHeader;
 
     //alternative approach use jquery $.get().... 
-    const xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     //onload == response code 200 and status 4.. request no error and completed
     xhttp.onload = function (xhttp) {
         let response = JSON.parse(xhttp.target.responseText);
         if (response.code == 1) {//success
-            new_stage_div.appendChild(task_div);
-            //assign to new stage
-            task_div.setAttribute('stage_id', new_stage_id);
-        }
-    };
-    xhttp.open("GET", url);
-    xhttp.send();
-}
-
-
-  function update_task_prior_colour(task_id, new_stage_id, task_div, new_stage_div) {
-    //get requerst formal querystring  => task_id=1&stage_id=2...
-    let url = '../tasks/task_stage_update.php?task_id=' + task_id + '&stage_id=' + new_stage_id;
-
-    //alternative approach use jquery $.get().... 
-    const xhttp = new XMLHttpRequest();
-    //onload == response code 200 and status 4.. request no error and completed
-    xhttp.onload = function (xhttp) {
-        let response = JSON.parse(xhttp.target.responseText);
-        if (response.code == 1) {//success
-            new_stage_div.appendChild(task_div);
-            //assign to new stage
-            task_div.setAttribute('stage_id', new_stage_id);
+            console.log('success');
         }
     };
     xhttp.open("GET", url);

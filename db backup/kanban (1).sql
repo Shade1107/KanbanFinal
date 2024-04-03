@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2024 at 06:05 AM
+-- Generation Time: Apr 03, 2024 at 05:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -144,8 +144,7 @@ INSERT INTO `stages` (`id`, `name`, `project_id`) VALUES
 (3, 'Done', 3),
 (4, 'Planning', 2),
 (5, 'Doing', 2),
-(6, 'Testing', 2),
-(7, 'Done', 2);
+(6, 'Testing', 2);
 
 -- --------------------------------------------------------
 
@@ -173,8 +172,7 @@ INSERT INTO `tasks` (`id`, `project_id`, `stage_id`, `short_description`, `task_
 (3, 3, 3, 'Functions for EPDA\'s kanban project which is we need to present to our japanese CEO', 'For Functions', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
 (10, 2, 4, 'Project 2 Task 1', 'Task 1', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
 (11, 2, 5, 'Project 2 Task 2', 'Task 2', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
-(12, 2, 6, 'Project 2 Task 3', 'Task 3', 'YPrimaryTaskColor', 'YDefaultCardBorder'),
-(15, 2, 7, 'Project 2 Task 4', 'Task 4', 'YPrimaryTaskColor', 'YDefaultCardBorder');
+(12, 2, 6, 'Project 2 Task 3', 'Task 3', 'YPrimaryTaskColor', 'YDefaultCardBorder');
 
 -- --------------------------------------------------------
 
@@ -280,7 +278,8 @@ INSERT INTO `users` (`id`, `img`, `name`, `email`, `password`, `gender_id`, `rol
 (17, '', 'May Thingyan Phoo', 'deeaugust109@gmail.com', '106', 2, 2),
 (18, '', 'Saung Yadanar Aung', 'saung@gmail.com', '107', 2, 2),
 (19, '', 'Hnin Htet Htet Aung', 'Hninn@gmail.com', '108', 2, 2),
-(20, '', 'Yin Myo Myat', 'yinmyo.myat24@gmail.com', '109', 2, 1);
+(20, '', 'Yin Myo Myat', 'yinmyo.myat24@gmail.com', '109', 2, 1),
+(30, '', 'MTK', 'blabla@gmail.com', '12345', 1, 2);
 
 --
 -- Indexes for dumped tables
@@ -396,7 +395,7 @@ ALTER TABLE `task_members`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
