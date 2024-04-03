@@ -5,7 +5,6 @@ require_once('../Repositories/UserRepository.php');
 require_once('../Repositories/Project_memberRepository.php');
 require_once('../Functions4Kanban/taskcreate.php');
 
-
 ?>
 <!Doctype html>
 <head>
@@ -16,7 +15,7 @@ require_once('../Functions4Kanban/taskcreate.php');
     <!-- title logo  -->
     <link rel="icon" type="image/png" href="../image/logo.PNG">
 
-    <style>
+<style>
   .select{
   width: 400px;
   }
@@ -160,8 +159,6 @@ require_once('../Functions4Kanban/taskcreate.php');
                        </div>
                        </div>
                        
-            
-         
               <!-- button -->
                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
                  <button type="submit" class="buttonMi mt-4" >Create</button>
@@ -175,11 +172,8 @@ require_once('../Functions4Kanban/taskcreate.php');
       
        
      <!-- <span class="Yloginspan mt-3">Create a <a href="" class="YColor3e306b">NEW ACCOUNT ?</a></span> -->
-       
-       
-       
-     
-     </form>
+
+    </form>
 
   </div>
   </div>

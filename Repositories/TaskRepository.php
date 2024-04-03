@@ -40,20 +40,10 @@
             return true;
         }
 
-        public function assignStage(Task $task, Stage $stage){
+       
+        public function create($project_id, $short_description, $task_name, $user_ids,$task_priority_color){
 
-            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
-            $result = $this->connection->query($query);
-
-            if($result === false){
-                throw new Exception(mysqli_error($this->connection), -1);
-            }else{
-                $task       = TaskRepository::find($task->id);
-            }
-            return $task;
-        }
-
-        public function create($project_id, $short_description, $task_name, $user_ids){
+        
             // Escape inputs to prevent SQL injection
             $project_id = $this->connection->real_escape_string($project_id);
             $short_description = $this->connection->real_escape_string($short_description);
@@ -61,7 +51,7 @@
         
             // Perform the main task insertion
             $query = "INSERT INTO " . self::$table_name . " (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border)  
-                          VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}','YPrimaryTaskColor', 'YDefaultCardBorder')";
+                          VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}','{$task_priority_color}', 'YDefaultCardBorder')";
         
             $results = $this->connection->query($query);
         
@@ -113,14 +103,28 @@
             return $projectRepo->find($task->project_id);
         }
 
-        public function ChgPriorColor($color,$borderColor,$task_id){
-            $query  = "UPDATE tasks SET task_priority_color =$color, task_priority_border =$borderColor WHERE id =$task_id";
+        public function ChgPriorColor($color, $borderColor, $task_id) {
+            $query  = "UPDATE tasks SET task_priority_color = ?, task_priority_border = ? WHERE id = ?";
+            $statement = $this->connection->prepare($query);
+            $statement->bind_param("ssi", $color, $borderColor, $task_id);
+            $statement->execute();
+        
+            if($statement->error) {
+                throw new Exception($statement->error, -1);
+            } else {
+                return $task_id;
+            }
+        }
+        
+        public function assignStage(Task $task, Stage $stage){
+
+            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
             $result = $this->connection->query($query);
 
             if($result === false){
                 throw new Exception(mysqli_error($this->connection), -1);
             }else{
-                $task = $task_id;
+                $task       = TaskRepository::find($task->id);
             }
             return $task;
         }
