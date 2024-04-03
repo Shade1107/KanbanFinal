@@ -55,7 +55,7 @@
                           </div>
 
 
-                          <button type="submit" class="button mt-4">Sign Up</button>
+                          <button type="submit" class="button mt-4" name="signup">Sign Up</button>
                           
                         </div>
                 </div> 

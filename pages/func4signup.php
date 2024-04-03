@@ -33,6 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insert_result = $conn->query($insert_query);
 
     if ($insert_result) {
+        $user_id = $conn->insert_id; // Get the inserted user_id
+        $_SESSION['loggedin'] = true;
+        $_SESSION['user_id'] = $user_id ;
         header("Location: addProjectMember.php");
         exit;
     } else {
