@@ -40,24 +40,10 @@
             return true;
         }
 
-<<<<<<< HEAD
-        public function assignStage(Task $task, Stage $stage){
-
-            $query  = "UPDATE " .self::$table_name. " SET stage_id = '$stage->id' WHERE id = $task->id";
-            $result = $this->connection->query($query);
-
-            if($result === false){
-                throw new Exception(mysqli_error($this->connection), -1);
-            }else{
-                $task       = TaskRepository::find($task->id);
-            }
-            return $task;
-        }
-
+       
         public function create($project_id, $short_description, $task_name, $user_ids,$task_priority_color){
-=======
-        public function create($project_id, $short_description, $task_name, $user_ids){
->>>>>>> 07fab23783c8ddca2c3c1380096d616c75f47f23
+
+        
             // Escape inputs to prevent SQL injection
             $project_id = $this->connection->real_escape_string($project_id);
             $short_description = $this->connection->real_escape_string($short_description);

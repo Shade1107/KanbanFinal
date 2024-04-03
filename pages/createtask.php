@@ -150,7 +150,7 @@ require_once('../Functions4Kanban/taskcreate.php');
                 <br>
                 <input type="radio" id="second" name="Priority" value="YsecondPriority">
                 <label for="second">2nd Priority</label>
-                <br>
+                
                 <input type="radio" id="third" name="Priority" value="YThirdPriority">
                 <label for="third">3rd Priority</label>
                 <br>
