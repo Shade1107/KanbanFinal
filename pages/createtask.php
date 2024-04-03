@@ -5,7 +5,6 @@ require_once('../Repositories/UserRepository.php');
 require_once('../Repositories/Project_memberRepository.php');
 require_once('../Functions4Kanban/taskcreate.php');
 
-
 ?>
 <!Doctype html>
 <head>
@@ -16,7 +15,7 @@ require_once('../Functions4Kanban/taskcreate.php');
     <!-- title logo  -->
     <link rel="icon" type="image/png" href="../image/logo.PNG">
 
-    <style>
+<style>
   .select{
   width: 400px;
   }
@@ -115,20 +114,20 @@ require_once('../Functions4Kanban/taskcreate.php');
               $taskMembers = $pjMemberRepository->findWithProjectID($id);
             ?>
                      
-              <select id="tselect" class="select" placeholder="search member to add" name="user_id[]" multiple>
-              <?php foreach ($taskMembers as $taskMember) {
-              // Get the user name for each task member
-              $userName = taskMemberRepository::getUserName($taskMember);
-              ?>
-              <option value="<?php echo $taskMember->user_id; ?>">
-              <?php echo $userName->name; ?>
-              </option>
-              <?php } ?>
-              </select>
-              </td>
-              </tr>
-            </table>
-            </div>
+                      <select id="tselect" class="select" placeholder="search member to add" name="user_id[]" multiple>
+                      <?php foreach ($taskMembers as $taskMember) {
+        // Get the user name for each task member
+        $userName = taskMemberRepository::getUserName($taskMember);
+        ?>
+        <option value="<?php echo $taskMember->user_id; ?>">
+            <?php echo $userName->name; ?>
+        </option>
+    <?php } ?>
+</select>
+                  </td>
+                  </tr>
+                </table>
+                  </div>
             
             <!-- discription -->
             <textarea placeholder="detail description..." class="Mitext_area mt-4" name="short_description" ></textarea>
@@ -138,27 +137,28 @@ require_once('../Functions4Kanban/taskcreate.php');
 
 
                  <!-- Priorty color -->
-                 <div class="Micolorcontainer mt-4">
+              <div class="Micolorcontainer mt-4">
                <div class="Micolortext">
                Choose your Priorty color :
                </div>  
 
-               <div class="">
+              <div class="d-flex">
+                       <div class="canvas-containerMi ">
+                         <div class="candivMi" id="cand1"><span>1st </span>
+                             <canvas id="canvas1" width="40" height="40" class="canvas " data-color="#d16bca" data-cand="cand1"></canvas>
+                         </div> 
+                         <div class="candivMi" id="cand2"><span>2nd </span>
+                             <canvas id="canvas2" width="40" height="40" class="canvas " data-color="#795ce0" data-cand="cand2"></canvas>
+                         </div>
+                         <div class="candivMi" id="cand3"><span>3rd </span>
+                             <canvas id="canvas3" width="40" height="40  " class="canvas " data-color="#30d1d9" data-cand="cand3"></canvas>
+                         </div>
+
+                       </div>
                        
-               <input type="radio" id="first" name="Priority" value="YfirstPriority">
-                <label for="first">1st Priority</label>
-                <br>
-                <input type="radio" id="second" name="Priority" value="YsecondPriority">
-                <label for="second">2nd Priority</label>
-                
-                <input type="radio" id="third" name="Priority" value="YThirdPriority">
-                <label for="third">3rd Priority</label>
-                <br>
-                </div>
-              </div>
+                       </div>
+                       </div>
                        
-            
-         
               <!-- button -->
                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
                  <button type="submit" class="buttonMi mt-4" >Create</button>
@@ -172,11 +172,8 @@ require_once('../Functions4Kanban/taskcreate.php');
       
        
      <!-- <span class="Yloginspan mt-3">Create a <a href="" class="YColor3e306b">NEW ACCOUNT ?</a></span> -->
-       
-       
-       
-     
-     </form>
+
+    </form>
 
   </div>
   </div>
