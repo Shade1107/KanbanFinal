@@ -20,16 +20,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $task_name = $_POST['task_name'];
         $user_ids = $_POST['user_id'];
 
-        // Create the task
-        $result = $taskRepo->create($project_id, $short_description, $task_name, $user_ids);
-        if ($result) {
-            header('Location: ../pages/HomeAdmin.php');
-            exit;
+        if (empty($task_name)) {
+            $error_message = "Task name is required.";
         } else {
-            $error_message= "Error inserting task.";
+            // Create the task
+            $result = $taskRepo->create($project_id, $short_description, $task_name, $user_ids);
+            if ($result) {
+                header('Location: ../pages/HomeAdmin.php');
+                exit;
+            } else {
+                $error_message = "Error inserting task.";
+            }
         }
     } else {
-        $error_message= "One or more required fields are missing.";
+        $error_message = "One or more required fields are missing.";
     }
 }
 ?>
