@@ -94,7 +94,9 @@ input[type="file"]{
   color: white;
 }
 </style>
-
+<?php
+         $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+?>
 <body>
 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="profileEdit.php">
 <div class="container bootstrap snippets bootdey">
@@ -104,7 +106,7 @@ input[type="file"]{
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="../image/<?= $user->img ?>" id="photoPreview" class="avatar img-circle img-thumbnail" alt="avatar" onclick="document.getElementById('file').click();">  
+          <img src="<?= $imagePath ?>" id="photoPreview" class="avatar img-circle img-thumbnail" alt="avatar" onclick="document.getElementById('file').click();">  
           <input accept=".jpg, .jpeg, .png" type="file" name="profilePic" id="file" onchange="previewPhoto(event)">  
           <!-- <button><label for="file">Change Photo</label></button> -->
         </div>

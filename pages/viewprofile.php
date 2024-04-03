@@ -51,6 +51,9 @@ border-radius: 50%;
     //print_r($user);
 
     ?>
+     <?php
+         $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+      ?>
 <div class="container bootstrap snippets bootdey">
     <h1 class="text-primary">View Profile</h1>
       <hr>
@@ -58,7 +61,7 @@ border-radius: 50%;
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="../image/<?= $user->img ?>" class="avatar img-circle img-thumbnail" alt="avatar">        
+          <img src="<?= $imagePath ?>" class="avatar img-circle img-thumbnail" alt="avatar">        
         </div>
       </div>
       

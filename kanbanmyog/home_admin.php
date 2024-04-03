@@ -1,13 +1,7 @@
 <?php 
 $isAdmin = true;
-require_once('./header_footer/header.php');
-
+require_once('../header_footer/header.php');
 require_once('./pages/chart_data_function.php');
-
-
-require_once('pages/chart_data_function.php');
-
-
 ?>
 <!Doctype html>
 <head>
@@ -17,24 +11,14 @@ require_once('pages/chart_data_function.php');
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  
   <!-- custom chart.js  -->
-<<<<<<< HEAD
    <script src="./js/charts.js"></script> 
 <!-- cssloader -->
-<link rel="stylesheet" href="./css/css_loader.css">
-=======
-   <script src="js/charts.js"></script> 
-<!-- cssloader -->
-<link rel="stylesheet" href="css/css_loader.css">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
+<link rel="stylesheet" href="">
 
   <!-- custom css  -->
     <link rel="stylesheet" href="./css/style.css" type="text/css">
     <!-- title logo  -->
-<<<<<<< HEAD
     <link rel="icon" type="image/png" href="./image/logo2_2.PNG">
-=======
-    <link rel="icon" type="image/png" href="image/logo2_2.PNG">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
 
 <style>
 

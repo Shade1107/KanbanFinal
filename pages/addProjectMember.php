@@ -42,7 +42,6 @@ $projects = $projectRepository->getAll();
                      <td> Total Projects</td>
                     <td>: 4</td>
                   </tr>
-
                   <tr>
                      <td> Average Done Rate</td>
                      <?php 

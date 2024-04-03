@@ -29,12 +29,14 @@ foreach($stages as $stage):?>
 <div class="col-lg-3 col-md-3 col-sm-3">
     <div class="task-column">
         <h4 class="text-center"><?=$stage->name?></h4>
-        <hr class="custom-hr" />
+        <hr class="custom-hr">
         <div class="dropzone">
     <?php foreach($tasks as $t):?>
       <?php if ($t->stage_id == $stage->id):?>
         <div id="s_<?=$stage->id?>" stage_id="<?=$stage->id?>" class="task-list drop_stage" ondrop="drop(event)" ondragleave="dragLeave(event);" ondragover="allowDrop(event)">
+        
         <div id="t_<?=$t->id?>" task_id="<?=$t->id?>" stage_id="<?=$stage->id?>" class="task-container <?=$t->task_priority_border?>" draggable="true" ondragstart="drag(event)">
+        
         <div class="task-header <?=$t->task_priority_color?>">
         <form method="POST" action="../Functions4Kanban/DeleteTask.php">
         <input type="hidden" name="task_id" value="<?= $t->id ?>">  

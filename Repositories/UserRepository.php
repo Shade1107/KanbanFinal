@@ -88,15 +88,6 @@
         }
 
         public function LoginValid($email,$password){
-            // $count = null;
-            // $query = "SELECT * FROM ". self::$table_name . "WHERE email = ? AND password = ?";
-            // $stmt  = $this->connection->prepare($query);
-            // $stmt->bind_param("s", $email,$password);
-            // $stmt->execute();
-            // $stmt->bind_result($count);
-            // $stmt->fetch();
-            // $stmt->close();
-            // return $count > 0;
             $query = "SELECT * FROM ". self::$table_name . " WHERE email = '$email' AND password = '$password'";
             $result = $this->connection->query($query);
             return $result;

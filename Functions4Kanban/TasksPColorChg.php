@@ -3,9 +3,9 @@
 require_once("../Repositories/TaskRepository.php");
 require_once("../Database/DatabaseConnection.php");
 
-$color         =    $_GET['color'] ?? 0;
-$borderColor   =    $_GET['borderColor'] ?? 0;
-$task_id       =    $_GET['id'] ?? 0;
+$task_id       =    $_GET['task_id'] ?? '';
+$color         =    $_GET['new_taskHeader'] ?? '';
+$borderColor   =    $_GET['new_taskContainer'] ?? '';
 
 $taskRepo = new TaskRepository(DatabaseConnection::getInstance());
 
