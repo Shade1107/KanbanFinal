@@ -1,5 +1,5 @@
 <?php 
-require_once('../header&footer/header.php');
+require_once('../header_footer/header.php');
 include('DB_connection.php');
 // require_once('header&footer/footer.php');
 
@@ -141,7 +141,7 @@ require_once('chart_data_function.php');
    </section>
 
               <?php
-              require_once('../header&footer/footer.php');
+              require_once('../header_footer/footer.php');
                  ?>
 
 <script>
