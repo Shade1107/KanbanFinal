@@ -1,11 +1,28 @@
-<?php 
+<?php
+session_start();
+?>
+<?php
+require_once('../Models/Project.php');
+require_once('../Repositories/ProjectRepository.php');
+require_once('../Database/DatabaseConnection.php');
+require_once('../Repositories/Project_memberRepository.php');
+
+$id = $_SESSION['user_id'];
+    
+    $userRepo = new UserRepository(DatabaseConnection::getInstance());
+    // Find the user with the specified ID
+    $user = $userRepo->find($id);
+    $role_id = $user->role_id;
+
+
 $isAdminMemberFromPJwebpage = true;
 require_once('../header_footer/header.php');
-
 ?>
-
-
-
+<?php
+$dbConnection = DatabaseConnection::getInstance();
+$projectRepository = new ProjectRepository($dbConnection);
+$projects = $projectRepository->getAll();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -29,11 +46,11 @@ require_once('../header_footer/header.php');
               <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
                   <tr >
                     <td>User's Name </td>
-                    <td>: Yin Myo Myat</td>
+                    <td><?php echo $user->name; ?></td>
                   </tr>
                   <tr>
                     <td>User's Role </td>
-                    <td>: Member</td>
+                    <td><?php echo $user->role_id == 1 ? 'Admin' : 'Member'; ?></td>
                   </tr>
                   <tr>
                      <td> Total Projects</td>
