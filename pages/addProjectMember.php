@@ -32,7 +32,7 @@ $projects = $projectRepository->getAll();
     <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
                   <tr >
                     <td> Name </td>
-                    <td>: Yin Myo Myat</td>
+                    <td><?php  ?></td>
                   </tr>
                   <tr>
                     <td> Role </td>
@@ -65,7 +65,7 @@ $projects = $projectRepository->getAll();
               <h3><?= $project->name?></h3>
               <div class="col-lg-4 ">
                 <div class="Ytask-column ">
-                    <canvas id="YmyChart<?=$i ?>" class="YChart"></canvas>
+                    <canvas id="YmyChart" class="YChart"></canvas>
                 </div>
               </div>  
             </a> 
@@ -87,28 +87,12 @@ require_once('../header_footer/footer.php');
 ?>
 
 <script>
-    // Generate the first pie chart
-    var labels = [];
-    var data = [];
-    <?php foreach($project as $r): ?>
-        labels.push("<?=$r["stage"]?>");
-        data.push(<?=$r["task"]?>);
-    <?php endforeach; ?>
-    generatePieChart('YmyChart1', labels, data,'Project');
+// Generate pie and line charts using dynamic data from chart_data_function.php
+var pieChartData = <?php echo json_encode($pieChartData); ?>;
+generatePieChart('YmyChart', pieChartData.labels, pieChartData.data, 'Tasks per Stage');
 
-    // Generate the line chart
-    var labels = [];
-    var data = [];
-    <?php foreach($totalProject as $tp): ?>
-        labels.push("<?=$tp["project"]?>");
-       
-    <?php endforeach; ?>
-
-    <?php foreach($donePercentage as $dp): ?>
-        data.push(<?=$dp?>);
-    <?php endforeach; ?>
-    generateLineChart('YmylineChart', labels, data,'Done percentage for each project');
-
+var lineChartData = <?php echo json_encode($lineChartData); ?>;
+generateLineChart('YmylineChart', lineChartData.labels, lineChartData.data, 'Done Percentage');
 </script>
 </body>
 </html>

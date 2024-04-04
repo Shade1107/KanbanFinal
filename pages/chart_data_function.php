@@ -1,23 +1,59 @@
 <?php 
-    $project1[] = ["stage"=>"planning","task"=>10];
-    $project1[] = ["stage"=>"doing","task"=>6];
-    $project1[] = ["stage"=>"done","task"=>6];
-    $project1[] = ["stage"=>"report","task"=>5];
+  require_once("../Repositories/ProjectRepository.php");
+  require_once("../");
+
+
+  $conn = DatabaseConnection::getInstance();
+  $query = "select s.name stage, count(t.id) count 
+              from stages s
+              left join tasks t on t.stage_id  = s.id
+              WHERE t.project_id = '$project_id' AND s.project_id = '$project_id'
+              group by s.id
+          ";
+
+  $result = $conn->query($query);
+  $stages = [];
+  while($row = mysqli_fetch_assoc($result)){
+      $stages[] = $row['stages'];
+      $projects[] = $row['projects'];
+      $tasks[] = $row['tasks'];
+
+  }
+
+  $projectRepository = new ProjectRepository($dbConnection);
+  $projects = $projectRepository->getAll();
+  
+  if(isset($projects) && !empty($projects)) : 
+  foreach ($projects as $project) :
+    $projdata = [];
+    $projdata[] = ["stage"=>"planning","task" => ],
+    ["stage"=>"doing","task" => ],
+    ["stage"=>"done","task" => ];
+
+  
+    
+
+    // $project1[] = ["stage"=>"planning","task"=>10];
+    // $project1[] = ["stage"=>"doing","task"=>6];
+    // $project1[] = ["stage"=>"done","task"=>6];
+    // $project1[] = ["stage"=>"report","task"=>5];
    
-    // Data for the second pie chart
-    $project2[] = ["stage"=>"planning","task"=>4];
-    $project2[] = ["stage"=>"doing","task"=>5];
-    $project2[] = ["stage"=>"done","task"=>9];
+    // // Data for the second pie chart
+    // $project2[] = ["stage"=>"planning","task"=>4];
+    // $project2[] = ["stage"=>"doing","task"=>5];
+    // $project2[] = ["stage"=>"done","task"=>9];
 
-    // Data for the second pie chart
-    $project3[] = ["stage"=>"planning","task"=>4];
-    $project3[] = ["stage"=>"doing","task"=>1];
-    $project3[] = ["stage"=>"done","task"=>10];
+    // // Data for the second pie chart
+    // $project3[] = ["stage"=>"planning","task"=>4];
+    // $project3[] = ["stage"=>"doing","task"=>1];
+    // $project3[] = ["stage"=>"done","task"=>10];
 
-    // Data for the second pie chart
-    $project4[] = ["stage"=>"planning","task"=>1];
-    $project4[] = ["stage"=>"doing","task"=>10];
-    $project4[] = ["stage"=>"done","task"=>4];
+    // // Data for the second pie chart
+    // $project4[] = ["stage"=>"planning","task"=>1];
+    // $project4[] = ["stage"=>"doing","task"=>10];
+    // $project4[] = ["stage"=>"done","task"=>4];
+
+
 
     // Data for line chart
     $totalProject[] = ["project"=>"project1"];
@@ -39,10 +75,8 @@
     // Calculate done percentage and push it to the $donePercentage array
     $donePercentage[$j] = calculateDonePercentage($$projectVariable);
     $j++;
-
     }
    
-
      $overall_done_rate = calculate_total_overall_project($donePercentage,$totalProject);
   
     function calculate_total_overall_project($donePercentage,$totalProject){
@@ -61,9 +95,8 @@
       $totaltask = 0;
       $donepercentage = 0;
       foreach($project as $p){
-        $totaltask += $p['task']; 
-
-        
+        $totaltask += $p['task'];
+  
       }
     
       foreach($project as $p){

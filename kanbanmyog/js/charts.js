@@ -111,8 +111,6 @@ function generateLineChart(canvasId, labels, data, project_title) {
 }
 
 
-
-
 function generateBarChart(canvasId, data) {
 
     const labels = data.map(item => item.stage);
