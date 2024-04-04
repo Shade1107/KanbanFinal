@@ -1,5 +1,5 @@
 <?php 
-$isAdmin = true;
+$isMember = true;
 require_once('../header_footer/header.php');
 ?>
 <!Doctype html>
