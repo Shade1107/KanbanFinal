@@ -85,7 +85,7 @@ border-radius: 50%;
         <div class="form-group">
           <label class="col-lg-3 control-label">Password:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" value="<?php echo $user->password; ?>" readonly>
+            <input class="form-control" type="password" value="<?php echo $user->password; ?>" readonly>
           </div>
         </div>
         <div class="form-group">

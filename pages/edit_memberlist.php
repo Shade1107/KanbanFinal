@@ -2,7 +2,7 @@
 session_start();
 require_once("../Database/DatabaseConnection.php");
 require_once("../Repositories/UserRepository.php");
-$id = $_SESSION['user_id'];
+$id = $_GET['id'];
 $userRepo = new UserRepository(DatabaseConnection::getInstance());
 $user = $userRepo->find($id);
 $role_id= $user->role_id;
