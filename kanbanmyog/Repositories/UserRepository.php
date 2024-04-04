@@ -92,5 +92,13 @@
             $result = $this->connection->query($query);
             return $result;
         }
+
+        public function getTotalProjectsByUser($userId)
+{
+    $query = "SELECT COUNT(*) FROM " . ProjectRepository::$table_name . " WHERE admin_id = $userId;";
+    $result = $this->connection->query($query);
+    $count = mysqli_fetch_row($result)[0];
+    return $count;
+}
     }
 ?>  
