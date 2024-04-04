@@ -111,6 +111,8 @@ function generateLineChart(canvasId, labels, data, project_title) {
 }
 
 
+
+
 function generateBarChart(canvasId, data) {
 
     const labels = data.map(item => item.stage);
@@ -197,19 +199,13 @@ function generateBarChart(canvasId, data) {
 }
 
 
+
+
 function generateLineChart_for_member(canvasId, labels, data) {
     const chartData = {
         labels: labels,
         datasets: [{
-            // label: 'Done %',
             data: data,
-            // backgroundColor: [
-            //     '#59498c',
-            //     '#aa96d7',
-            //     '#e296bd',
-            //     '#fda5df'
-            // ],
-            // color : 'white' ,
             fill: false,
             borderColor: '#9787b5',
             tension: 0.1
@@ -221,28 +217,21 @@ function generateLineChart_for_member(canvasId, labels, data) {
         type: 'line',
         data: chartData,
         options: {
-            // responsive: true,
             plugins: {
                 legend: {
                     display: false,
-                },
-                
-             }
-            // scales: {
-            //     y: {
-            //         ticks: {
-            //             stepSize: 10,
-            //             // callback: function(value, index, values) {
-            //             //     const percentage = 10 + index * 10;
-            //             //     return percentage + '%';
-            //             // }
-            //             callback: function(value, index, values) {
-            //                 return value + '%';
-            //             }
-            //         }
-            //     }
-            // }
-        },
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 45,
+                        minRotation: 45
+                    }
+                }
+            }
+        }
     };
 
     const myChart = new Chart(
@@ -250,5 +239,4 @@ function generateLineChart_for_member(canvasId, labels, data) {
         config
     );
 }
-
 

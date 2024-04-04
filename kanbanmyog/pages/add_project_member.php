@@ -1,7 +1,11 @@
 <?php 
 $isAdminMemberFromPJwebpage = true;
 require_once('../header&footer/header.php');
+
 ?>
+
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,7 +20,7 @@ require_once('../header&footer/header.php');
     <!-- custom css  -->
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!-- title logo  -->
-    <link rel="icon" type="image/png" href="../image/logo.PNG">
+    <link rel="icon" type="image/png" href="../image/logo2_2.PNG">
 </head>
 <body class="">
     <section class="Ycolumn-container row">
@@ -25,11 +29,11 @@ require_once('../header&footer/header.php');
         <h3 class="text-center Ypjh3 pb-3 mt-3 mb-3">Projects</h3>
               <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
                   <tr >
-                    <td> Name </td>
+                    <td>User's Name </td>
                     <td>: Yin Myo Myat</td>
                   </tr>
                   <tr>
-                    <td> Role </td>
+                    <td>User's Role </td>
                     <td>: Member</td>
                   </tr>
                   <tr>
@@ -56,26 +60,34 @@ require_once('../header&footer/header.php');
            
             <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
               <div class="col-lg-4 ">
+              <a href="../home_member.php">
                 <div class="Ytask-column  ">
                     <canvas id="YmyChart1" class="YChart"></canvas>
                 </div>
+              </a>
               </div>  
 
               <div class="col-lg-4 ">
+              <a href="../home_member.php">
                 <div class=" Ytask-column">
                     <canvas id="YmyChart2" class="YChart"></canvas>
                 </div>
+              </a>
               </div>
 
               <div class="col-lg-4 ">
+              <a href="../home_member.php">
                 <div class="Ytask-column ">
                     <canvas id="YmyChart3" class="YChart"></canvas>
                 </div>
+              </a>
               </div>
                <div class="col-lg-4">
+               <a href="../home_member.php">
                 <div class="Ytask-column ">
                     <canvas id="YmyChart4" class="YChart"></canvas>
                 </div>
+                </a>
               </div>
           
         </div>
@@ -87,6 +99,8 @@ require_once('../header&footer/footer.php');
 
 // require_once('chart_data_function.php');
 ?>
+
+
 <script>
     // Generate the first pie chart
     var labels1 = [];
@@ -133,6 +147,7 @@ require_once('../header&footer/footer.php');
     <?php endforeach; ?>
 
     <?php foreach($donePercentage as $dp): ?>
+       
         data5.push(<?=$dp?>);
     <?php endforeach; ?>
 

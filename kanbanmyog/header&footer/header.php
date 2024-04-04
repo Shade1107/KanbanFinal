@@ -7,6 +7,9 @@ $isAdmin = $isAdmin??'';
 $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
 // echo $isAdminMemberFromPJwebpage;
 
+$isCreateTask = $isCreateTask?? '';
+$isCreateProject = $isCreateProject??'';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,13 +22,15 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
 
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">    
+  
 
 
   <!-- custom css  -->
 
 
-      <link rel="stylesheet" href="../css/style.css" />
+      <!-- <link rel="stylesheet" href="css/style.css" /> -->
      
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -33,8 +38,17 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
   <body>
     <header>
       <div class="info-container">
-        <h1>Kanban <span class="YspanBoard">Board</span></h1>
-        <p>
+        <h1>
+          <?php if($isMember || $isAdmin){?>
+              <img src="image/logo2.png" width="120px" height="50px">
+          <?php }else{?> 
+
+          <img src="../image/logo2.png" width="120px" height="50px">
+          
+          <?php } ?>
+          
+          <!-- <span class="YspanBoard"></span></h1> -->
+        <p class="mt-3">
            Organise tasks  as well as add new ones and
           delete old ones.
         </p>
@@ -42,11 +56,11 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
       <div class="d-flex profile">
         <?php 
           if ($isAdmin) { ?>
-             <a href="#" class="btn  mt-3 ">Add Task</a>
+             <a href="pages/createtask.php" class="btn  mt-3 ">Add Task</a>
             <?php } ?>
           
             <?php
-             if(!$isAdminMemberFromPJwebpage){?>
+             if((!$isAdminMemberFromPJwebpage) && (!$isCreateProject)){?>
               <a href="#" class="btn  mt-3 ">Member List</a>
               <a href="#" class="btn  mt-3 ">LogOut</a>
               <?php }else{?> 
@@ -59,16 +73,18 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
                 <a href="#" class="circle-container">
 
                 <?php 
-                    if ($isAdminMemberFromPJwebpage) { ?>
+                    if ($isAdminMemberFromPJwebpage || $isCreateTask ||$isCreateProject) { ?>
                      <img src="../image/p2.jpg">
                     <?php }else {?> 
 
-                    <img src="../image/p2.jpg">
+                    <img src="image/p2.jpg">
 
                     <?php } ?>
                 </a>
                 
+                
           </div>
+          <!-- <i class="fa-solid fa-bars"></i> -->
       </div>
     </header>
 
