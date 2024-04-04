@@ -60,7 +60,7 @@ $projects = $projectRepository->getAll();
       <?php foreach ($projects as $project) : ?>
         <div class="Ytask-columns-container mt-3" id="taskColumnsContainer">
           <div class="Ytask-column" id="backlog">
-            <a href="HomeAdmin.php?id=<?= $project->id ?>" class="text-decoration-none">
+            <a href="HomeMember.php?id=<?= $project->id ?>" class="text-decoration-none">
               <h3><?= $project->name?></h3>
               <div class="col-lg-4 ">
                 <div class="Ytask-column ">
