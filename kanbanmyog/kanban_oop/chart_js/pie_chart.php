@@ -1,18 +1,11 @@
-<!-- 
-
-
-
 
 //This is just a page i want to save the data is the other page this page is useless
-
-
-
 
 <?php
     require_once("../Database/DatabaseConnection.php");
 ?>
 <?php
-    $project_id = $_GET['id']?? '2';
+    //$project_id = $_GET['id']?? '2';
 
     $conn = DatabaseConnection::getInstance();
     $query = "select s.name stage, count(t.id) count 

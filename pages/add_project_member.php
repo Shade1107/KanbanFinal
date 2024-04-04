@@ -1,99 +1,146 @@
-<?php
-require_once('../Models/Project.php');
-require_once('../Repositories/ProjectRepository.php');
-require_once('../Database/DatabaseConnection.php');
-
+<?php 
 $isAdminMemberFromPJwebpage = true;
 require_once('../header_footer/header.php');
 ?>
-<?php
-$dbConnection = DatabaseConnection::getInstance();
-$projectRepository = new ProjectRepository($dbConnection);
-$projects = $projectRepository->getAll();
-?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include the JavaScript file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script src="../js/charts.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom js  -->
+    <script src="../js/charts.js"></script>
+     <!-- font awesome  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css">
-  <link rel="icon" type="image/png" href="../image/logo.PNG">
+    <!-- custom css  -->
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <!-- title logo  -->
+    <link rel="icon" type="image/png" href="../image/logo.PNG">
 </head>
 <body class="">
-  <section class="Ycolumn-container row">
-    <div class="leftSideBar col-lg-3 ">
-      <h3 class="text-center Ypjh3 pb-3 mt-3 mb-3">Projects</h3>
-      <table class="Yproject_table mt-5" cellpadding='10px' cellspacing='20px'>
-        <tr>
-          <td>Name</td>
-          <td>: Yin Myo Myat</td>
-        </tr>
-        <tr>
-          <td>Role</td>
-          <td>: Member</td>
-        </tr>
-        <tr>
-          <td>Total Projects</td>
-          <td>: 4</td>
-        </tr>
-        <tr>
-          <td>Average Done Rate</td>
-          <?php
-          // Include chart_data_function.php and calculate overall_done_rate
-          require_once('chart_data_function.php');
-          ?>
-          <td>: <?=$overall_done_rate ?? ''?>%</td>
-        </tr>
-      </table>
+    <section class="Ycolumn-container row">
+        <div class="leftSideBar col-lg-3 ">
+            
+        <h3 class="text-center Ypjh3 pb-3 mt-3 mb-3">Projects</h3>
+              <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
+                  <tr >
+                    <td> Name </td>
+                    <td>: Yin Myo Myat</td>
+                  </tr>
+                  <tr>
+                    <td> Role </td>
+                    <td>: Member</td>
+                  </tr>
+                  <tr>
+                     <td> Total Projects</td>
+                    <td>: 4</td>
+                  </tr>
 
-      <div class="YlineChart">
-        <canvas id="YmylineChart"></canvas>
-      </div>
-    </div>
-    <div class="col-lg-9 row">
-      <?php foreach ($projects as $p) : ?>
-        <div class="col-lg-4 ">
-          <div class="Ytask-column">
-            <canvas id="YmyChart <?php echo $p->name ?>" class="YChart"> </canvas>
-          </div>
+                  <tr>
+                     <td> Average Done Rate</td>
+                     <?php 
+                        require_once('chart_data_function.php');
+                     ?>
+                    <td>: <?=$overall_done_rate??''?>%</td>
+                  </tr>
+              </table>
+             
+            <!-- </div> -->
+            <div class="YlineChart">
+              <canvas id="YmylineChart" ></canvas>
+            </div>
+            
         </div>
-      <?php endforeach; ?>
-    </div>
-  </section>
+        <div class="col-lg-9 row">
+           
+            <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
+              <div class="col-lg-4 ">
+                <div class="Ytask-column  ">
+                    <canvas id="YmyChart1" class="YChart"></canvas>
+                </div>
+              </div>  
 
-  <script>
-    // Generate charts based on dynamically fetched data
-    const projectData = <?php $projects; ?>; // Get project data from PHP
+              <div class="col-lg-4 ">
+                <div class=" Ytask-column">
+                    <canvas id="YmyChart2" class="YChart"></canvas>
+                </div>
+              </div>
 
-    // Loop through project data and generate charts
-    for (const <?php $projects->$name ?> in <?php $projects ?>) {
-      const project = projectData[projectName]; // Get project data for current loop
+              <div class="col-lg-4 ">
+                <div class="Ytask-column ">
+                    <canvas id="YmyChart3" class="YChart"></canvas>
+                </div>
+              </div>
+               <div class="col-lg-4">
+                <div class="Ytask-column ">
+                    <canvas id="YmyChart4" class="YChart"></canvas>
+                </div>
+              </div>
+          
+        </div>
+    </section>
 
-      // Generate a pie chart for the current project
-      var labels = [];
-      var data = [];
-      for (const item of project) {
-        labels.push(item.stage);
-        data.push(item.task);
-      }
-      generatePieChart(`YmyChart${projectName}`, labels, data, projectName); // Use project name as chart title
-    }
+<?php 
+$isAdminMemberFromPJwebpage = true;
+require_once('../header_footer/footer.php');
 
-    // Generate the line chart (similar logic)
+// require_once('chart_data_function.php');
+?>
+<script>
+    // Generate the first pie chart
+    var labels1 = [];
+    var data1 = [];
+    <?php foreach($project1 as $r): ?>
+        labels1.push("<?=$r["stage"]?>");
+        data1.push(<?=$r["task"]?>);
+    <?php endforeach; ?>
+    generatePieChart('YmyChart1', labels1, data1,'Project');
+
+    // Generate the second pie chart
+    var labels2 = [];
+    var data2 = [];
+    <?php foreach($project2 as $r): ?>
+        labels2.push("<?=$r["stage"]?>");
+        data2.push(<?=$r["task"]?>);
+    <?php endforeach; ?>
+    generatePieChart('YmyChart2', labels2, data2,'Project2');
+
+     // Generate the third pie chart
+    var labels3 = [];
+    var data3 = [];
+    <?php foreach($project3 as $r): ?>
+        labels3.push("<?=$r["stage"]?>");
+        data3.push(<?=$r["task"]?>);
+    <?php endforeach; ?>
+    generatePieChart('YmyChart3', labels3, data3,'Project3');
+
+     // Generate the fourth pie chart
+    var labels4 = [];
+    var data4 = [];
+    <?php foreach($project4 as $r): ?>
+        labels4.push("<?=$r["stage"]?>");
+        data4.push(<?=$r["task"]?>);
+    <?php endforeach; ?>
+    generatePieChart('YmyChart4', labels4, data4,'Project4');
+
+    // Generate the line chart
     var labels5 = [];
     var data5 = [];
-    for (const projectName in projectData) {
-      // Calculate done percentage for each project (replace with your logic)
-      const donePercentage = /* Calculate done percentage for the project */;
-      labels5.push(projectName);
-      data5.push(donePercentage);
-    }
+    <?php foreach($totalProject as $tp): ?>
+        labels5.push("<?=$tp["project"]?>");
+       
+    <?php endforeach; ?>
 
-    generateLineChart('YmylineChart', labels5, data5, 'Done percentage for each project');
-  </script>
+    <?php foreach($donePercentage as $dp): ?>
+        data5.push(<?=$dp?>);
+    <?php endforeach; ?>
 
-<?
+    
+
+    generateLineChart('YmylineChart', labels5, data5,'Done percentage for each project');
+
+</script>
+
+</body>
+</html>

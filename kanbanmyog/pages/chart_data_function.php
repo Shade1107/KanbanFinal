@@ -1,4 +1,22 @@
 <?php 
+  
+  $conn = DatabaseConnection::getInstance();
+  $query = "select s.name stage, count(t.id) count 
+              from stages s
+              left join tasks t on t.stage_id  = s.id
+              WHERE t.project_id = '$project_id' AND s.project_id = '$project_id'
+              group by s.id
+          ";
+
+  $result = $conn->query($query);
+  $stages = [];
+  while($row = mysqli_fetch_assoc($result)){
+      $stages[] = $row['stages'];
+      $projects[] = $row['projects'];
+      $tasks[] = $row['tasks'];
+
+  }
+
     $project1[] = ["stage"=>"planning","task"=>10];
     $project1[] = ["stage"=>"doing","task"=>6];
     $project1[] = ["stage"=>"done","task"=>6];
@@ -39,10 +57,8 @@
     // Calculate done percentage and push it to the $donePercentage array
     $donePercentage[$j] = calculateDonePercentage($$projectVariable);
     $j++;
-
     }
    
-
      $overall_done_rate = calculate_total_overall_project($donePercentage,$totalProject);
   
     function calculate_total_overall_project($donePercentage,$totalProject){
@@ -61,9 +77,8 @@
       $totaltask = 0;
       $donepercentage = 0;
       foreach($project as $p){
-        $totaltask += $p['task']; 
-
-        
+        $totaltask += $p['task'];
+  
       }
     
       foreach($project as $p){
