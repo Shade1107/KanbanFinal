@@ -1,3 +1,13 @@
+<?php require_once("../Repositories/ProjectRepository.php");
+
+$dbConnection = DatabaseConnection::getInstance();
+$projectRepository = new ProjectRepository($dbConnection);
+$projects = $projectRepository->getAll();
+
+$id = intval($_GET["id"]);
+$projects = $projectRepository->find($id);
+
+?>  
 <?php
 session_start(); 
 $isMember = $isMember??'';
@@ -50,9 +60,9 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
       </div>
       <div class="d-flex profile">
         <?php 
-          if ($isAdmin) { ?>
-             <a href="createtask.php?id=<?= $projects->id?>" class="btn  mt-3 ">Add Task</a>
-            <?php } ?>
+          if ($isAdmin) :?>
+             <a href="createtask.php?id=<?= $projects->id?>" class="btn  mt-3">Add Task</a>
+            <?php endif ?>
 
           <a href="../pages/memberlist.php" class="btn  mt-3 ">Member List</a>
           <a href="../Functions4Kanban/signout.php" class="btn  mt-3 ">LogOut</a>
