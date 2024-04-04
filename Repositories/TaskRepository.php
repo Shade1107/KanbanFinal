@@ -41,23 +41,21 @@
         }
 
        
-        public function create($project_id, $short_description, $task_name, $user_ids,$task_priority_color){
-
-        
-            // Escape inputs to prevent SQL injection
+        public function create($project_id, $short_description, $task_name, $user_ids, $task_priority_color){
+            // To prevent SQL injection
             $project_id = $this->connection->real_escape_string($project_id);
             $short_description = $this->connection->real_escape_string($short_description);
             $task_name = $this->connection->real_escape_string($task_name);
         
-            // Perform the main task insertion
+            $border = $this->getbordercolor($task_priority_color);
+            $border = $this->connection->real_escape_string($border);
+        
             $query = "INSERT INTO " . self::$table_name . " (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border)  
-                          VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}','{$task_priority_color}', 'YDefaultCardBorder')";
+                      VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}', '{$task_priority_color}', '{$border}')";
         
             $results = $this->connection->query($query);
         
-            // Check for errors
-            if(!$results){
-                // Handle the error or log it
+            if (!$results) {
                 echo "Error inserting task: " . $this->connection->error;
                 return false;
             }
@@ -67,24 +65,24 @@
         
             // Insert task members
             foreach ($user_ids as $user_id) {
-                //user_id to prevent SQL injection
+                // To prevent SQL injection
                 $user_id = $this->connection->real_escape_string($user_id);
         
                 // Insert task member
                 $query = "INSERT INTO " . TaskMemberRepository::$table_name . " (user_id, task_id) 
-                              VALUES ('{$user_id}', '{$last_insert_id}')";
+                          VALUES ('{$user_id}', '{$last_insert_id}')";
         
                 $results = $this->connection->query($query);
         
                 // Check for errors
-                if(!$results){
+                if (!$results) {
                     echo "Error inserting task member: " . $this->connection->error;
                     return false;
                 }
             }
         
             return true;
-        }   
+        }    
 
         public function toModel($obj){
             $task = null;
@@ -128,5 +126,17 @@
             }
             return $task;
         }
+
+        public function getbordercolor($priority){
+            if ($priority == 'YfirstPriority') {
+                return 'YFirstCardBorder';
+            } elseif ($priority == 'YsecondPriority') {
+                return 'YSecondCardBorder';
+            } elseif ($priority == 'YThirdPriority') {
+                return 'YThirdCardBorder';
+            } else {
+                return '';
+            }
+          }
 }
 ?>  

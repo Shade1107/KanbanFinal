@@ -1,4 +1,6 @@
+<!-- <div class="content" style="display: none;"> -->
 <?php 
+// require_once('pages/loader.php');
 $isMember = true;
 require_once('header&footer/header.php');
 
@@ -23,77 +25,29 @@ require_once('pages/chart_data_function.php');
     <!-- title logo  -->
     <link rel="icon" type="image/png" href="image/logo2_2.PNG">
 
-<style>
-
- 
-  
-</style>
+<!-- loader JavaScript -->
+<!-- <script>
+        // Hide the loader after 3 seconds
+        setTimeout(function() {
+            document.querySelector('.loader2').style.display = 'none';
+            document.querySelector('.content').style.display = 'block'; // Show the content
+        }, 3000);
+    </script> -->
 
  </head>
  <body >
- <!-- <div class="loader"></div>
- <script>
-   document.addEventListener('DOMContentLoaded', function() {
-  // Hide the loader and show the content after a delay
-  setTimeout(function() {
-    document.querySelector('.loader').style.display = 'none';
-    document.getElementById('page-content').style.display = 'block';
-  }, 300); // 300 milliseconds = 0.3 seconds
-});
-
-  </script> -->
-  <!-- <section  id="page-content"> -->
-  
+<!-- 
+ <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="loader2"></div>
+</div> -->
   <section class="Ysummary_des container-fluid ">
     <div class="row">
 
-   
-
-    <div class="col-lg-3 Yleft_side_bar">
-      <div class="Ytotal_task">
-        <div class="Ytotal_task_bg_color p-2 mb-4 ">
-          <h4 class="text-center   ">Total Tasks</h4>
-        </div>
-
-        <table class="" >
-            <tr>
-              <th class="Ypadding_left">Stages</th>
-              <th class="Ypadding_right">Tasks</th>
-            </tr>
-            <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" title="Task : Task1 , your deadline is approaching!">
-                <td class="Ypadding_left">Planning</td>
-                <td id="planningTaskCount" class="Ypadding_right"></td>
-            </tr>
-
-            <tr>
-                <td class="Ypadding_left">Doing Task</td>
-                <td id="doingTaskCount" class="Ypadding_right"></td>
-            </tr>
-
-            <tr>
-                <td class="Ypadding_left">Report</td>
-                <td id="reportTaskCount" class="Ypadding_right"></td>
-            </tr>
-
-            <tr>
-                <td class="Ypadding_left">Done</td>
-                <td id="doneTaskCount" class="Ypadding_right"></td>
-            </tr>
-        </table>
-        <hr>
-          <ul class="Ydashboard_list text-center">
-            <a href="#"><li>Projects</li></a>
-            <a href="#"><li>User's Profile</li></a>
-            <a href="#"><li>Member lists</li></a>
-            <a href="#"><li>Help</li></a>
-          </ul>
-      </div>
-      
     </div>
 
   
 
-    <div class="col-lg-9  ">
+    <div class="col-lg-12  ">
               <h6 class="pt-3 mb-0 text-secondary">Members</h6>
               <hr/>
 
@@ -101,7 +55,7 @@ require_once('pages/chart_data_function.php');
               <div class="Ycontainer">
               <div class="row  Yrow ">
                   <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
+                    <div class="Ymember_card ">
                       <div class="Ymember_img_name d-flex">
                           <div class="Ymember_img">
                             <img src="image/p1.jpg" width="120px" height="50px">
@@ -247,10 +201,49 @@ require_once('pages/chart_data_function.php');
 
         <!-- // -->
                       <hr/>
+                      
+      </div>
 
-                  <div class="Ykanban_linechart ">
-                        <canvas id="YlineChart-from_kanban_board" class="YChart mt-3"></canvas>
+      <div class="row">
+            <div class="col-lg-4"> 
+            
+
+              <div class=" Ytask_table_div" >
+              <h4 class="text-center mb-3 pt-3" >Total Tasks</h4>
+    
+          <table class="Ytask_table">
+                  <tbody><tr>
+                    <th class="Ypadding_left">Stages</th>
+                    <th class="Ypadding_right">Tasks</th>
+                  </tr>
+                  <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" data-bs-original-title="Task : Task1 , your deadline is approaching!">
+                      <td class="Ypadding_left">Planning</td>
+                      <td id="planningTaskCount" class="Ypadding_right">3</td>
+                  </tr>
+
+                  <tr>
+                      <td class="Ypadding_left">Doing Task</td>
+                      <td id="doingTaskCount" class="Ypadding_right">0</td>
+                  </tr>
+
+                  <tr>
+                      <td class="Ypadding_left">Report</td>
+                      <td id="reportTaskCount" class="Ypadding_right">0</td>
+                  </tr>
+
+                  <tr>
+                      <td class="Ypadding_left">Done</td>
+                      <td id="doneTaskCount" class="Ypadding_right">1</td>
+                  </tr>
+              </tbody></table>
+              </div>
+
+           
+            </div>
+                  <div class="Ykanban_barchart col-lg-8">
+                        <canvas id="YbarChart_from_kanban_board" class="YChart mt-3"></canvas>
                   </div>
+
       </div>
 
 
@@ -263,52 +256,22 @@ require_once('pages/chart_data_function.php');
             <h4 class="text-center"> Planning</h4>
             <hr class="custom-hr" />
             <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist1 ">
-              <!-- id must be change  -->
+        
               
             <div class="task-container YDefaultCardBorder" draggable="true"   ondragstart="drag(event)" id="task1 dragElement">
                     <div class="task-header YPrimaryTaskColor">
                       <div class="titleDeletIconDiv">
                         <h5>Default Task color</h5>
                         
-                        <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal1"></i></p>
-                      <!-- must change the number at data-target="#modal1" when you use loop -->
-                         <!-- Button trigger modal -->
-                              <!-- Modal -->
-                              <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content ">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLongTitle">Task Title</h5>
-                                      <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      Do you Want to Delete This Task?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="button" data-dismiss="modal">Cancel</button>
-                                      <button type="button" class="button" onclick="Delete(this)">Delete</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                                          
-                      <!--  -->
+                     
                     </div>
                     <div class="d-flex">
                         <div class="canvas-container ">
                           <div class="candiv" >
-                              <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#edacc5" data-cand="cand1" onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YFirstExtra">1st Priority</div>
-                            </div>
+                          </div>
                           <div class="candiv" >
-                              <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#b4b8fc" data-cand="cand2"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
-                          </div> 
+                          </div>
                           <div class="candiv" >
-                              <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#fab5b5" data-cand="cand3"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
                         </div>
                         <div class="YsmallProfile" >
@@ -334,45 +297,15 @@ require_once('pages/chart_data_function.php');
                     <div class="task-header YfirstPriority">
                       <div class="titleDeletIconDiv">
                         <h5>First Priority</h5>
-                        <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal2"></i></p>
-                      <!--  -->
-                         <!-- Button trigger modal -->
-                              <!-- Modal -->
-                              <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content ">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLongTitle">Task Title</h5>
-                                      <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      Do you Want to Delete This Task?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="button" data-dismiss="modal">Cancel</button>
-                                      <button type="button" class="button" onclick="Delete(this)">Delete</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                                          
-                      <!--  -->
+                   
                     </div>
                     <div class="d-flex">
                     <div class="canvas-container ">
                           <div class="candiv" >
-                              <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#d16bca" data-cand="cand1"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YFirstExtra">1st Priority</div>
-                            </div>
+                          </div>
                           <div class="candiv" >
-                              <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#795ce0" data-cand="cand2"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
-                          </div> 
+                          </div>
                           <div class="candiv" >
-                              <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#30d1d9" data-cand="cand3"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
                         </div>
                         <div class="YsmallProfile" >
@@ -400,45 +333,15 @@ require_once('pages/chart_data_function.php');
                     <div class="task-header YsecondPriority">
                       <div class="titleDeletIconDiv">
                         <h5>Second Priority</h5>
-                        <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal3"></i></p>
-                      <!--  -->
-                         <!-- Button trigger modal -->
-                              <!-- Modal -->
-                              <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content ">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLongTitle">Task Title</h5>
-                                      <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      Do you Want to Delete This Task?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="button" data-dismiss="modal">Cancel</button>
-                                      <button type="button" class="button" onclick="Delete(this)">Delete</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                                          
-                      <!--  -->
+                       
                     </div>
                     <div class="d-flex">
                     <div class="canvas-container ">
+                         <div class="candiv" >
+                          </div>
                           <div class="candiv" >
-                              <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#d16bca" data-cand="cand1"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YFirstExtra">1st Priority</div>
-                            </div>
+                          </div>
                           <div class="candiv" >
-                              <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#795ce0" data-cand="cand2"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
-                          </div> 
-                          <div class="candiv" >
-                              <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#30d1d9" data-cand="cand3"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
                         </div>
                         <div class="YsmallProfile" >
@@ -466,45 +369,15 @@ require_once('pages/chart_data_function.php');
                     <div class="task-header YthirdPriority">
                       <div class="titleDeletIconDiv">
                         <h5>Third Priority</h5>
-                        <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal4"></i></p>
-                      <!--  -->
-                         <!-- Button trigger modal -->
-                              <!-- Modal -->
-                              <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content ">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLongTitle">Task Title</h5>
-                                      <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      Do you Want to Delete This Task?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="button" data-dismiss="modal">Cancel</button>
-                                      <button type="button" class="button" onclick="Delete(this)">Delete</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                                          
-                      <!--  -->
+                        
                     </div>
                     <div class="d-flex">
                     <div class="canvas-container ">
                           <div class="candiv" >
-                              <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#d16bca" data-cand="cand1"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YFirstExtra">1st Priority</div>
-                            </div>
+                          </div>
                           <div class="candiv" >
-                              <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#795ce0" data-cand="cand2"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
                           </div> 
                           <div class="candiv" >
-                              <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#30d1d9" data-cand="cand3"  onclick="changecolor(this)"></canvas>
-                              <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
                         </div>
                         <div class="YsmallProfile" >
@@ -587,14 +460,15 @@ require_once('pages/chart_data_function.php');
 
  <script>
     // Generate the bar chart
-    generateBarChart("YlineChart-from_kanban_board", barChartData);//barChartData is from chart_data_function.php
-  
+   
+    generateBarChart("YbarChart_from_kanban_board", barChartData);//barChartData is from chart_data_function.php
+       
 </script> 
 
 <script>
     // Initialize Bootstrap tooltips
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
+       $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 
@@ -752,3 +626,4 @@ function updateVisibility() {
 
   </body>
 </html>
+

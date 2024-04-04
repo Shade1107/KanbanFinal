@@ -39,22 +39,24 @@
             return true;
         }
 
-        public function create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $membersarray){
+        public function create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $users_id){
             $query = "
-                INSERT INTO ".self::$table_name." (id, admin_id, name, description, detail_descrip, create_date, due_date, completed_date) 
-                VALUES (null, $admin_id, '$name', '$description', '$detail_descrip', $create_date, $due_date, null);
+                INSERT INTO ".self::$table_name." (id, admin_id, name, description, detail_descrip, create_date, due_date) 
+                VALUES (null, '{$admin_id}', '{$name}', '{$description}', '{$detail_descrip}', '{$create_date}', '{$due_date}')
             ";
         
             $results = $this->connection->query($query);
+            // var_dump($results);
 
             $last_insert_id = $this->connection->insert_id;
-        
-            foreach ($membersarray as $u) {
+            // var_dump($last_insert_id);
+            
+            foreach ($users_id as $u) {
+                $u = $this->connection->real_escape_string($u);
                 $query = "
                     INSERT INTO ".projectMemberRepository::$table_name." (id, user_id, project_id) 
-                    VALUES (null, $u, $last_insert_id);
+                    VALUES (null, '{$u}', '{$last_insert_id}')
                 ";
-        
                 $results = $this->connection->query($query);
             }
         
@@ -84,4 +86,6 @@
             return $userRepo->find($project->admin_id);
         }
     }
+
+    
 ?>  
