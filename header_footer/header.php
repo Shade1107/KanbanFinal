@@ -51,7 +51,7 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
       <div class="d-flex profile">
         <?php 
           if ($isAdmin) { ?>
-             <a href="createtask.php" class="btn  mt-3 ">Add Task</a>
+             <a href="createtask.php?id=<?= $projects->id?>" class="btn  mt-3 ">Add Task</a>
             <?php } ?>
 
           <a href="../pages/memberlist.php" class="btn  mt-3 ">Member List</a>
