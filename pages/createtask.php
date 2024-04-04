@@ -5,7 +5,6 @@ require_once('../Repositories/UserRepository.php');
 require_once('../Repositories/Project_memberRepository.php');
 require_once('../Functions4Kanban/taskcreate.php');
 
-
 ?>
 <!Doctype html>
 <head>
@@ -16,7 +15,7 @@ require_once('../Functions4Kanban/taskcreate.php');
     <!-- title logo  -->
     <link rel="icon" type="image/png" href="../image/logo.PNG">
 
-    <style>
+<style>
   .select{
   width: 400px;
   }
@@ -68,6 +67,14 @@ require_once('../Functions4Kanban/taskcreate.php');
       <!-- form -->
       <div class="Miprojectform  col-lg-6 ee92a9 mt-5">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+
+      
+      <!-- error message -->
+      <?php if(isset($error_message)) { ?>
+                      <div style="color: red;"><?php echo $error_message; ?></div>
+                      <?php
+                       } ?>
+
           <h1 class="loginFormText">⟁ Add Task</h1>
          
 
@@ -149,10 +156,10 @@ require_once('../Functions4Kanban/taskcreate.php');
                          </div>
 
                        </div>
+                       
                        </div>
                        </div>
-            
-         
+                       
               <!-- button -->
                  <button type="button" class="buttonMi mt-4" ><a class="buttonlink" href="../HomeAdmin.php">Back</a></button>
                  <button type="submit" class="buttonMi mt-4" >Create</button>
@@ -166,11 +173,8 @@ require_once('../Functions4Kanban/taskcreate.php');
       
        
      <!-- <span class="Yloginspan mt-3">Create a <a href="" class="YColor3e306b">NEW ACCOUNT ?</a></span> -->
-       
-       
-       
-     
-     </form>
+
+    </form>
 
   </div>
   </div>
