@@ -8,6 +8,13 @@
     /* background: linear-gradient(to right,  rgb(185, 43, 39), rgb(21, 101, 192)); */
     background:#ee92a9 ;
   }
+  .drag-over {
+    background-color: #f2b7fa; 
+    border: 2px dashed #000;
+  }
+  .dropzone{
+    min-height: 50px;
+  }
 
   .fed1dc{ 
     background-color:#fed1dc ;

@@ -1,8 +1,8 @@
 <?php 
 $isAdmin = true;
-require_once('header&footer/header.php');
+require_once('../header_footer/header.php');
 
-require_once('pages/chart_data_function.php');
+require_once('../pages/chart_data_function.php');
 
 
 ?>
@@ -14,14 +14,14 @@ require_once('pages/chart_data_function.php');
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  
   <!-- custom chart.js  -->
-   <script src="js/charts.js"></script> 
+   <script src="../js/charts.js"></script> 
 <!-- cssloader -->
-<link rel="stylesheet" href="css/css_loader.css">
+<link rel="stylesheet" href="../css/css_loader.css">
 
   <!-- custom css  -->
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!-- title logo  -->
-    <link rel="icon" type="image/png" href="image/logo2_2.PNG">
+    <link rel="icon" type="image/png" href="../image/logo2_2.PNG">
 
 <style>
 
@@ -577,12 +577,12 @@ require_once('pages/chart_data_function.php');
 
 
     <!-- <script src="js/app.js"></script> -->
-    <script src="js/changecolor.js"></script>
-    <script src="js/lightbox.js"></script>
+    <script src="../js/changecolor.js"></script>
+    <script src="../js/lightbox.js"></script>
    
     <?php 
     $isAdmin = true;
-     require_once('header&footer/footer.php');
+     require_once('../header_footer/footer.php');
     ?>
 
  <script>
