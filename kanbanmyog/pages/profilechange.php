@@ -1,5 +1,5 @@
 <?php 
-require_once('../header&footer/header.php');
+require_once('../header_footer/header.php');
 require_once('chart_data_function.php');
 ?>
 
@@ -142,7 +142,7 @@ require_once('chart_data_function.php');
 
 	
 <?php 
-  require_once('../header&footer/footer.php');
+  require_once('../header_footer/footer.php');
  ?>
 	<!-- This is link of adding small images
 		which are used in the link section -->
