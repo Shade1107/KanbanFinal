@@ -9,7 +9,7 @@ function dragLeave(ev) {
 function drag(ev) {
     let taskDiv = document.getElementById(ev.target.id);
 console.log("drag");
-    //user div id == user-d to move between role divs
+    //user div id == task-d to move between role divs
     let task_div_id = ev.target.id;
 
     let task_id = taskDiv.getAttribute('task_id');
@@ -32,11 +32,6 @@ console.log(task_div);
     let new_stage_id = new_stage_div.getAttribute("stage_id");
 
     let target = ev.target.closest('.dropzone');    
-
-    //move to dropped div
-    //ev.target.appendChild(task_div);
-    //but before move the div in ui, request server to update task role.
-    //ajax things
     update_task_stage(task_id, new_stage_id, task_div, target);
 }
 function update_task_stage(task_id, new_stage_id, task_div, new_stage_div) {

@@ -34,7 +34,7 @@ foreach($stages as $stage):?>
     <?php foreach($tasks as $t):?>
       <?php if ($t->stage_id == $stage->id):?>
         <div id="s_<?=$stage->id?>" stage_id="<?=$stage->id?>" class="task-list drop_stage" ondrop="drop(event)" ondragleave="dragLeave(event);" ondragover="allowDrop(event)">
-        
+
         <div id="t_<?=$t->id?>" task_id="<?=$t->id?>" stage_id="<?=$stage->id?>" class="task-container <?=$t->task_priority_border?>" draggable="true" ondragstart="drag(event)">
         
         <div class="task-header <?=$t->task_priority_color?>">
