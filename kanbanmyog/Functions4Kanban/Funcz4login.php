@@ -19,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signin'])){
             $role_id = $user['role_id'];
 
             if ($role_id == '1') {
-                header("Location: ../pages/addProjectAdmin.php");
+                header("Location: ../pages/add_project_admin.php");
                 exit;
             } else {
-                header("Location: ../pages/addProjectMember.php");
+                header("Location: ../pages/add_project_member.php");
                 exit;
             }
         } else {

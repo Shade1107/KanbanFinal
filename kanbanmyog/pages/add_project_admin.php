@@ -123,7 +123,7 @@ $projects = $projectRepository->getAll();
 
 <?php 
 $isAdminMemberFromPJwebpage = true;
-require_once('../header&footer/footer.php');
+require_once('../header_footer/footer.php');
 
 // require_once('chart_data_function.php');
 ?>
