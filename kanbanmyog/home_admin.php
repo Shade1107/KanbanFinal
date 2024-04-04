@@ -131,7 +131,7 @@ $stages    =  $stageRepo -> getAll();
                             <div class="Ymember_img">
                               <img src="image/p1.jpg" width="120px" height="50px">
                             </div>
-                            <span class=" Ymember"> Myo Gyi</span>
+                            <span class=" Ymember">Myo Gyi</span>
                         </div>
 
                         <div class="YlineChart_home_page">
