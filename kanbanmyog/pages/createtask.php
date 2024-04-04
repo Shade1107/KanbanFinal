@@ -1,8 +1,9 @@
 <?php 
-$isCreateTask = true;
-require_once('../header&footer/header.php');
-include('DB_connection.php');
-// require_once('header&footer/footer.php');
+require_once('../header_footer/header.php');
+require_once('../Repositories/TaskRepository.php');
+require_once('../Repositories/UserRepository.php');
+require_once('../Repositories/Project_memberRepository.php');
+require_once('../Functions4Kanban/taskcreate.php');
 
 ?>
 <!Doctype html>
@@ -28,93 +29,63 @@ include('DB_connection.php');
  <div class="col-lg-5">
 
 
-           <form action="" method="GET" name="">
-
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+            
             <div class="text"><h1 class="loginFormText mt-5 ">⟁ Add Task</h1>
+
+            <div>
+            <?php if(isset($error_message)) { ?>
+                      <div style="color: red;"><?php echo $error_message; ?></div>
+                      <?php
+                       } ?>
+            </div>
             
           </div>
+          <?php
+                require_once('../Repositories/ProjectRepository.php');
 
+                if (isset($_GET["id"])) {
+                    $id = intval($_GET["id"]);
+                    $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
+                    $project = $prorepo->find($id);
+                    if (isset($project)) {
+                ?>
+                        <input type="hidden" name="project_id" value="<?php echo $project->id; ?>">
+                <?php
+                    } else {
+                        echo "<p>Not found.</p>";
+                    }
+                }
+                ?>
               <!-- task name -->
             <div class="Yinput-container text-center">
 
-            <input type="text" id="" class="Miinput-field mt-5" placeholder="Enter task title"><br>
+            <input type="text" id="" class="Miinput-field mt-5" placeholder="Enter task title" name="task_name"><br>
             
           
 
            <!-- add member -->
           <div class="addmember"> 
+            <?php
+              // Get the task members from the repository
+              $pjMemberRepository = new projectMemberRepository();
+              $taskMembers = $pjMemberRepository->findWithProjectID($id);
+            ?>
             
-          <?php
-                $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-                  
-                $query = mysqli_query($conn,"SELECT * FROM users order by name;");
-                $result_count = mysqli_num_rows($query);
-
-                //check to see is any results were returned
-                if($result_count > 0){
-                  
-                
-                  echo '<select id="tselect" class="select mt-1" placeholder="search member to add" multiple>';
-                  while($row = mysqli_fetch_assoc($query)){
-                            
-                    echo'  <option value='.$row['id'].'>'.$row['name'].'</option>';
-                
-                  }
-                  echo '</select>';
-                  echo '<div></table>';
-                }
-
-                //check to see if  the keyword will provided
-                    if (isset($_GET['k']) && $_GET['k'] != '' ) {
-
-                      //save the keyword from url
-                      $k = trim($_GET['k']);
-
-                      //create a base query word string
-                      $query_string = " SELECT * FROM users WHERE ";
-                      $display_word = "";
-                      // echo  $query_string ;
-                      //sperate each of keyword
-                      $keyword = explode(' ',$k);
-
-                      foreach($keyword as $word){
-                        $query_string .= " name LIKE '%".$word."%' OR ";
-                        $display_word .= $word." "; 
-                      }
-                      //echo "<h1>$query_string</h1>";
-                      $query_string = substr($query_string, 0, strlen($query_string) - 3);
-                      //echo "<h1>$query_string</h1>";
-                    //connect database
-                      $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-                  
-                        $query = mysqli_query($conn,$query_string);
-                        $result_count = mysqli_num_rows($query);
-
-                        
-                      }
-                  ?>
-                    </div>
+            <select id="tselect" class="select" placeholder="search member to add" name="user_id[]" multiple>
+                      <?php foreach ($taskMembers as $taskMember) {
+        // Get the user name for each task member
+        $userName = taskMemberRepository::getUserName($taskMember);
+        ?>
+         <option value="<?php echo $taskMember->user_id; ?>">
+            <?php echo $userName->name; ?>
+        </option>
+    <?php } ?>
+    </select>      
+             </div>
 
            <!-- discription -->
-            <textarea placeholder="detail description..." class="Mitext_area mt-4" ></textarea>
-
-            <!-- create date -->
-            <div class="datecontainer">
-                  <div class="input-group mt-3 ">
-                    <span class="input-group-text" id="basic-addon3">Choose your create date</span>
-                    <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                  </div>
-                  </div>
-                
-               <!-- target date -->   
-               <div class="datecontainer">        
-                      <div class="input-group mt-2" >
-                      <span class="input-group-text" id="basic-addon3">Choose your target date</span>
-                      <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                      </div>
-                  </div>  
-
-
+            <textarea placeholder="detail description..." class="Mitext_area mt-4" name="short_description" ></textarea>
                   <!-- Priorty color -->
                <div class="Micolorcontainer mt-2">
                 <div class="Micolortext">
@@ -132,6 +103,7 @@ include('DB_connection.php');
                         </div>
                         </div>
                         </div>
+                        <Br>
              
                   <div class="buttontask-container py-5">
                   <a href="../home_admin.php" class="buttonlink"><button type="button" class="buttonMi " >Back</button></a>
@@ -147,7 +119,7 @@ include('DB_connection.php');
 
 
               <?php
-              require_once('../header&footer/footer.php');
+              require_once('../header_footer/footer.php');
                  ?>
 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
