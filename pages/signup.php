@@ -29,33 +29,38 @@
             <span class="Yloginspan">Welcome to our Kanban</span>
             <div class="Yinputfieldcenter ">
                 <div class="mt-5 Yinputf">
-                    <input type="text" id="text" name="name" class="input-field mb-5" placeholder="Enter YourName" value="<?=$_GET['name']??''?>">
-                    <?php if (isset($_GET['NameEmpty']) && $_GET['NameEmpty'] == true): ?>
+                <input type="text" id="text" name="name" class="input-field mb-5" placeholder="Enter YourName" value="<?= isset($_SESSION['signup_data']['name']) ? htmlspecialchars($_SESSION['signup_data']['name']) : '' ?>">
+                    <?php if (isset($_GET['NameEmpty'])): ?>
                         <p class="text-info" style="color: red !important;">Name is required</p>
                     <?php endif; ?>
 
-                    <input type="email" id="email" name="email" class="input-field-psw  mb-5" placeholder="Enter Email" value="<?=$_GET['email']??''?>">
-                    <?php if (isset($_GET['EmailEmpty']) && $_GET['EmailEmpty'] == true): ?>
+                    <input type="email" id="email" name="email" class="input-field-psw  mb-5" placeholder="Enter Email" value="<?= isset($_SESSION['signup_data']['email']) ? htmlspecialchars($_SESSION['signup_data']['email']) : '' ?>">
+                    <?php if (isset($_GET['EmailEmpty'])): ?>
                         <p class="text-info" style="color: red !important;">Email is required</p>
-                    <?php endif; ?>
-                    <?php if (isset($_GET['EmailExists']) && $_GET['EmailExists'] == true): ?>
+                    <?php elseif (isset($_GET['EmailExists'])): ?>
                         <p class="text-info" style="color: red !important;">This email is already in use</p>
                     <?php endif; ?>
 
                     <div class="psw-eye">
                         <input type="password" id="password" class="input-field-psw  mb-5" name="password" placeholder="Enter Password">
-                        <?php if (isset($_GET['PasswordEmpty']) && $_GET['PasswordEmpty'] == true): ?>
+                        <i class="fa fa-eye toggle-password" onclick="togglePassword()" aria-hidden="true"></i>
+                        
+                        <?php if (isset($_GET['PasswordEmpty'])): ?>
                             <p class="text-info" style="color: red !important;">Password is required</p>
                         <?php endif; ?>
-                    </div>
+            </div>
 
-                    <div>
-                        <select class="input-field" id="gender" name="gender_id" >
-                            <option value="">Gender</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                        </select>
-                    </div>
+        <div>
+            <select class="input-field" id="gender" name="gender_id">
+                <option value="">Gender</option>
+                <option value="1" <?= (isset($_SESSION['signup_data']['gender_id']) && $_SESSION['signup_data']['gender_id'] == '1') ? 'selected' : '' ?>>Male</option>
+                <option value="2" <?= (isset($_SESSION['signup_data']['gender_id']) && $_SESSION['signup_data']['gender_id'] == '2') ? 'selected' : '' ?>>Female</option>
+            </select>
+            <?php if (isset($_GET['GenderEmpty'])): ?>
+                <p class="text-info" style="color: red !important;">Gender is required</p>
+            <?php endif; ?>
+        </div>
+
 
                     <button type="submit" class="button mt-4">Sign Up</button>
                 </div>
