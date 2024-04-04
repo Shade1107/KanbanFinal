@@ -1,6 +1,8 @@
 <?php 
 require_once("../Repositories/UserRepository.php");
 require_once("../Repositories/ProjectRepository.php");
+require_once("../Repositories/StageRepository.php");
+require_once("../Repositories/TaskRepository.php");
 
 $isMember = $isMember??'';
 $isAdmin = $isAdmin??'';

@@ -2,11 +2,15 @@
 <?php 
 // require_once('pages/loader.php');
 $isMember = true;
-require_once('header&footer/header.php');
+require_once('header_footer/header.php');
 
 require_once('pages/chart_data_function.php');
 
 
+$taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
+$stageRepo =  new StageRepository(DatabaseConnection::getInstance());
+$tasks     =  $taskRepo  -> getAll();
+$stages    =  $stageRepo -> getAll();
 ?>
 <!Doctype html>
 <head>
@@ -250,192 +254,91 @@ require_once('pages/chart_data_function.php');
     </div>
 
   </section>
-    <section class="column-container mb-5 container-fluid row">
-      <div class="col-lg-3 col-md-3 col-sm-3">
-          <div class="task-column "   id="planning">
-            <h4 class="text-center"> Planning</h4>
-            <hr class="custom-hr" />
-            <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist1 ">
+  <section class="column-container mb-5 container-fluid row">
+    <?php
+    foreach($stages as $stage):?>
+<div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="task-column">
+        <h4 class="text-center"><?=$stage->name?></h4>
+        <hr class="custom-hr">
+        <div id="s_<?=$stage->id?>" stage_id="<?=$stage->id?>" class="task-list drop_stage dropzone" ondrop="drop(event)" ondragleave="dragLeave(event);" ondragover="allowDrop(event)">
+    <?php foreach($tasks as $t):?>
+      <?php if ($t->stage_id == $stage->id):?>
         
-              
-            <div class="task-container YDefaultCardBorder" draggable="true"   ondragstart="drag(event)" id="task1 dragElement">
-                    <div class="task-header YPrimaryTaskColor">
-                      <div class="titleDeletIconDiv">
-                        <h5>Default Task color</h5>
-                        
-                     
-                    </div>
-                    <div class="d-flex">
-                        <div class="canvas-container ">
-                          <div class="candiv" >
-                          </div>
-                          <div class="candiv" >
-                          </div>
-                          <div class="candiv" >
-                          </div>
-                        </div>
-                        <div class="YsmallProfile" >
-                          <div class="YsmallPS YsmallP1">
-                            <img src="image/p1.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallP2">
-                            <img src="image/p2.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallP3">
-                            <img src="image/p3.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallPExtra"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="task-description-container">
-                  <p>The submit button has stopped working since the last release.</p>
-                  <a href="#" class="">Details</a>
-                </div>
-              </div>
-              <div class="task-container YFirstCardBorder" draggable="true" ondragstart="drag(event)" id="task2">
-                    <div class="task-header YfirstPriority">
-                      <div class="titleDeletIconDiv">
-                        <h5>First Priority</h5>
-                   
-                    </div>
-                    <div class="d-flex">
-                    <div class="canvas-container ">
-                          <div class="candiv" >
-                          </div>
-                          <div class="candiv" >
-                          </div>
-                          <div class="candiv" >
-                          </div>
-                        </div>
-                        <div class="YsmallProfile" >
-                          <div class="YsmallPS YsmallP1">
-                            <img src="image/p1.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallP2">
-                            <img src="image/p2.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallP3">
-                            <img src="image/p3.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallPExtra"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="task-description-container">
-                  <p>The submit button has stopped working since the last release.</p>
-                  <a href="#" class="">Details</a>
-                </div>
-              </div>
-              
 
-              <div class="task-container YSecondCardBorder" draggable="true" ondragstart="drag(event)" id="task3">
-                    <div class="task-header YsecondPriority">
-                      <div class="titleDeletIconDiv">
-                        <h5>Second Priority</h5>
-                       
+        <div id="t_<?=$t->id?>" task_id="<?=$t->id?>" stage_id="<?=$stage->id?>" class="task-container <?=$t->task_priority_border?>" draggable="true" ondragstart="drag(event)">
+        
+        <div class="task-header <?=$t->task_priority_color?>">
+        <form method="POST" action="../Functions4Kanban/DeleteTask.php">
+        <input type="hidden" name="task_id" value="<?= $t->id ?>">  
+        <div class="titleDeletIconDiv">
+        <h5><?=$t->task_name?></h5>
+        <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal<?=$t->id?>"></i></p>
+                              <div class="modal fade" id="modal<?=$t->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content ">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="<?=$t->task_name?>"><?=$t->task_name?></h5>
+                                      <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      Do you Want to Delete This Task?
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="button" data-dismiss="modal">Cancel</button>
+                                      <button type="submit" class="button mt-1" name="DeleteTask" id="DeleteTask">Delete</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+                      <!--  -->
                     </div>
+      </form>
                     <div class="d-flex">
-                    <div class="canvas-container ">
-                         <div class="candiv" >
-                          </div>
-                          <div class="candiv" >
-                          </div>
-                          <div class="candiv" >
-                          </div>
-                        </div>
-                        <div class="YsmallProfile" >
-                          <div class="YsmallPS YsmallP1">
-                            <img src="image/p1.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallP2">
-                            <img src="image/p2.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallP3">
-                            <img src="image/p3.jpg"/>
-                          </div>
-                          <div class="YsmallPS YsmallPExtra"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="task-description-container">
-                  <p>The submit button has stopped working since the last release.</p>
-                  <a href="#" class="">Details</a>
-                </div>
-              </div>
 
-       
-              <div class="task-container YThirdCardBorder" draggable="true" ondragstart="drag(event)" id="task4">
-                    <div class="task-header YthirdPriority">
-                      <div class="titleDeletIconDiv">
-                        <h5>Third Priority</h5>
-                        
-                    </div>
-                    <div class="d-flex">
-                    <div class="canvas-container ">
-                          <div class="candiv" >
-                          </div>
-                          <div class="candiv" >
+                    <div class="canvas-container">
+                          <div class="candiv">
+                              <canvas id="canvas1" width="25" height="25" class="canvas canvas1" data-color="#d16bca" data-cand="cand1"  onclick="changecolor(this)"></canvas>
+                              <div class="YCanvasExtra YFirstExtra">1st Priority</div>
+                            </div>
+                          <div class="candiv">
+                              <canvas id="canvas2" width="25" height="25" class="canvas canvas2" data-color="#795ce0" data-cand="cand2"  onclick="changecolor(this)"></canvas>
+                              <div class="YCanvasExtra YSecondExtra">2nd Priority</div>
                           </div> 
-                          <div class="candiv" >
+                          <div class="candiv">
+                              <canvas id="canvas3" width="25" height="25" class="canvas canvas3" data-color="#30d1d9" data-cand="cand3"  onclick="changecolor(this)"></canvas>
+                              <div class="YCanvasExtra YThirdExtra">3rd Priority</div>
                           </div>
-                        </div>
+                    </div>
+
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="image/p1.jpg"/>
+                            <img src="../image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="image/p2.jpg"/>
+                            <img src="../image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="image/p3.jpg"/>
+                            <img src="../image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
                     </div>
                 </div>
                 <div class="task-description-container">
-                  <p>The submit button has stopped working since the last release.</p>
+                  <p><td><?=$t->short_description?></td></p>
                   <a href="#" class="">Details</a>
                 </div>
               </div>
+    <?php endif;?>
+<?php  endforeach; ?>
+  </div>
+  </div>
+</div>
 
-              
-        </div>
-         </div>
-      </div>
-    
-      <div class="col-lg-3 col-md-3 col-sm-3">
-      <div class="task-column"   id="doing">
-      <h4 class="text-center"> Doing Task</h4>
-        <hr class="custom-hr" />
-        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist2 dropZone">
-        
-        </div>
-      </div>
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-3">
-      <div class="task-column"   id="report">
-      <h4 class="text-center"> Report</h4>
-        <hr class="custom-hr" />
-        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist3">
-        
-        </div>
-      </div>
-      </div>
-
-
-      <div class="col-lg-3 col-md-3 col-sm-3">
-      <div class="task-column"   id="done">
-      <h4 class="text-center"> Done</h4>
-        <hr class="custom-hr" />
-        <div class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasklist4">
-        
-        </div>
-      </div>
-      </div>
-
+<?php endforeach; ?>
 
       
     </section>
@@ -452,10 +355,11 @@ require_once('pages/chart_data_function.php');
     <!-- <script src="js/app.js"></script> -->
     <script src="js/changecolor.js"></script>
     <script src="js/lightbox.js"></script>
+    <script src="js/drag_drop.js"></script>
    
     <?php 
     $isAdmin = true;
-     require_once('header&footer/footer.php');
+     require_once('header_footer/footer.php');
     ?>
 
  <script>
