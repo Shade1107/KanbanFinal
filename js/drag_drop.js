@@ -1,10 +1,10 @@
 function allowDrop(ev) {
     ev.preventDefault();
-    ev.target.classList.add('drag-over');
+    ev.target.closest('.dropzone').classList.add('drag-over');
 }
 function dragLeave(ev) {
     ev.preventDefault();
-    ev.target.classList.remove('drag-over');
+    ev.target.closest('.dropzone').classList.remove('drag-over');
 }
 function drag(ev) {
     let taskDiv = document.getElementById(ev.target.id);

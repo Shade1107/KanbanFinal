@@ -26,15 +26,21 @@
       </div>
       <div class="loginForm  col-lg-6 ee92a9 ">
             <form action="addProjectAdmin.php" method="">
-                <h1 class="loginFormText">⟁ Kanban Board</h1>
+                <h1 class="loginFormText"><img src="../image/logo3.png"  width="120px" height="50px">
+              </h1>
+              <!-- <img src="../image/logo2.png" class="YLogo_img"  width="10px" height="10px"> -->
+              
 
                 <span class="Yloginspan">Welcome to our Kanban</span>
                 <div class="Yinputfieldcenter ">
                       <div class="mt-5 Yinputf">
                         
                           
-                          <input type="email" id="email" class="input-field mb-5" placeholder="Enter Email">
+                          <input type="text" id="text" class="input-field mb-5" placeholder="Enter YourName">
                         
+                          <input type="email" id="email" class="input-field-psw  mb-5" placeholder="Enter Email">
+                           
+
                           <div class="psw-eye">
                             <input type="password" id="password" class="input-field-psw  mb-5" placeholder="Enter Password">
                            
@@ -42,18 +48,30 @@
                           
                         </div>
 
-                          <button type="submit" class="button mt-1">Login</button>
+                          <div >
+                         
+                            <select class="input-field" name="gender">
+                              <option selected disabled name="gender" >Select Gender</option>
+                              <option name="gender"  value="male">Male</option>
+                              <option name="gender"  value="female">Female</option>
+                            </select>
+                          </div>
+
+
+                          <button type="submit" class="button mt-4">Sign Up</button>
                           
                         </div>
                 </div> 
-                <span class="Yloginspan mt-3">Create a <a href="#" class="YColor3e306b">NEW ACCOUNT ?</a></span>
+                <span class="Yloginspan mt-3">Already have an account? <a href="login.php" class="YColor3e306b">Login</a></span>
              </form>
 
       </div>
 
   </div>
+
   <script src="../js/psweyecloseopen.js"></script>
+
+
  
-  
 </body>
 </html>

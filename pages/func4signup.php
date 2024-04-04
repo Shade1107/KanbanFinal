@@ -5,60 +5,58 @@ require_once("../Repositories/UserRepository.php");
 
 $userRepo = new UserRepository(DatabaseConnection::getInstance());
 
+// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $role_id = 2;
-    $gender_id = $_POST['gender_id'];
+     $_SESSION['signup_data'] = $_POST;
+    // Initialize variables to hold input values and error messages
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $gender_id = $_POST['gender_id'] ?? '';
 
-    // Check if name is empty
-    if (empty($name)) {
-        header("Location: signup.php?NameEmpty=true");
+    $nameErr = $emailErr = $passwordErr = $genderErr = '';
+
+    // Check if any field is empty
+    if (empty($name) || empty($email) || empty($password) || empty($gender_id)) {
+        // Redirect back to the signup form with error flags in URL
+        header("Location: signup.php?FieldsEmpty=true"
+            . (!empty($name) ? '' : '&NameEmpty=true')
+            . (!empty($email) ? '' : '&EmailEmpty=true')
+            . (!empty($password) ? '' : '&PasswordEmpty=true')
+            . (!empty($gender_id) ? '' : '&GenderEmpty=true')
+        );
         exit;
     }
 
-    // Check if email is empty
-    if (empty($email)) {
-        header("Location: signup.php?EmailEmpty=true&name=$name");
-        exit;
-    }
-
-    // Check if password is empty
-    if (empty($password)) {
-        header("Location: signup.php?PasswordEmpty=true&name=$name&email=$email");
-        exit;
-    }
-
-    // Check if gender is not selected
-    if (empty($gender_id)) {
-        header("Location: signup.php?GenderEmpty=true&name=$name&email=$email");
-        exit;
-    }
-
+    // Proceed with database operations
     $conn = DatabaseConnection::getInstance();
     $table = "users";
 
+    // Check if email already exists
     $check_query = "SELECT * FROM `$table` WHERE email = '$email'";
     $check_result = $conn->query($check_query);
 
     if ($check_result && $check_result->num_rows > 0) {
+        // Redirect back to the signup form with email existence flag in URL
         header("Location: signup.php?EmailExists=true&name=$name&email=$email");
         exit;
     }
 
-
+    // Insert user data into the database
+    $role_id = 2; // Assuming default role_id
     $insert_query = "INSERT INTO `$table` (name, email, password, role_id, gender_id) 
-              VALUES ('$name', '$email', '$password', '$role_id', '$gender_id')";
+                     VALUES ('$name', '$email', '$password', '$role_id', '$gender_id')";
     $insert_result = $conn->query($insert_query);
 
     if ($insert_result) {
-        $user_id = $conn->insert_id; // Get the inserted user_id
+        // Set session variables and redirect to next page
+        $user_id = $conn->insert_id;
         $_SESSION['loggedin'] = true;
-        $_SESSION['user_id'] = $user_id ;
+        $_SESSION['user_id'] = $user_id;
         header("Location: addProjectMember.php");
         exit;
     } else {
+        // If insertion fails, display error message
         echo "Failed to insert user data.";
     }
 }

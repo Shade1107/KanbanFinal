@@ -1,7 +1,12 @@
+<!-- <div class="content" style="display: none;"> -->
 <?php 
+// require_once('pages/loader.php');
 $isAdmin = true;
-require_once('../header_footer/header.php');
-require_once('./pages/chart_data_function.php');
+require_once('header&footer/header.php');
+
+require_once('pages/chart_data_function.php');
+
+
 ?>
 <!Doctype html>
 <head>
@@ -11,86 +16,38 @@ require_once('./pages/chart_data_function.php');
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  
   <!-- custom chart.js  -->
-   <script src="./js/charts.js"></script> 
+   <script src="js/charts.js"></script> 
 <!-- cssloader -->
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="css/css_loader.css">
 
   <!-- custom css  -->
-    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- title logo  -->
-    <link rel="icon" type="image/png" href="./image/logo2_2.PNG">
+    <link rel="icon" type="image/png" href="image/logo2_2.PNG">
 
-<style>
-
- 
-  
-</style>
+<!-- loader JavaScript -->
+<!-- <script>
+        // Hide the loader after 3 seconds
+        setTimeout(function() {
+            document.querySelector('.loader2').style.display = 'none';
+            document.querySelector('.content').style.display = 'block'; // Show the content
+        }, 3000);
+    </script> -->
 
  </head>
  <body >
- <!-- <div class="loader"></div>
- <script>
-   document.addEventListener('DOMContentLoaded', function() {
-  // Hide the loader and show the content after a delay
-  setTimeout(function() {
-    document.querySelector('.loader').style.display = 'none';
-    document.getElementById('page-content').style.display = 'block';
-  }, 300); // 300 milliseconds = 0.3 seconds
-});
-
-  </script> -->
-  <!-- <section  id="page-content"> -->
-  
+<!-- 
+ <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="loader2"></div>
+</div> -->
   <section class="Ysummary_des container-fluid ">
     <div class="row">
 
-   
-
-    <div class="col-lg-3 Yleft_side_bar">
-      <div class="Ytotal_task">
-        <div class="Ytotal_task_bg_color p-2 mb-4 ">
-          <h4 class="text-center   ">Total Tasks</h4>
-        </div>
-
-        <table class="" >
-            <tr>
-              <th class="Ypadding_left">Stages</th>
-              <th class="Ypadding_right">Tasks</th>
-            </tr>
-            <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" title="Task : Task1 , your deadline is approaching!">
-                <td class="Ypadding_left">Planning</td>
-                <td id="planningTaskCount" class="Ypadding_right"></td>
-            </tr>
-
-            <tr>
-                <td class="Ypadding_left">Doing Task</td>
-                <td id="doingTaskCount" class="Ypadding_right"></td>
-            </tr>
-
-            <tr>
-                <td class="Ypadding_left">Report</td>
-                <td id="reportTaskCount" class="Ypadding_right"></td>
-            </tr>
-
-            <tr>
-                <td class="Ypadding_left">Done</td>
-                <td id="doneTaskCount" class="Ypadding_right"></td>
-            </tr>
-        </table>
-        <hr>
-          <ul class="Ydashboard_list text-center">
-            <a href="#"><li>Projects</li></a>
-            <a href="#"><li>User's Profile</li></a>
-            <a href="#"><li>Member lists</li></a>
-            <a href="#"><li>Help</li></a>
-          </ul>
-      </div>
-      
     </div>
 
   
 
-    <div class="col-lg-9  ">
+    <div class="col-lg-12  ">
               <h6 class="pt-3 mb-0 text-secondary">Members</h6>
               <hr/>
 
@@ -98,14 +55,10 @@ require_once('./pages/chart_data_function.php');
               <div class="Ycontainer">
               <div class="row  Yrow ">
                   <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
+                    <div class="Ymember_card ">
                       <div class="Ymember_img_name d-flex">
                           <div class="Ymember_img">
-<<<<<<< HEAD
-                            <img src="./image/p1.jpg" width="120px" height="50px">
-=======
                             <img src="image/p1.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                           </div>
                           <span class=" Ymember"> Yin Myo Myat</span>
                       </div>
@@ -122,11 +75,7 @@ require_once('./pages/chart_data_function.php');
                       <div class="Ymember_card">
                           <div class="Ymember_img_name d-flex">
                               <div class="Ymember_img">
-<<<<<<< HEAD
-                                <img src="./image/p2.jpg" width="120px" height="50px">
-=======
                                 <img src="image/p2.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                               </div>
                               <span class=" Ymember"> Yoon Mi</span>
                           </div>
@@ -142,11 +91,7 @@ require_once('./pages/chart_data_function.php');
                       <div class="Ymember_card">
                           <div class="Ymember_img_name d-flex">
                               <div class="Ymember_img">
-<<<<<<< HEAD
-                                <img src="./image/p1.jpg" width="120px" height="50px">
-=======
                                 <img src="image/p1.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                               </div>
                               <span class=" Ymember"> Ei ThinZar</span>
                           </div>
@@ -162,11 +107,7 @@ require_once('./pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember"> May Phoo</span>
                         </div>
@@ -183,11 +124,7 @@ require_once('./pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p1.jpg" width="120px" height="50px">
-=======
                               <img src="image/p1.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember"> Myo Gyi</span>
                         </div>
@@ -203,11 +140,7 @@ require_once('./pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember">Htet Htet Htun</span>
                         </div>
@@ -223,11 +156,7 @@ require_once('./pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember">Su Myat Aung</span>
                         </div>
@@ -243,11 +172,7 @@ require_once('./pages/chart_data_function.php');
                     <div class="Ymember_card">
                         <div class="Ymember_img_name d-flex">
                             <div class="Ymember_img">
-<<<<<<< HEAD
-                              <img src="./image/p3.jpg" width="120px" height="50px">
-=======
                               <img src="image/p3.jpg" width="120px" height="50px">
->>>>>>> 9e42cd8d8c592be2201855684f0e632fa71c803c
                             </div>
                             <span class=" Ymember">Hnin Htet</span>
                         </div>
@@ -276,10 +201,49 @@ require_once('./pages/chart_data_function.php');
 
         <!-- // -->
                       <hr/>
+                      
+      </div>
 
-                  <div class="Ykanban_linechart ">
-                        <canvas id="YlineChart-from_kanban_board" class="YChart mt-3"></canvas>
+      <div class="row">
+            <div class="col-lg-4"> 
+            
+
+              <div class=" Ytask_table_div" >
+              <h4 class="text-center mb-3 pt-3" >Total Tasks</h4>
+    
+          <table class="Ytask_table">
+                  <tbody><tr>
+                    <th class="Ypadding_left">Stages</th>
+                    <th class="Ypadding_right">Tasks</th>
+                  </tr>
+                  <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" data-bs-original-title="Task : Task1 , your deadline is approaching!">
+                      <td class="Ypadding_left">Planning</td>
+                      <td id="planningTaskCount" class="Ypadding_right">3</td>
+                  </tr>
+
+                  <tr>
+                      <td class="Ypadding_left">Doing Task</td>
+                      <td id="doingTaskCount" class="Ypadding_right">0</td>
+                  </tr>
+
+                  <tr>
+                      <td class="Ypadding_left">Report</td>
+                      <td id="reportTaskCount" class="Ypadding_right">0</td>
+                  </tr>
+
+                  <tr>
+                      <td class="Ypadding_left">Done</td>
+                      <td id="doneTaskCount" class="Ypadding_right">1</td>
+                  </tr>
+              </tbody></table>
+              </div>
+
+           
+            </div>
+                  <div class="Ykanban_barchart col-lg-8">
+                        <canvas id="YbarChart_from_kanban_board" class="YChart mt-3"></canvas>
                   </div>
+
       </div>
 
 
@@ -342,13 +306,13 @@ require_once('./pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
@@ -406,13 +370,13 @@ require_once('./pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
@@ -472,13 +436,13 @@ require_once('./pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
@@ -538,13 +502,13 @@ require_once('./pages/chart_data_function.php');
                         </div>
                         <div class="YsmallProfile" >
                           <div class="YsmallPS YsmallP1">
-                            <img src="./image/p1.jpg"/>
+                            <img src="image/p1.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP2">
-                            <img src="./image/p2.jpg"/>
+                            <img src="image/p2.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallP3">
-                            <img src="./image/p3.jpg"/>
+                            <img src="image/p3.jpg"/>
                           </div>
                           <div class="YsmallPS YsmallPExtra"></div>
                         </div>
@@ -616,14 +580,15 @@ require_once('./pages/chart_data_function.php');
 
  <script>
     // Generate the bar chart
-    generateBarChart("YlineChart-from_kanban_board", barChartData);//barChartData is from chart_data_function.php
-  
+   
+    generateBarChart("YbarChart_from_kanban_board", barChartData);//barChartData is from chart_data_function.php
+       
 </script> 
 
 <script>
     // Initialize Bootstrap tooltips
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
+       $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 
@@ -781,3 +746,4 @@ function updateVisibility() {
 
   </body>
 </html>
+

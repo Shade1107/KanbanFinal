@@ -1,8 +1,21 @@
-<?php
-session_start(); 
+<?php 
+require_once("../Repositories/UserRepository.php");
+require_once("../Repositories/ProjectRepository.php");
+
 $isMember = $isMember??'';
 $isAdmin = $isAdmin??'';
-require_once("../Repositories/UserRepository.php");
+
+$dbConnection = DatabaseConnection::getInstance();
+$projectRepository = new ProjectRepository($dbConnection);
+$projects = $projectRepository->getAll();
+
+$id = intval($_GET["id"]?? '2');
+$projects = $projectRepository->find($id);
+
+?>  
+<?php
+
+session_start(); 
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
 {
   $userID = $_SESSION['user_id'];
@@ -50,9 +63,9 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
       </div>
       <div class="d-flex profile">
         <?php 
-          if ($isAdmin) { ?>
-             <a href="createtask.php" class="btn  mt-3 ">Add Task</a>
-            <?php } ?>
+          if ($isAdmin) :?>
+             <a href="pages/createtask.php?id=<?= isset($projects->id) ? $projects->id : ''; ?>" class="btn  mt-3">Add Task</a>
+            <?php endif ?>
 
           <a href="../pages/memberlist.php" class="btn  mt-3 ">Member List</a>
           <a href="../Functions4Kanban/signout.php" class="btn  mt-3 ">LogOut</a>
