@@ -1,15 +1,38 @@
 <?php 
+require_once("../Repositories/UserRepository.php");
+require_once("../Repositories/ProjectRepository.php");
+
 $isMember = $isMember??'';
 $isAdmin = $isAdmin??'';
-// echo $isAdmin;
-// echo "<hr>";
 
+$dbConnection = DatabaseConnection::getInstance();
+$projectRepository = new ProjectRepository($dbConnection);
+$projects = $projectRepository->getAll();
+
+$id = intval($_GET["id"]?? '2');
+$projects = $projectRepository->find($id);
+
+?>  
+<?php
+
+session_start(); 
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
+{
+  $userID = $_SESSION['user_id'];
+  $userRepo = new UserRepository(DatabaseConnection::getInstance());
+  $user = $userRepo->find($userID);
+}
 $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
-// echo $isAdminMemberFromPJwebpage;
+// if ($isMember) {
+//   // Display content for members
+//   echo "<script>alert('Welcome, Member!');</script>";
+// } else {
+//   // Display content for guests
+//   echo "Welcome, Guest!";
+// }
 
-$isCreateTask = $isCreateTask?? '';
-$isCreateProject = $isCreateProject??'';
 
+// Find the user with the specified ID
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,33 +77,40 @@ $isCreateProject = $isCreateProject??'';
         </p>
       </div>
       <div class="d-flex profile">
-        <?php 
-          if ($isAdmin) { ?>
-             <a href="pages/createtask.php" class="btn  mt-3 ">Add Task</a>
-            <?php } ?>
+      <?php 
+          if ($isAdmin) :?>
+             <a href="pages/createtask.php?id=<?= isset($projects->id) ? $projects->id : ''; ?>" class="btn  mt-3">Add Task</a>
+            <?php endif ?>
           
-            <?php
-             if((!$isAdminMemberFromPJwebpage) && (!$isCreateProject)){?>
-              <a href="#" class="btn  mt-3 ">Member List</a>
-              <a href="#" class="btn  mt-3 ">LogOut</a>
-              <?php }else{?> 
-                <a href="#" class="btn  mt-3 ">LogOut</a>
-              
-              <?php } ?>
+            <a href="../pages/memberlist.php" class="btn  mt-3 ">Member List</a>
+          <a href="../Functions4Kanban/signout.php" class="btn  mt-3 ">LogOut</a>
+          <div class="d-flex Profilecircle mr-3">
+                <a href="viewprofile.php?id=<?= $userID ?>" class="circle-container">
+                <?php
+               $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+                ?>
+                <img src="<?= $imagePath ?>" id="photoPreview" class="avatar img-circle img-thumbnail" alt="avatar">
+
+                </a>
          
           
-          <div class="d-flex Profilecircle mr-3">
+          <!-- <div class="d-flex Profilecircle mr-3">
                 <a href="#" class="circle-container">
 
                 <?php 
-                    if ($isAdminMemberFromPJwebpage || $isCreateTask ||$isCreateProject) { ?>
+                    // if ($isAdminMemberFromPJwebpage || $isCreateTask ||$isCreateProject) { 
+                      ?>
                      <img src="../image/p2.jpg">
-                    <?php }else {?> 
+                    <?php 
+                  // }else {
+                    ?> 
 
                     <img src="image/p2.jpg">
 
-                    <?php } ?>
-                </a>
+                    <?php 
+                  // } 
+                  ?>
+                </a> -->
                 
                 
           </div>
