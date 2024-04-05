@@ -1,28 +1,24 @@
 <?php
-session_start();
-?>
-<?php
-require_once('../Models/Project.php');
-require_once('../Repositories/ProjectRepository.php');
-require_once('../Database/DatabaseConnection.php');
-require_once('../Repositories/Project_memberRepository.php');
+    require_once '../Database/DatabaseConnection.php';
+    require_once '../Repositories/UserRepository.php';
+    require_once '../Repositories/RoleRepository.php';
+    require_once '../Repositories/GenderRepository.php';
+    require_once('../header_footer/header.php');
 
-$id = $_SESSION['user_id'];
-    
+    $isAdminMemberFromPJwebpage = true;
+
+    // Get the user ID from the URL parameter
+    $id = $_SESSION['user_id'];
     $userRepo = new UserRepository(DatabaseConnection::getInstance());
-    // Find the user with the specified ID
     $user = $userRepo->find($id);
     $role_id = $user->role_id;
+    $totalProjects = $user->getTotalProjects();
 
+    $dbConnection = DatabaseConnection::getInstance();
+    $projectRepository = new ProjectRepository($dbConnection);
+    $projects = $projectRepository->getAll();
 
-$isAdminMemberFromPJwebpage = true;
-require_once('../header_footer/header.php');
-?>
-<?php
-$dbConnection = DatabaseConnection::getInstance();
-$projectRepository = new ProjectRepository($dbConnection);
-$projects = $projectRepository->getAll();
-?>
+    ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -41,6 +37,7 @@ $projects = $projectRepository->getAll();
 <body class="">
     <section class="Ycolumn-container row">
         <div class="leftSideBar col-lg-3 ">
+        
             
         <h3 class="text-center Ypjh3 pb-3 mt-3 mb-3">Projects</h3>
               <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
@@ -75,50 +72,25 @@ $projects = $projectRepository->getAll();
         <div class="col-lg-9 row">
            
             <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
-              <div class="col-lg-4 ">
-                <a href="../home_admin.php">
-                    <div class="Ytask-column  ">
-                        <canvas id="YmyChart1" class="YChart"></canvas>
-                    </div>
-                </a>
-
-              </div>  
-
-              <div class="col-lg-4 ">
-              <a href="../home_admin.php">
-                <div class=" Ytask-column">
-                    <canvas id="YmyChart2" class="YChart"></canvas>
-                </div>
-              </a>
-              </div>
-
-              <div class="col-lg-4 ">
-              <a href="../home_admin.php">
-                <div class="Ytask-column ">
-                    <canvas id="YmyChart3" class="YChart"></canvas>
-                </div>
-              </a>
-              </div>
-               <div class="col-lg-4">
-               <a href="../home_admin.php">
-                <div class="Ytask-column ">
-                    <canvas id="YmyChart4" class="YChart"></canvas>
-                </div>
-               </a>
-              </div>
-
-
-              <div class="col-lg-4">
-                <div class="Ytask-column ">
-                    <div class="YChart">
-                      <!-- <span class="">+</span> -->
-                      <div class="YChart Yplus_sign_project"><span><a href="createproject.php"> <i class="fa-regular fa-square-plus"></i></a></span></div>
-                    </div>
-                    <div></div>
-                </div>
-              </div>
+            <?php if(isset($projects) && !empty($projects)) : ?>
           
-        </div>
+          <?php foreach ($projects as $project) : ?>
+
+            <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
+              <div class="col-lg-4 ">
+              <a href="../home_admin.php?id=<?= $project->id ?>">
+              <h3><?= $project->name?></h3>
+              <div class="Ytask-column">
+                  <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
+              </div>
+              </a>
+              </div>
+              <?php 
+      endforeach; ?>
+    <?php else : ?>
+      <p>No projects found</p>
+    <?php endif; ?>  
+
     </section>
 
 <?php 
