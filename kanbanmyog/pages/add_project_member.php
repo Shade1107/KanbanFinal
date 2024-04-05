@@ -1,5 +1,4 @@
 <?php
-session_start();
 ?>
 <?php 
 $isAdminMemberFromPJwebpage = true;
@@ -39,7 +38,6 @@ require_once('../header_footer/header.php');
  
     // Get the user ID from the URL parameter
     $id = $_SESSION['user_id'];
-    
     $userRepo = new UserRepository(DatabaseConnection::getInstance());
     // Find the user with the specified ID
     $user = $userRepo->find($id);

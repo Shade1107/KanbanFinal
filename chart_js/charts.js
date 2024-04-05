@@ -33,7 +33,7 @@ function generatePieChart(canvasId, labels, data ,project_title) {
                     }
                     
                 },
-                title: {
+                title: { 
                     display: true,
                     text: project_title,
                    

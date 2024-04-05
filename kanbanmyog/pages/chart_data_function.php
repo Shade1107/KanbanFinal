@@ -62,8 +62,7 @@
       $donepercentage = 0;
       foreach($project as $p){
         $totaltask += $p['task']; 
-
-        
+    
       }
     
       foreach($project as $p){
@@ -76,7 +75,6 @@
 
       return $donepercentage;
     }
-  
 ?>
 
 <?php 
@@ -86,14 +84,10 @@
     $total_stages[] = ["stage"=>"doing","task"=>2];
     $total_stages[] = ["stage"=>"done","task"=>4];
     $total_stages[] = ["stage"=>"report","task"=>5];
-    
-
+ 
     echo "<script>";
     echo "var barChartData = " . json_encode($total_stages) . ";" ; //barChartData was use by the home_admin/home_member page
     echo "</script>";
-
-
-
 ?>
 
 
@@ -111,8 +105,6 @@
     $member2[] = ["stage"=>"done","task"=>3];
     $member2[] = ["stage"=>"report","task"=>0];
     
-
-
     $member3[] = ["stage"=>"planning","task"=>2];
     $member3[] = ["stage"=>"doing","task"=>1];
     $member3[] = ["stage"=>"done","task"=>5];
