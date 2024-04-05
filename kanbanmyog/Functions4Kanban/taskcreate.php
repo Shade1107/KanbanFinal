@@ -14,22 +14,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         isset($_POST['short_description']) &&
         isset($_POST['task_name']) &&
         isset($_POST['user_id'])&&
-        isset($_POST['Priority'])
+        isset($_POST['task_priority_color'])&&
+        isset($_POST['task_priority_border'])
     ) {
         $project_id = $_POST['project_id'];
         $short_description = $_POST['short_description'];
         $task_name = $_POST['task_name'];
         $user_ids = $_POST['user_id'];
-        $priority = $_POST['Priority'];
-
+        $priority_color = $_POST['task_priority_color'];
+        $priority_border = $_POST['task_priority_border'];
        
         if (empty($task_name)) {
             $error_message = "Task name is required.";
         } else {
             // Create the task
-            $result = $taskRepo->create($project_id, $short_description, $task_name, $user_ids,$priority);
+            $result = $taskRepo->create($project_id, $short_description, $task_name, $user_ids,$priority_color,$priority_border);
             if ($result) {
-                header('Location: ../pages/HomeAdmin.php');
+                header('Location: ../home_admin.php');
                 exit;
             } else {
                 $error_message = "Error inserting task.";

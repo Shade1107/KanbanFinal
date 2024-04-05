@@ -27,12 +27,8 @@ require_once('../Functions4Kanban/taskcreate.php');
 
  <!-- add  task -->
  <div class="col-lg-5">
-
-
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-            
             <div class="text"><h1 class="loginFormText mt-5 ">⟁ Add Task</h1>
-
             <div>
             <?php if(isset($error_message)) { ?>
                       <div style="color: red;"><?php echo $error_message; ?></div>
@@ -62,8 +58,6 @@ require_once('../Functions4Kanban/taskcreate.php');
 
             <input type="text" id="" class="Miinput-field mt-5" placeholder="Enter task title" name="task_name"><br>
             
-          
-
            <!-- add member -->
           <div class="addmember"> 
             <?php
@@ -90,19 +84,19 @@ require_once('../Functions4Kanban/taskcreate.php');
                <div class="Micolorcontainer mt-2">
                 <div class="Micolortext">
                 Choose your Priorty color :
-                </div>  
-
-               <div class="d-flex">
-                        <div class="canvas-containerMi ">
-
-                          <canvas id="canvas1" width="25" height="25" class="MiYcanvas MiYcanvas1" data-priority="1" data-toggle="tooltip" data-placement="top" data-bs-original-title="1st priority"></canvas>
-                          <canvas id="canvas1" width="25" height="25" class="MiYcanvas MiYcanvas2" data-priority="2" data-toggle="tooltip" data-placement="top" data-bs-original-title="2nd priority"></canvas>
-                          <canvas id="canvas1" width="25" height="25" class="MiYcanvas MiYcanvas3" data-priority="3" data-toggle="tooltip" data-placement="top" data-bs-original-title="3rd priority"></canvas>
+                </div> 
+          <input type="hidden" id="tpc" name="task_priority_color" value="">
+          <input type="hidden" id="tpb" name="task_priority_border" value="">  
+              <div class="d-flex">
+                        <div class="canvas-containerMi">
+                          <canvas id="canvas1" width="25" height="25" class="MiYcanvas MiYcanvas1" data-priority="YfirstPriority" data-toggle="tooltip" data-placement="top" data-bs-original-title="1st priority"></canvas>
+                          <canvas id="canvas2" width="25" height="25" class="MiYcanvas MiYcanvas2" data-priority="YsecondPriority" data-toggle="tooltip" data-placement="top" data-bs-original-title="2nd priority"></canvas>
+                          <canvas id="canvas3" width="25" height="25" class="MiYcanvas MiYcanvas3" data-priority="YthirdPriority" data-toggle="tooltip" data-placement="top" data-bs-original-title="3rd priority"></canvas>
                         </div>
-                        </div>
-                        </div>
-                        </div>
-                        <Br>
+                      </div>
+                    </div>
+              </div>
+                <Br>
              
                   <div class="buttontask-container py-5">
                   <a href="../home_admin.php" class="buttonlink"><button type="button" class="buttonMi " >Back</button></a>
@@ -115,16 +109,11 @@ require_once('../Functions4Kanban/taskcreate.php');
  </div> 
 </section>
 
+<?php require_once('../header_footer/footer.php'); ?>
 
-
-              <?php
-              require_once('../header_footer/footer.php');
-                 ?>
-
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script> 
 <script src="../js/foraddtask.js"></script>
 
-  </body>
-
+</body>
 </html>

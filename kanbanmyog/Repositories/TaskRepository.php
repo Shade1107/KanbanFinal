@@ -41,17 +41,14 @@
         }
 
        
-        public function create($project_id, $short_description, $task_name, $user_ids, $task_priority_color){
+        public function create($project_id, $short_description, $task_name, $user_ids, $task_priority_color,$task_priority_border){
             // To prevent SQL injection
             $project_id = $this->connection->real_escape_string($project_id);
             $short_description = $this->connection->real_escape_string($short_description);
             $task_name = $this->connection->real_escape_string($task_name);
-        
-            $border = $this->getbordercolor($task_priority_color);
-            $border = $this->connection->real_escape_string($border);
-        
+
             $query = "INSERT INTO " . self::$table_name . " (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border)  
-                      VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}', '{$task_priority_color}', '{$border}')";
+                      VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}', '{$task_priority_color}', '{$task_priority_border}')";
         
             $results = $this->connection->query($query);
         
@@ -126,17 +123,5 @@
             }
             return $task;
         }
-
-        public function getbordercolor($priority){
-            if ($priority == 'YfirstPriority') {
-                return 'YFirstCardBorder';
-            } elseif ($priority == 'YsecondPriority') {
-                return 'YSecondCardBorder';
-            } elseif ($priority == 'YThirdPriority') {
-                return 'YThirdCardBorder';
-            } else {
-                return '';
-            }
-          }
 }
 ?>  
