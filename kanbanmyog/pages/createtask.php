@@ -98,7 +98,6 @@ require_once('../Functions4Kanban/taskcreate.php');
                           <canvas id="canvas1" width="25" height="25" class="MiYcanvas MiYcanvas1" data-priority="1" data-toggle="tooltip" data-placement="top" data-bs-original-title="1st priority"></canvas>
                           <canvas id="canvas1" width="25" height="25" class="MiYcanvas MiYcanvas2" data-priority="2" data-toggle="tooltip" data-placement="top" data-bs-original-title="2nd priority"></canvas>
                           <canvas id="canvas1" width="25" height="25" class="MiYcanvas MiYcanvas3" data-priority="3" data-toggle="tooltip" data-placement="top" data-bs-original-title="3rd priority"></canvas>
-
                         </div>
                         </div>
                         </div>
