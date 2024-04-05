@@ -1,13 +1,24 @@
 <?php
-// session_start();
-?>
-<?php 
-$isAdminMemberFromPJwebpage = true;
-require_once('../header_footer/header.php');
+    require_once '../Database/DatabaseConnection.php';
+    require_once '../Repositories/UserRepository.php';
+    require_once '../Repositories/RoleRepository.php';
+    require_once '../Repositories/GenderRepository.php';
+    require_once('../header_footer/header.php');
+
+    $isAdminMemberFromPJwebpage = true;
+
+    // Get the user ID from the URL parameter
+    $id = $_SESSION['user_id'];
+    $userRepo = new UserRepository(DatabaseConnection::getInstance());
+    $user = $userRepo->find($id);
+    $role_id = $user->role_id;
+    $totalProjects = $user->getTotalProjects();
+
+    $dbConnection = DatabaseConnection::getInstance();
+    $projectRepository = new ProjectRepository($dbConnection);
+    $projects = $projectRepository->getAll();
 
 ?>
-
-
 
 <!DOCTYPE HTML>
 <html>
@@ -28,33 +39,9 @@ require_once('../header_footer/header.php');
 <body class="">
 
     <section class="Ycolumn-container row">
-        <div class="leftSideBar col-lg-3 ">
-        <?php
-    require_once '../Database/DatabaseConnection.php';
-    require_once '../Repositories/UserRepository.php';
-    require_once '../Repositories/RoleRepository.php';
-    require_once '../Repositories/GenderRepository.php';
-
-    
- 
-    // Get the user ID from the URL parameter
-    $id = $_SESSION['user_id'];
-    $userRepo = new UserRepository(DatabaseConnection::getInstance());
-    // Find the user with the specified ID
-    $user = $userRepo->find($id);
-    $role_id = $user->role_id;
-    //print_r($user);
-    $totalProjects = $user->getTotalProjects();
-
-    ?>
-            
+        <div class="leftSideBar col-lg-3 ">    
         <h3 class="text-center Ypjh3 pb-3 mt-3 mb-3">Projects</h3>
               <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
-              <?php
-                $dbConnection = DatabaseConnection::getInstance();
-                $projectRepository = new ProjectRepository($dbConnection);
-                $projects = $projectRepository->getAll();
-              ?>
                   <tr >
                     <td>User's Name </td>
                     <td><?=$user->name; ?></td>
