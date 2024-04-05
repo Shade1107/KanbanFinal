@@ -33,5 +33,11 @@
         public function getGender(){
             return $this->gender;    
         }
+
+        public function getTotalProjects()
+{
+    $projectRepo = new UserRepository(DatabaseConnection::getInstance());
+    return $projectRepo->getTotalProjectsByUser($this->id);
+}
     }
 ?>
