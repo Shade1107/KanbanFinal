@@ -1,7 +1,9 @@
 <?php
 require_once('../Models/Project.php');
+require_once('../Models/User.php');
 require_once('../Repositories/ProjectRepository.php');
 require_once('../Database/DatabaseConnection.php');
+
 
 $isAdminMemberFromPJwebpage = true;
 require_once('../header_footer/header.php');
@@ -26,21 +28,34 @@ $projects = $projectRepository->getAll();
 <link rel="icon" type="image/png" href="../image/logo.PNG">
  </head>
  <body class="YHomeBodyColor">
+
  <section class="Ycolumn-container row">
   <div class="leftSideBar col-lg-3 h-10">
-    <h3 class="text-center mt-5">Projects</h3>
-    <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
+    <?php
+    require_once '../Repositories/UserRepository.php';
+    require_once '../Repositories/RoleRepository.php';
+    require_once '../Repositories/GenderRepository.php';
+
+    $id = $_SESSION['user_id']; // Get the user ID from the URL parameter
+    $userRepo = new UserRepository(DatabaseConnection::getInstance());
+    $user = $userRepo->find($id);// Find the user with the specified ID
+    $role_id = $user->role_id;
+    $totalProjects = $user->getTotalProjects(); //print_r($user);
+    ?>
+
+  <h3 class="text-center Ypjh3 pb-3 mt-3 mb-3">Projects</h3>
+              <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
                   <tr >
-                    <td> Name </td>
-                    <td><?php  ?></td>
+                    <td>User's Name </td>
+                    <td><?=$user->name; ?></td>
                   </tr>
                   <tr>
-                    <td> Role </td>
-                    <td>: Member</td>
+                    <td>User's Role </td>
+                    <td><?=$user->role_id == 1 ? 'Admin' : 'Member'; ?></td>
                   </tr>
                   <tr>
                      <td> Total Projects</td>
-                    <td>: 4</td>
+                    <td><?=$totalProjects?></td>
                   </tr>
                   <tr>
                      <td> Average Done Rate</td>
@@ -50,9 +65,10 @@ $projects = $projectRepository->getAll();
                     <td>: <?=$overall_done_rate??''?>%</td>
                   </tr>
               </table>
+             
               <div class="YlineChart">
-              <canvas id="YmylineChart" ></canvas>
-            </div>
+                <canvas id="YmylineChart" ></canvas>
+              </div>
   </div>
   <div class="col-lg-9">
     <?php if(isset($projects) && !empty($projects)) : ?>
@@ -86,12 +102,12 @@ require_once('../header_footer/footer.php');
 ?>
 
 <script>
-// Generate pie and line charts using dynamic data from chart_data_function.php
-var pieChartData = <?php echo json_encode($pieChartData); ?>;
-generatePieChart('YmyChart', pieChartData.labels, pieChartData.data, 'Tasks per Stage');
+// // Generate pie and line charts using dynamic data from chart_data_function.php
+// var pieChartData = <?php echo json_encode($pieChartData); ?>;
+// generatePieChart('YmyChart', pieChartData.labels, pieChartData.data, 'Tasks per Stage');
 
-var lineChartData = <?php echo json_encode($lineChartData); ?>;
-generateLineChart('YmylineChart', lineChartData.labels, lineChartData.data, 'Done Percentage');
+// var lineChartData = <?php echo json_encode($lineChartData); ?>;
+// generateLineChart('YmylineChart', lineChartData.labels, lineChartData.data, 'Done Percentage');
 </script>
 </body>
 </html>
