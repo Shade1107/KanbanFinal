@@ -1,9 +1,11 @@
 <?php
-    require_once '../Database/DatabaseConnection.php';
-    require_once '../Repositories/UserRepository.php';
-    require_once '../Repositories/RoleRepository.php';
-    require_once '../Repositories/GenderRepository.php';
+    require_once('../Database/DatabaseConnection.php');
+    require_once('../Repositories/UserRepository.php');
+    require_once('../Repositories/RoleRepository.php');
+    require_once('../Repositories/GenderRepository.php');
     require_once('../header_footer/header.php');
+    require_once('../Repositories/ProjectRepository.php');
+    require_once('../Repositories/Project_memberRepository.php');
 
     $isAdminMemberFromPJwebpage = true;
 
@@ -16,9 +18,10 @@
 
     $dbConnection = DatabaseConnection::getInstance();
     $projectRepository = new ProjectRepository($dbConnection);
-    $projects = $projectRepository->getAll();
-
-    ?>
+    $projectMemberRepo = new ProjectMemberRepository($dbConnection);
+    $projects = $projectMemberRepo->findWithMemberID($id);
+    
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -74,16 +77,17 @@
             <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
             <?php if(isset($projects) && !empty($projects)) : ?>
           
-                <?php foreach ($projects as $project): ?>
-            <?php
+          <?php foreach ($projects as $projectMember) : ?>
+          <?php
+            $project = $projectMemberRepo->getProjectName($projectMember);
             // Get stage data for the current project
-            $stages = $projectRepository->getPieBarChartData($project->id);
-            ?>
+            $stages = $projectRepository->getPieBarChartData($projectMember->project_id);
+          ?>
 
                 <div class="col-lg-4 ">
-                <a href="../home_admin.php?id=<?= $project->id ?>">
+                <a href="../home_admin.php?id=<?= $projectMember->project_id ?>">
                   <div class="Ytask-column  ">
-                      <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
+                  <canvas id="YmyChart<?= $projectMember->project_id ?>" class="YChart<?= $projectMember->project_id ?>"></canvas>
                   </div>
                 </a>
                 </div>  
@@ -140,7 +144,24 @@ require_once('../header_footer/footer.php');
 ?>
 
 
+<script>
+  var labels5 = [];
+    var data5 = [];
+    <?php foreach($totalProject as $tp): ?>
+        labels5.push("<?=$tp["project"]?>");
+       
+    <?php endforeach; ?>
 
+    <?php foreach($donePercentage as $dp): ?>
+       
+        data5.push(<?=$dp?>);
+    <?php endforeach; ?>
+
+    
+
+    generateLineChart('YmylineChart', labels5, data5,'Done percentage for each project');
+
+</script>
 
 </body>
 </html>
