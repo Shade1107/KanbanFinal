@@ -14,12 +14,13 @@
     $userRepo = new UserRepository(DatabaseConnection::getInstance());
     $user = $userRepo->find($id);
     $role_id = $user->role_id;
-    $totalProjects = $user->getTotalProjects();
 
     $dbConnection = DatabaseConnection::getInstance();
     $projectRepository = new ProjectRepository($dbConnection);
     $projectMemberRepo = new ProjectMemberRepository($dbConnection);
     $projects = $projectMemberRepo->findWithMemberID($id);
+    $totalProjects = count($projects);
+
     
 ?>
 <!DOCTYPE HTML>
@@ -54,7 +55,7 @@
                   </tr>
                   <tr>
                      <td> Total Projects</td>
-                    <td>: 4</td>
+                    <td><?=$totalProjects?></td>
                   </tr>
 
                   <tr>

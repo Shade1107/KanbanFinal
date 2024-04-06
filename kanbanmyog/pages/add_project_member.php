@@ -3,6 +3,7 @@
     require_once('../Repositories/UserRepository.php');
     require_once('../Repositories/RoleRepository.php');
     require_once('../Repositories/GenderRepository.php');
+    require_once('../Models/User.php');
     require_once('../header_footer/header.php');
     require_once('../Repositories/ProjectRepository.php');
     require_once('../Repositories/Project_memberRepository.php');
@@ -13,13 +14,13 @@
     $id = $_SESSION['user_id'];
     $userRepo = new UserRepository(DatabaseConnection::getInstance());
     $user = $userRepo->find($id);
-    $role_id = $user->role_id;
-    $totalProjects = $user->getTotalProjects();
+    $role_id = $user->role_id;    
 
     $dbConnection = DatabaseConnection::getInstance();
     $projectRepository = new ProjectRepository($dbConnection);
     $projectMemberRepo = new ProjectMemberRepository($dbConnection);
     $projects = $projectMemberRepo->findWithMemberID($id);
+    $totalProjects = count($projects);
     
 ?>
 
