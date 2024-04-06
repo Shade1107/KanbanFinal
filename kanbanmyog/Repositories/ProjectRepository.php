@@ -85,6 +85,22 @@
             $userRepo = new UserRepository(DatabaseConnection::getInstance());
             return $userRepo->find($project->admin_id);
         }
+
+        function getPieBarChartData($project_id){
+            $query = "select s.name stage, count(t.id) count 
+                        from stages s
+                        left join tasks t on t.stage_id  = s.id
+                        WHERE t.project_id = '$project_id' AND s.project_id = '$project_id'
+                        group by s.id
+                    ";
+        
+            $result = $this->connection->query($query);
+            $stages = [];
+            while($row = mysqli_fetch_assoc($result)){
+                $stages[] = $row;
+            }
+            return $stages;
+        }
     }
 
     
