@@ -13,48 +13,47 @@ $user = $userRepo->find($id);
 $role_id= $user->role_id;
 $result = false;
   // Check if the form has been submitted
-  
   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])){
-   if(!empty($_FILES['profilePic']['name'])){
-    $img_name = $_FILES['profilePic']['name'];
-    $tmp_name = $_FILES['profilePic']['tmp_name'];
-     
-    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-			$img_ex_lc = strtolower($img_ex);
-
-			$allowed_exs = array("jpg", "jpeg", "png"); 
-
-			if (in_array($img_ex_lc, $allowed_exs)) {
-        $new_img_name = "IMG-". $id . '.'.$img_ex_lc;
-				$img_upload_path = '../image/'.$new_img_name;
-        $r = move_uploaded_file($tmp_name, $img_upload_path);
+    if(!empty($_FILES['profilePicture']['name'])){
+     $img_name = $_FILES['profilePicture']['name'];
+     $tmp_name = $_FILES['profilePicture']['tmp_name'];
+      
+     $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+       $img_ex_lc = strtolower($img_ex);
+ 
+       $allowed_exs = array("jpg", "jpeg", "png"); 
+ 
+       if (in_array($img_ex_lc, $allowed_exs)) {
+         $new_img_name = "IMG-". $id . '.'.$img_ex_lc;
+         $img_upload_path = '../image/'.$new_img_name;
+         $r = move_uploaded_file($tmp_name, $img_upload_path);
+      }
+     }else
+     {
+       $userRepo = new UserRepository(DatabaseConnection::getInstance());
+       $user = $userRepo->find($id);
+       $new_img_name = $user->img;
      }
-    }else
-    {
-      // $userRepo = new UserRepository(DatabaseConnection::getInstance());
-      // $user = $userRepo->find($id);
-      $new_img_name = $user->img;
-    }
-    // Retrieve the form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $gender = $_POST['gender'];
-    $result = $userRepo->update($id, $new_img_name, $name, $email, $password, $gender, $role_id);
-
-     // exit();
-    if($result){
-    header('Location: viewprofile.php');
-    exit;
-    }else {
-      echo "Sorry, updating profile fails.";
-     }
-}
+     // Retrieve the form data
+     $name = $_POST['name'];
+     $email = $_POST['email'];
+     $password = $_POST['password'];
+     $gender = $_POST['gender'];
+     $result = $userRepo->update($id, $new_img_name, $name, $email, $password, $gender, $role_id);
+ 
+      // exit();
+     if($result){
+     header('Location: viewprofile.php');
+     exit;
+     }else {
+       echo "Sorry, updating profile fails.";
+      }
+ }
 ?>
-<?php
+<!-- <?php
   $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
 
-?>
+?> -->
 <!Doctype html>
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -72,14 +71,14 @@ $result = false;
   <script src="../js/javascript.js"></script>
 
  </head>  
- <body class="">
+ <body>
  <section class="Ycolumn-container row  ">
  <div class="col-lg-3 MiYprofile-edit-leftsidebar">
   <form action="profileedit.php" method="POST" enctype="multipart/form-data">
      <!-- photo edit -->
      <div class="wrapper mt-4">
-     <img src="<?= $imagePath ?>" id="photoPreview" alt="avatar" onclick="document.getElementById('file').click();">  
- <input type="file" id="file" class="myfile" accept=".jpg, .jpeg, .png" name="profilePic" onchange="previewPhoto(event)">
+     <img src="<?= $imagePath ?>" id="photoPrevieww">  
+ <input type="file" id="file" class="myfile" accept=".jpg, .jpeg, .png" name="profilePicture" onchange="previewPhoto(event)">
 </div>
 <!-- <br> -->
 

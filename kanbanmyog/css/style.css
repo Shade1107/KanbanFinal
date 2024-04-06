@@ -19,7 +19,8 @@ color: #3e306b;
 transition: all 0.5s ease;
 }
 .YColor3e306b:hover{
-color: #ffd7fc;
+
+  color: #6595d3;
 }
 
 .Yloginspan{
@@ -190,6 +191,10 @@ header .info-container {
   margin-right: 30px;
 }
 
+.Yprofile-change-img{
+  cursor: auto !important;
+}
+
   
 .circle-container img {
 width: 100%;
@@ -297,10 +302,12 @@ header .input-container {
 }
 
 .Ytask-detail{
-  background-color: #a599df;
-  width: 50%;
-  border-radius: 25px;
-  margin: 0 auto;
+  background-color: #c5dbff9e;
+width: 50%;
+border-radius: 25px;
+margin: 0 auto;
+  margin-bottom: 0px;
+color: #6f418e;
 }
 
 .task-container {
@@ -1346,14 +1353,22 @@ width: 400px;
 }
 
 .imgspace{
-  width: 652px;
+  /* width: 652px;
   height: 380px;
   background: linear-gradient(#ffe3ff14,#d6fdff82), url(../image/kb.jpg);
   
   border-radius: 30px;
   
   background-size: cover;
+  background-repeat: no-repeat; */
+
+  width: 570px;
+  height: 380px;
+  /* background: linear-gradient(#ffe3ff14,#d6fdff82), url(../image/kb.jpg); */
+  border-radius: 40px;
+  background-size: cover;
   background-repeat: no-repeat;
+  padding: 10px;
   
 }
 
@@ -1993,10 +2008,16 @@ height: 170px;
 position: relative;
 border: none;
 border-radius: 50%;
-background: url(../image/p4.jpg);
+/* background: url(../image/p4.jpg); */
 background-size: cover;
 margin: 0px auto;
 overflow: hidden;
+}
+
+/* ///new add  */
+.wrapper img{
+
+width: 175px;
 }
 
 .myfile{
@@ -2140,9 +2161,19 @@ border-radius: 50%;
 }
 
 .MiYimgspace{
-  width: 570px;
+  /* width: 570px;
 height: 380px;
 background: linear-gradient(#ffe3ff14,#d6fdff82), url(../image/kb2.jpg);
+  background-repeat: repeat, repeat;
+  background-size: auto, auto;
+border-radius: 30px;
+background-size: cover;
+background-repeat: no-repeat;
+margin-top: 10px; */
+
+width: 570px;
+height: 380px;
+/* background: linear-gradient(#ffe3ff14,#d6fdff82), url(../image/kb2.jpg); */
   background-repeat: repeat, repeat;
   background-size: auto, auto;
 border-radius: 30px;
@@ -2180,7 +2211,9 @@ margin: 0 auto;
 height: 265px;
 }
 
-
+.Ytask-detail-table{
+margin: 0 auto;
+}
 
 .Ytask-detail-table tr{
 padding: 30px 0px; 
@@ -2188,8 +2221,8 @@ padding: 30px 0px;
   }
 
   .Ytask-detail-table td{
-    padding-top: 10px ; 
-    padding-bottom: 10px ;
+    padding: 10px 30px; 
+    
         /* text-align: center;  */
       }
 
@@ -2205,5 +2238,41 @@ padding: 30px 0px;
 .MiYcolumn-container a i{
   font-size: 30px;
   color: #3e306b;
+}
+
+.MiYbody{
+  overflow-x: hidden;
+}
+
+.MiYrow{
+  margin: auto !important;
+}
+
+.fab{
+  color:#c1abee !important;
+}
+
+/* .row{
+  margin: auto !important;
+} */
+
+ /* responsive add task picture*/
+ @media (max-width: 992px) {
+
+  .carousel{
+    width: 0px !important ;
+    height: 0px !important;
+    /* margin: 20px 10px; */
+}
+}
+
+/* responsive add task picture*/
+  @media (max-width: 992px) {
+
+    .carousel{
+      width: 0px !important ;
+      height: 0px !important;
+      /* margin: 20px 10px; */
+  } 
 }
 /* end code bond  */
