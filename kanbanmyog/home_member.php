@@ -1,3 +1,9 @@
+<?php 
+require_once('../Repositories/ProjectRepository.php');
+require_once('../Repositories/TaskRepository.php');
+require_once('../Repositories/UserRepository.php');
+require_once('../Repositories/Project_memberRepository.php');
+?>
 <!-- <div class="content" style="display: none;"> -->
 <?php 
 // require_once('pages/loader.php');
@@ -6,11 +12,12 @@ require_once('header_footer/header.php');
 
 require_once('pages/chart_data_function.php');
 
-
 $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
 $stageRepo =  new StageRepository(DatabaseConnection::getInstance());
 $tasks     =  $taskRepo  -> getAll();
 $stages    =  $stageRepo -> getAll();
+
+
 ?>
 <!Doctype html>
 <head>
@@ -54,139 +61,35 @@ $stages    =  $stageRepo -> getAll();
     <div class="col-lg-12  ">
               <h6 class="pt-3 mb-0 text-secondary">Members</h6>
               <hr/>
-
+              <?php
+              // Get the task members from the repository
+              $pjMemberRepository = new projectMemberRepository();
+              $taskMembers = $pjMemberRepository->findWithProjectID($id);
+            ?>
            
               <div class="Ycontainer">
               <div class="row  Yrow ">
+              <?php foreach ($taskMembers as $taskMember) {
+        // Get the user name for each task member
+        $userName = taskMemberRepository::getUserName($taskMember);
+        ?>
                   <div class="col-lg-3 Ycol-lg-3">
                     <div class="Ymember_card ">
                       <div class="Ymember_img_name d-flex">
                           <div class="Ymember_img">
                             <img src="image/p1.jpg" width="120px" height="50px">
                           </div>
-                          <span class=" Ymember"> Yin Myo Myat</span>
+                          <span class=" Ymember"> <?php echo $userName->name; ?></span>
                       </div>
-
+              
                       <div class="YlineChart_home_page">
-                        <canvas id="YmemberlineChart1"></canvas>
+                      <canvas id="YmemberlineChart<?= $taskMember->id ?>"></canvas>
                       </div>
 
                     </div>
 
                   </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                      <div class="Ymember_card">
-                          <div class="Ymember_img_name d-flex">
-                              <div class="Ymember_img">
-                                <img src="image/p2.jpg" width="120px" height="50px">
-                              </div>
-                              <span class=" Ymember"> Yoon Mi</span>
-                          </div>
-
-                          <div class="YlineChart_home_page">
-                            <canvas id="YmemberlineChart2"></canvas>
-                          </div>
-
-                        </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                      <div class="Ymember_card">
-                          <div class="Ymember_img_name d-flex">
-                              <div class="Ymember_img">
-                                <img src="image/p1.jpg" width="120px" height="50px">
-                              </div>
-                              <span class=" Ymember"> Ei ThinZar</span>
-                          </div>
-
-                          <div class="YlineChart_home_page">
-                            <canvas id="YmemberlineChart3"></canvas>
-                          </div>
-
-                        </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember"> May Phoo</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart4"></canvas>
-                        </div>
-
-                      </div>
-                  </div>
-
-        <!-- add more div 4 -->
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p1.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember"> Myo Gyi</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart5"></canvas>
-                        </div>
-
-                      </div>
-                </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember">Htet Htet Htun</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart6"></canvas>
-                        </div>
-
-                      </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember">Su Myat Aung</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart7"></canvas>
-                        </div>
-
-                      </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember">Hnin Htet</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart8"></canvas>
-                        </div>
-
-                      </div>
-                  </div>  
+                  <?php } ?>
 
 
         <!-- add more div 4 -->
@@ -222,22 +125,22 @@ $stages    =  $stageRepo -> getAll();
                   </tr>
                   <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" data-bs-original-title="Task : Task1 , your deadline is approaching!">
                       <td class="Ypadding_left">Planning</td>
-                      <td id="planningTaskCount" class="Ypadding_right">3</td>
+                      <td id="planningTaskCount" class="Ypadding_right"><?=$taskCounts?></td>
                   </tr>
 
                   <tr>
                       <td class="Ypadding_left">Doing Task</td>
-                      <td id="doingTaskCount" class="Ypadding_right">0</td>
+                      <td id="doingTaskCount" class="Ypadding_right">$taskCounts</td>
                   </tr>
 
                   <tr>
                       <td class="Ypadding_left">Report</td>
-                      <td id="reportTaskCount" class="Ypadding_right">0</td>
+                      <td id="reportTaskCount" class="Ypadding_right">$taskCounts</td>
                   </tr>
 
                   <tr>
                       <td class="Ypadding_left">Done</td>
-                      <td id="doneTaskCount" class="Ypadding_right">1</td>
+                      <td id="doneTaskCount" class="Ypadding_right">$taskCounts</td>
                   </tr>
               </tbody></table>
               </div>
@@ -254,7 +157,13 @@ $stages    =  $stageRepo -> getAll();
     </div>
 
   </section>
-  <section class="column-container mb-5 container-fluid row">
+  
+  <?php
+  $id = intval($_GET["id"]);
+  $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
+  $project = $prorepo->find($id);
+  ?>
+    <section class="column-container mb-5 container-fluid row">
     <?php
     foreach($stages as $stage):?>
 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -263,7 +172,7 @@ $stages    =  $stageRepo -> getAll();
         <hr class="custom-hr">
         <div id="s_<?=$stage->id?>" stage_id="<?=$stage->id?>" class="task-list drop_stage dropzone" ondrop="drop(event)" ondragleave="dragLeave(event);" ondragover="allowDrop(event)">
     <?php foreach($tasks as $t):?>
-      <?php if ($t->stage_id == $stage->id):?>
+      <?php if ($t->project_id == $id && $t->stage_id == $stage->id):?>
         
 
         <div id="t_<?=$t->id?>" task_id="<?=$t->id?>" stage_id="<?=$stage->id?>" class="task-container <?=$t->task_priority_border?>" draggable="true" ondragstart="drag(event)">
@@ -274,22 +183,22 @@ $stages    =  $stageRepo -> getAll();
         <div class="titleDeletIconDiv">
         <h5><?=$t->task_name?></h5>
         <p><i class="fa-solid fa-xmark" type="button" class="btn btn-primary" id="custom-alert-button"  data-toggle="modal" data-target="#modal<?=$t->id?>"></i></p>
-                              <div class="modal fade" id="modal<?=$t->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content ">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="<?=$t->task_name?>"><?=$t->task_name?></h5>
-                                      <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      Do you Want to Delete This Task?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="button" data-dismiss="modal">Cancel</button>
-                                      <button type="submit" class="button mt-1" name="DeleteTask" id="DeleteTask">Delete</button>
-                                    </div>
+        <div class="modal fade" id="modal<?=$t->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content ">
+        <div class="modal-header">
+        <h5 class="modal-title" id="<?=$t->task_name?>"><?=$t->task_name?></h5>
+        <button type="button" class="close YmodelCancelButton" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+                  <div class="modal-body">
+                      Do you Want to Delete This Task?
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="button" data-dismiss="modal">Cancel</button>
+                       <button type="submit" class="button mt-1" name="DeleteTask" id="DeleteTask">Delete</button>
+                  </div>
                                   </div>
                                 </div>
                               </div> 
@@ -354,8 +263,8 @@ $stages    =  $stageRepo -> getAll();
 
     <!-- <script src="js/app.js"></script> -->
     <script src="js/changecolor.js"></script>
-    <script src="js/lightbox.js"></script>
     <script src="js/drag_drop.js"></script>
+    <script src="js/lightbox.js"></script>
    
     <?php 
     $isAdmin = true;
