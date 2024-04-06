@@ -1,7 +1,25 @@
-<?php 
+<?php
 require_once('../header_footer/header.php');
 require_once('chart_data_function.php');
+require_once '../Database/DatabaseConnection.php';
+require_once '../Repositories/UserRepository.php';
+require_once '../Repositories/RoleRepository.php';
+require_once '../Repositories/GenderRepository.php';
+
+
+
+// Get the user ID from the URL parameter
+$id = $_SESSION['user_id'];
+
+$userRepo = new UserRepository(DatabaseConnection::getInstance());
+// Find the user with the specified ID
+$user = $userRepo->find($id);
+$role_id = $user->role_id;
+//print_r($user);
+$imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,12 +45,11 @@ require_once('chart_data_function.php');
 	  <div class="pcside row">
       <!-- left column -->
       <div class="pcdiv1 col-lg-3">
-        <form class="pcform" method="">
         
         <div class="d-flex justify-content-center align-items-center">
             <div>
-                <a href="#" class="circle-container ">
-                    <img src="../image/p4.jpg" class="Yproviewimg">
+              <a href="#" class="circle-container Yprofile-change-img">
+                    <img src="<?= $imagePath ?>" class="Yproviewimg">
                   </a>
                 
                 <br>
@@ -44,27 +61,27 @@ require_once('chart_data_function.php');
         <table class="pctable mt-5" cellpadding='10px' cellspacing='20px' >
             <tr>
               <th>Name</th>
-              <td >Name</td>
+              <td ><?= $user->name?></td>
           
             </tr>
             <tr >
               <th>Email</th>
-              <td>Email</td>
+              <td><?= $user->email?></td>
             
             </tr>
             <tr>
               <th >Gender</th>
-              <td>Gender</td>
+              <td><?= $user->gender_id == 1 ? 'Male' : 'Female';?></td>
             
             </tr>
             <tr>
               <th>Role</th>
-              <td></td>
+              <td><?= $user->role_id == 1 ? 'Admin' : 'Member';?></td>
             
             </tr>    
           </table> 
           <br>
-          <button type="submit" class="button mt-1 Ypfchangebtn mb-5">Edit</button></form>
+          <a href="profileedit.php" style="text-decoration: none;"><button class="button mt-1 Ypfchangebtn mb-5">Edit</button></a>
       
       </div>
       <div class="col-lg-9 row">

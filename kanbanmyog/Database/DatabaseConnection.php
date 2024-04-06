@@ -3,7 +3,7 @@
         private static $server      = 'localhost';
         private static $user        = 'root';
         private static $password    = '';
-        private static $database    = 'kanban';
+        private static $database    = 'kanban_board';
 
         private static $connection = null;
         public static function getInstance(){
