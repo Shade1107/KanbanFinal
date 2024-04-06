@@ -1,6 +1,6 @@
 <?php 
 $isCreateProject = true;
-require_once('../header&footer/header.php');
+require_once('../header_footer/header.php');
 include('DB_connection.php');
 // require_once('header&footer/footer.php');
 
@@ -125,7 +125,7 @@ include('DB_connection.php');
 
 
               <?php
-              require_once('../header&footer/footer.php');
+              require_once('../header_footer/footer.php');
                  ?>
 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

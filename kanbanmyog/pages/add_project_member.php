@@ -4,6 +4,8 @@
     require_once '../Repositories/RoleRepository.php';
     require_once '../Repositories/GenderRepository.php';
     require_once('../header_footer/header.php');
+    // require_once('../Repositories/pie-chart.php');
+    require_once('../Repositories/ProjectRepository.php');
 
     $isAdminMemberFromPJwebpage = true;
 
@@ -17,7 +19,7 @@
     $dbConnection = DatabaseConnection::getInstance();
     $projectRepository = new ProjectRepository($dbConnection);
     $projects = $projectRepository->getAll();
-
+    
 ?>
 
 <!DOCTYPE HTML>
@@ -75,19 +77,16 @@
             <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
             <?php if(isset($projects) && !empty($projects)) : ?>
           
-          <?php foreach ($projects as $project) : ?>
-
-            <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
-              <div class="col-lg-4 ">
-              <a href="../home_admin.php?id=<?= $project->id ?>">
-              <h3><?= $project->name?></h3>
-              <div class="Ytask-column">
-                  <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
-              </div>
-              </a>
-              </div>
-              <?php 
-      endforeach; ?>
+              <?php foreach ($projects as $project) : ?>
+    <div class="col-lg-4 ">
+        <a href="../home_admin.php?id=<?= $project->id ?>">
+            <h3><?= $project->name ?></h3>
+            <div class="Ytask-column">
+                <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
+            </div>
+        </a>
+    </div>
+<?php endforeach; ?>
     <?php else : ?>
       <p>No projects found</p>
     <?php endif; ?>  
@@ -101,43 +100,52 @@ require_once('../header_footer/footer.php');
 // require_once('chart_data_function.php');
 ?>
 
+<script>
+          <?php foreach ($projects as $project) : ?>
+        let labels<?= $project->id ?> = [];
+        let data<?= $project->id ?> = [];
+        <?php foreach ($stages as $s) : ?>
+            labels<?= $project->id ?>.push("<?= $s["stage"] ?>");
+            data<?= $project->id ?>.push("<?= $s["count"] ?>");
+        <?php endforeach; ?>
+
+        new Chart(document.getElementById("YmyChart<?= $project->id ?>"), {
+            type: 'pie',
+            data: {
+                labels: labels<?= $project->id ?>,
+                datasets: [{
+                    data: data<?= $project->id ?>
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Pie Chart for <?= $project->name ?>'
+                }
+            }
+        });
+    <?php endforeach; ?>
+            new Chart(document.getElementById("bar-chart"), {
+            	type : 'bar',
+            	data : {
+            		labels : labels,
+            		datasets : [ {
+                        label: 'User Count By Role',
+            			data : data
+            		} ]
+            	},
+            	options : {
+            		title : {
+            			display : true,
+            			text : 'Chart JS Pie Chart Example'
+            		}
+            	}
+            });
+
+        </script>
 
 <script>
     // Generate the first pie chart
-    var labels1 = [];
-    var data1 = [];
-    <?php foreach($project1 as $r): ?>
-        labels1.push("<?=$r["stage"]?>");
-        data1.push(<?=$r["task"]?>);
-    <?php endforeach; ?>
-    generatePieChart('YmyChart1', labels1, data1,'Project1');
-
-    // Generate the second pie chart
-    var labels2 = [];
-    var data2 = [];
-    <?php foreach($project2 as $r): ?>
-        labels2.push("<?=$r["stage"]?>");
-        data2.push(<?=$r["task"]?>);
-    <?php endforeach; ?>
-    generatePieChart('YmyChart2', labels2, data2,'Project2');
-
-     // Generate the third pie chart
-    var labels3 = [];
-    var data3 = [];
-    <?php foreach($project3 as $r): ?>
-        labels3.push("<?=$r["stage"]?>");
-        data3.push(<?=$r["task"]?>);
-    <?php endforeach; ?>
-    generatePieChart('YmyChart3', labels3, data3,'Project3');
-
-     // Generate the fourth pie chart
-    var labels4 = [];
-    var data4 = [];
-    <?php foreach($project4 as $r): ?>
-        labels4.push("<?=$r["stage"]?>");
-        data4.push(<?=$r["task"]?>);
-    <?php endforeach; ?>
-    generatePieChart('YmyChart4', labels4, data4,'Project4');
 
     // Generate the line chart
     var labels5 = [];

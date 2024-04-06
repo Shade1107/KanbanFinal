@@ -123,5 +123,20 @@
             }
             return $task;
         }
+
+        public function getTasksByProjectId($projectId){
+            $tasks = [];
+            $query = "SELECT * FROM " . self::$table_name . " WHERE project_id = $projectId;";
+        
+            $results = $this->connection->query($query);
+            if($results){
+                while($row = mysqli_fetch_object($results)){
+                    $tasks[] = $this->toModel($row);
+                }
+            }
+            return $tasks;
+        }
+        
+        
 }
 ?>  

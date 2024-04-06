@@ -12,7 +12,8 @@
     require_once("../Database/DatabaseConnection.php");
 ?>
 <?php
-    $project_id = $_GET['id']?? '2';
+    $project_id =intval($_GET["id"]);
+
 
     $conn = DatabaseConnection::getInstance();
     $query = "select s.name stage, count(t.id) count 

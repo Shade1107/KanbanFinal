@@ -91,6 +91,15 @@
       <p>No projects found</p>
     <?php endif; ?>  
 
+    <div class="col-lg-4">
+                <div class="Ytask-column ">
+                    <div class="YChart">
+                      <!-- <span class="">+</span> -->
+                      <div class="YChart Yplus_sign_project"><span><a href="createproject.php"> <i class="fa-regular fa-square-plus"></i></a></span></div>
+                    </div>
+                    <div></div>
+                </div>
+              </div>
     </section>
 
 <?php 

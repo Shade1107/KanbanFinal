@@ -18,6 +18,38 @@ $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
 $stageRepo =  new StageRepository(DatabaseConnection::getInstance());
 $tasks     =  $taskRepo  -> getAll();
 $stages    =  $stageRepo -> getAll();
+
+// $projectId =   $id = intval($_GET["id"]);
+
+// $tasks = $taskRepo->getProjectName($projectId);
+
+// // Initialize task counts for each stage
+// $taskCounts = array(
+//     'planning' => 0,
+//     'doing' => 0,
+//     'report' => 0,
+//     'done' => 0
+// );
+
+// // Iterate through the tasks and increment the task count for each stage
+// foreach ($tasks as $task) {
+//     $stageId = $task->getStageId();
+//     switch ($stageId) {
+//         case 'planning':
+//             $taskCounts['planning']++;
+//             break;
+//         case 'doing':
+//             $taskCounts['doing']++;
+//             break;
+//         case 'report':
+//             $taskCounts['report']++;
+//             break;
+//         case 'done':
+//             $taskCounts['done']++;
+//             break;
+//         // Add more cases for other stages if needed
+//     }
+// }
 ?>
 <!Doctype html>
 <head>
@@ -91,119 +123,6 @@ $stages    =  $stageRepo -> getAll();
                   </div>
                   <?php } ?>
 
-                  <!-- <div class="col-lg-3 Ycol-lg-3">
-                      <div class="Ymember_card">
-                          <div class="Ymember_img_name d-flex">
-                              <div class="Ymember_img">
-                                <img src="image/p2.jpg" width="120px" height="50px">
-                              </div>
-                              <span class=" Ymember"> Yoon Mi</span>
-                          </div>
-
-                          <div class="YlineChart_home_page">
-                            <canvas id="YmemberlineChart2"></canvas>
-                          </div>
-
-                        </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                      <div class="Ymember_card">
-                          <div class="Ymember_img_name d-flex">
-                              <div class="Ymember_img">
-                                <img src="image/p1.jpg" width="120px" height="50px">
-                              </div>
-                              <span class=" Ymember"> Ei ThinZar</span>
-                          </div>
-
-                          <div class="YlineChart_home_page">
-                            <canvas id="YmemberlineChart3"></canvas>
-                          </div>
-
-                        </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember"> May Phoo</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart4"></canvas>
-                        </div>
-
-                      </div>
-                  </div> -->
-
-        <!-- add more div 4 -->
-                  <!-- <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p1.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember">Myo Gyi</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart5"></canvas>
-                        </div>
-
-                      </div>
-                </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember">Htet Htet Htun</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart6"></canvas>
-                        </div>
-
-                      </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember">Su Myat Aung</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart7"></canvas>
-                        </div>
-
-                      </div>
-                  </div>
-
-                  <div class="col-lg-3 Ycol-lg-3">
-                    <div class="Ymember_card">
-                        <div class="Ymember_img_name d-flex">
-                            <div class="Ymember_img">
-                              <img src="image/p3.jpg" width="120px" height="50px">
-                            </div>
-                            <span class=" Ymember">Hnin Htet</span>
-                        </div>
-
-                        <div class="YlineChart_home_page">
-                          <canvas id="YmemberlineChart8"></canvas>
-                        </div>
-
-                      </div>
-                  </div>   -->
-
 
         <!-- add more div 4 -->
                   </div>
@@ -238,22 +157,22 @@ $stages    =  $stageRepo -> getAll();
                   </tr>
                   <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" data-bs-original-title="Task : Task1 , your deadline is approaching!">
                       <td class="Ypadding_left">Planning</td>
-                      <td id="planningTaskCount" class="Ypadding_right">3</td>
+                      <td id="planningTaskCount" class="Ypadding_right"><?=$taskCounts['planning']?></td>
                   </tr>
 
                   <tr>
                       <td class="Ypadding_left">Doing Task</td>
-                      <td id="doingTaskCount" class="Ypadding_right">0</td>
+                      <td id="doingTaskCount" class="Ypadding_right">$taskCounts</td>
                   </tr>
 
                   <tr>
                       <td class="Ypadding_left">Report</td>
-                      <td id="reportTaskCount" class="Ypadding_right">0</td>
+                      <td id="reportTaskCount" class="Ypadding_right">$taskCounts</td>
                   </tr>
 
                   <tr>
                       <td class="Ypadding_left">Done</td>
-                      <td id="doneTaskCount" class="Ypadding_right">1</td>
+                      <td id="doneTaskCount" class="Ypadding_right">$taskCounts</td>
                   </tr>
               </tbody></table>
               </div>
