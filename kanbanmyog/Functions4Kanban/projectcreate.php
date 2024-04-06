@@ -18,7 +18,7 @@
         
         $result = $projectRepo->create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $users_id);
         if ($result) {
-          header("Location: ../pages/addProjectAdmin.php");
+          header("Location: ../pages/add_project_admin.php");
           exit();
         } else {
             $error_message = "Error inserting task.";
