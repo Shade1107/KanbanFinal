@@ -1,13 +1,25 @@
-<?php 
-$isAdminMemberFromPJwebpage = true;
-require_once('../header_footer/header.php');
-
-require_once("../Database/DatabaseConnection.php");
-require_once("../Repositories/ProjectRepository.php");
-?>
 <?php
-    $projectRepo = new ProjectRepository(DatabaseConnection::getInstance());
-    $projects = $projectRepo->getAll();
+    require_once '../Database/DatabaseConnection.php';
+    require_once '../Repositories/UserRepository.php';
+    require_once '../Repositories/RoleRepository.php';
+    require_once '../Repositories/GenderRepository.php';
+    require_once('../header_footer/header.php');
+    // require_once('../Repositories/pie-chart.php');
+    require_once('../Repositories/ProjectRepository.php');
+
+    $isAdminMemberFromPJwebpage = true;
+
+    // Get the user ID from the URL parameter
+    $id = $_SESSION['user_id'];
+    $userRepo = new UserRepository(DatabaseConnection::getInstance());
+    $user = $userRepo->find($id);
+    $role_id = $user->role_id;
+    $totalProjects = $user->getTotalProjects();
+
+    $dbConnection = DatabaseConnection::getInstance();
+    $projectRepository = new ProjectRepository($dbConnection);
+    $projects = $projectRepository->getAll();
+    
 ?>
 
 <!DOCTYPE HTML>
@@ -27,22 +39,22 @@ require_once("../Repositories/ProjectRepository.php");
     <link rel="icon" type="image/png" href="../image/logo2_2.PNG">
 </head>
 <body class="">
+
     <section class="Ycolumn-container row">
-        <div class="leftSideBar col-lg-3 ">
-            
+        <div class="leftSideBar col-lg-3 ">    
         <h3 class="text-center Ypjh3 pb-3 mt-3 mb-3">Projects</h3>
               <table class="Yproject_table  mt-5 " cellpadding='10px' cellspacing='20px'>
                   <tr >
                     <td>User's Name </td>
-                    <td>: Yin Myo Myat</td>
+                    <td><?=$user->name; ?></td>
                   </tr>
                   <tr>
                     <td>User's Role </td>
-                    <td>: Member</td>
+                    <td><?=$user->role_id == 1 ? 'Admin' : 'Member'; ?></td>
                   </tr>
                   <tr>
                      <td> Total Projects</td>
-                    <td>: 4</td>
+                    <td><?=$totalProjects?></td>
                   </tr>
 
                   <tr>
@@ -63,56 +75,96 @@ require_once("../Repositories/ProjectRepository.php");
         <div class="col-lg-9 row">
            
             <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
-
-            <?php foreach ($projects as $project): ?>
-            <?php
-            // Get stage data for the current project
-            $stages = $projectRepo->getPieBarChartData($project->id);
-            ?>
-
-                <div class="col-lg-4 ">
-                <a href="../home_member.php?id=<?= $project->id ?>">
-                  <div class="Ytask-column  ">
-                      <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
-                  </div>
-                </a>
-                </div>  
-                <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                        // JavaScript code for generating pie chart
-                        var labels<?= $project->id ?> = [];
-                        var data<?= $project->id ?> = [];
-                        <?php foreach ($stages as $stage): ?>
-                        labels<?= $project->id ?>.push("<?= $stage["stage"] ?>");
-                        data<?= $project->id ?>.push(<?= $stage["count"] ?>);
-                        <?php endforeach; ?>
-
-                        new Chart(document.getElementById("YmyChart<?= $project->id ?>"), {
-                            type: 'pie',
-                            data: {
-                                labels: labels<?= $project->id ?>,
-                                datasets: [{
-                                    data: data<?= $project->id ?>
-                                }]
-                            },
-                            options: {
-                                title: {
-                                    display: true,
-                                    text: 'Chart JS Pie Chart Example'
-                                }
-                            }
-                        });
-                    });
-                </script>
-            <?php endforeach; ?>
+            <?php if(isset($projects) && !empty($projects)) : ?>
           
-        </div>
+              <?php foreach ($projects as $project) : ?>
+    <div class="col-lg-4 ">
+        <a href="../home_admin.php?id=<?= $project->id ?>">
+            <h3><?= $project->name ?></h3>
+            <div class="Ytask-column">
+                <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
+            </div>
+        </a>
+    </div>
+<?php endforeach; ?>
+    <?php else : ?>
+      <p>No projects found</p>
+    <?php endif; ?>  
+
     </section>
 
 <?php 
 $isAdminMemberFromPJwebpage = true;
 require_once('../header_footer/footer.php');
+
+// require_once('chart_data_function.php');
 ?>
+
+<script>
+          <?php foreach ($projects as $project) : ?>
+        let labels<?= $project->id ?> = [];
+        let data<?= $project->id ?> = [];
+        <?php foreach ($stages as $s) : ?>
+            labels<?= $project->id ?>.push("<?= $s["stage"] ?>");
+            data<?= $project->id ?>.push("<?= $s["count"] ?>");
+        <?php endforeach; ?>
+
+        new Chart(document.getElementById("YmyChart<?= $project->id ?>"), {
+            type: 'pie',
+            data: {
+                labels: labels<?= $project->id ?>,
+                datasets: [{
+                    data: data<?= $project->id ?>
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Pie Chart for <?= $project->name ?>'
+                }
+            }
+        });
+    <?php endforeach; ?>
+            new Chart(document.getElementById("bar-chart"), {
+            	type : 'bar',
+            	data : {
+            		labels : labels,
+            		datasets : [ {
+                        label: 'User Count By Role',
+            			data : data
+            		} ]
+            	},
+            	options : {
+            		title : {
+            			display : true,
+            			text : 'Chart JS Pie Chart Example'
+            		}
+            	}
+            });
+
+        </script>
+
+<script>
+    // Generate the first pie chart
+
+    // Generate the line chart
+    var labels5 = [];
+    var data5 = [];
+    <?php foreach($totalProject as $tp): ?>
+        labels5.push("<?=$tp["project"]?>");
+       
+    <?php endforeach; ?>
+
+    <?php foreach($donePercentage as $dp): ?>
+       
+        data5.push(<?=$dp?>);
+    <?php endforeach; ?>
+
+    
+
+    generateLineChart('YmylineChart', labels5, data5,'Done percentage for each project');
+
+</script>
 
 </body>
 </html>
