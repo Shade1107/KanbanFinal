@@ -3,6 +3,7 @@
     require_once('../Database/DatabaseConnection.php');
     require_once('UserRepository.php');
     require_once('Project_memberRepository.php');
+    require_once('StageRepository.php');
 
     class ProjectRepository{
         public static $table_name = "projects";
@@ -39,29 +40,37 @@
             return true;
         }
 
-        public function create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $users_id){
+        public function create($admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $stages, $users_id) {
             $query = "
-                INSERT INTO ".self::$table_name." (id, admin_id, name, description, detail_descrip, create_date, due_date) 
+                INSERT INTO " . self::$table_name . " (id, admin_id, name, description, detail_descrip, create_date, due_date) 
                 VALUES (null, '{$admin_id}', '{$name}', '{$description}', '{$detail_descrip}', '{$create_date}', '{$due_date}')
             ";
         
             $results = $this->connection->query($query);
-            // var_dump($results);
-
+        
             $last_insert_id = $this->connection->insert_id;
-            // var_dump($last_insert_id);
-            
+        
+            foreach ($stages as $s) {
+                $s = $this->connection->real_escape_string($s);
+                $stage_query = "
+                    INSERT INTO " . StageRepository::$table_name . " (id, name, project_id) 
+                    VALUES (null, '{$s}', '{$last_insert_id}')
+                ";
+                $stage_results = $this->connection->query($stage_query);
+            }
+        
             foreach ($users_id as $u) {
                 $u = $this->connection->real_escape_string($u);
-                $query = "
-                    INSERT INTO ".projectMemberRepository::$table_name." (id, user_id, project_id) 
+                $member_query = "
+                    INSERT INTO " . projectMemberRepository::$table_name . " (id, user_id, project_id) 
                     VALUES (null, '{$u}', '{$last_insert_id}')
                 ";
-                $results = $this->connection->query($query);
+                $member_results = $this->connection->query($member_query);
             }
         
             return true;
         }
+        
 
         public function update($id, $admin_id, $name, $description, $detail_descrip, $create_date, $due_date, $completed_date){
             $query = "
