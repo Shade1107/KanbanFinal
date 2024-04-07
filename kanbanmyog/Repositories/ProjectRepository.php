@@ -101,6 +101,18 @@
             }
             return $stages;
         }
+        public function findWithMemberID($id){
+            $taskMembers   = [];
+            $query  = "SELECT * FROM ".self::$table_name." WHERE user_id = $id;";
+
+            $results = $this->connection->query($query);
+            if($results) {
+                while($row = mysqli_fetch_object($results)){
+                    $taskMembers[] = $this->toModel($row);
+                }
+            }
+            return $taskMembers;
+        }
     }
 
     

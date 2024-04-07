@@ -15,100 +15,90 @@ include('DB_connection.php');
     <link rel="icon" type="../image/png" href="../image/logo2_2.PNG">
 
  </head>  
- <body class="YHomeBodyColor">
- <section class="Ycolumn-container YMicolumn-container pb-5 ">
-  <div class="row">
+ <body class="MiYbody">
+ <section class="Ycolumn-container MiYcolumn-container pb-5 ">
+  <div class="row MiYrow">
       
-  <!-- picture -->
-  <div class="col-lg-7  d-flex justify-content-center align-items-center">
-    <div class="MiYimgspace"></div>
+   <!-- picture slide-->
+   <div class="col-lg-7  d-flex justify-content-center align-items-center">
+
+<div id="carouselExampleSlidesOnly" class="carousel slide MiYimgspace ms-1" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../image/kb9.jpg" class="d-block w-100 rounded" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../image/kb10.jpg" class="d-block w-100 rounded" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../image/kb11.jpg" class="d-block w-100 rounded" alt="...">
+    </div>
   </div>
+</div>
+</div>
 
      <!-- add  task -->
  <div class="col-lg-5">
 
 
-<form action="" method="GET" name="">
+<form action="../Functions4Kanban/projectcreate.php" method="POST">
 
- <div class="text"><h1 class="loginFormText mt-5 ">⟁ Create Project</h1>
- 
-</div>
+ <div class="text"><h1 class="loginFormText mt-5 "> Create Project</h1></div>
 
    <!-- task name -->
  <div class="Yinput-container text-center">
 
- <input type="text" id="" class="Miinput-field mt-5" placeholder="Enter Project title"><br>
- 
+<div>
+  <input type="text" id="admin_id" name="admin_id" value="<?php echo $admin_id ?>" hidden><br>
+</div>
 
+ <input type="text" id="" name="projectName" class="Miinput-field mt-5" placeholder="Enter Project title"><br>
 
-<!-- add member -->
-<div class="addmember"> 
- 
-<?php
-     $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-       
-     $query = mysqli_query($conn,"SELECT * FROM users order by name;");
-     $result_count = mysqli_num_rows($query);
+          <!-- add member -->
+          <div class="addmember">  
+                <table class="searchtable">
+                    <?php
+                    $userRepo = new UserRepository(DatabaseConnection::getInstance());
+                    $member = $userRepo->getAll();
+                    ?>
+                  <tr>
+                    <td>
+                      <!-- <input type="text" name="k" placeholder="search member to add" autocomplete="off" class="inputsearch mt-4 "> -->
+                      <select id="tselect" class="select" placeholder="search member to add" name="members[]" multiple>
+                        <?php foreach ($member as $m) : ?>
+                          <option value="<?php echo htmlspecialchars($m->id); ?>">
+                            <?php echo htmlspecialchars($m->name); ?>
+                          </option>
+                        <?php endforeach; ?>
+                      </select>
+                    </td>
+  
+                      <!-- <td><input type="submit" name="" value="search" class="mt-4 buttonsearch"></td><br> -->
+                  </tr>
+                </table>  
+              </div>
 
-     //check to see is any results were returned
-     if($result_count > 0){
-       
-     
-       echo '<select id="tselect" class="select mt-1" placeholder="search member to add" multiple>';
-       while($row = mysqli_fetch_assoc($query)){
-                 
-         echo'  <option value='.$row['id'].'>'.$row['name'].'</option>';
-     
-       }
-       echo '</select>';
-       echo '<div></table>';
-     }
+            <!-- discription -->
+            <textarea placeholder="description..." id="des" name="Description" class="Mitext_area mt-4" ></textarea>
+          
+            <!-- detail discription -->
+            <textarea placeholder="detail description..." id="Detail_des" name="Detail_Description" class="Mitext_area mt-4" ></textarea>
 
-     //check to see if  the keyword will provided
-         if (isset($_GET['k']) && $_GET['k'] != '' ) {
-
-           //save the keyword from url
-           $k = trim($_GET['k']);
-
-           //create a base query word string
-           $query_string = " SELECT * FROM users WHERE ";
-           $display_word = "";
-           // echo  $query_string ;
-           //sperate each of keyword
-           $keyword = explode(' ',$k);
-
-           foreach($keyword as $word){
-             $query_string .= " name LIKE '%".$word."%' OR ";
-             $display_word .= $word." "; 
-           }
-           //echo "<h1>$query_string</h1>";
-           $query_string = substr($query_string, 0, strlen($query_string) - 3);
-           //echo "<h1>$query_string</h1>";
-         //connect database
-           $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-       
-             $query = mysqli_query($conn,$query_string);
-             $result_count = mysqli_num_rows($query);
-
-             
-           }
-       ?>
-         </div>
-
-<!-- stage -->
-<div class="select-con mt-4">
-           <select id="select-tags" multiple data-placeholder="Type to add stage" class="select">
-           
-           <option>Planing</option>
-           <option>Doing</option>
-           <option>Done</option>
-           
-       </select>
-       </div>
-
-
-    
-             </div>
+            <div class="datecontainer">
+                  <div class="input-group mt-4 ">
+                    <span class="input-group-text" id="basic-addon3">Choose your create date</span>
+                    <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="createDate">
+                  </div>
+              </div>
+                
+               <!-- target date -->   
+              <div class="datecontainer">        
+                <div class="input-group mt-4" >
+                  <span class="input-group-text" id="basic-addon3">Choose your target date</span>
+                  <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="dueDate">
+                </div>
+              </div>
+      </div>
   
        <div class="buttontask-container py-5">
        <a href="add_project_admin.php" class="buttonlink"><button type="button" class="buttonMi " >Back</button></a>
@@ -122,15 +112,12 @@ include('DB_connection.php');
  </div> 
 </section>
 
-
-
-              <?php
-              require_once('../header_footer/footer.php');
-                 ?>
+<?php require_once('../header_footer/footer.php'); ?>
 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script> 
-<script src="../js/foraddtask.js"></script>
+<!-- <script src="../js/foraddtask_tomselect.js"></script>
+<script src="../js/forstage_tomselect.js"></script> -->
 
   </body>
 

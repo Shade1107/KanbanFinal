@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['DeleteTask'])){
     if (isset($_POST["task_id"])){
         $task_id      =  $_POST["task_id"];
         $result =  $TaskRepo->delete($task_id);
-        header("Location: ../pages/HomeAdmin.php");
+                header('Location: ../home_admin.php'); 
     }
 }
 ?>
