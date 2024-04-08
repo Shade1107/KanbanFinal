@@ -19,39 +19,7 @@ $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
 $stageRepo =  new StageRepository(DatabaseConnection::getInstance());
 $tasks     =  $taskRepo  -> getAll();
 $stages    =  $stageRepo -> ProjectID($id);
- 
 
-// $projectId =   $id = intval($_GET["id"]);
-
-// $tasks = $taskRepo->getProjectName($projectId);
-
-// // Initialize task counts for each stage
-// $taskCounts = array(
-//     'planning' => 0,
-//     'doing' => 0,
-//     'report' => 0,
-//     'done' => 0
-// );
-
-// // Iterate through the tasks and increment the task count for each stage
-// foreach ($tasks as $task) {
-//     $stageId = $task->getStageId();
-//     switch ($stageId) {
-//         case 'planning':
-//             $taskCounts['planning']++;
-//             break;
-//         case 'doing':
-//             $taskCounts['doing']++;
-//             break;
-//         case 'report':
-//             $taskCounts['report']++;
-//             break;
-//         case 'done':
-//             $taskCounts['done']++;
-//             break;
-//         // Add more cases for other stages if needed
-//     }
-// }
 ?>
 <!Doctype html>
 <head>
@@ -145,7 +113,7 @@ $stages    =  $stageRepo -> ProjectID($id);
                       
       </div>
 
-      <!-- <div class="row">
+      <div class="row">
             <div class="col-lg-4"> 
             
 
@@ -157,25 +125,18 @@ $stages    =  $stageRepo -> ProjectID($id);
                     <th class="Ypadding_left">Stages</th>
                     <th class="Ypadding_right">Tasks</th>
                   </tr>
+                  <?php foreach ($stages as $stage):?>
                   <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" data-bs-original-title="Task : Task1 , your deadline is approaching!">
-                      <td class="Ypadding_left">Planning</td>
-                      <td id="planningTaskCount" class="Ypadding_right"><?=$taskCounts['planning']?></td>
+                      <td class="Ypadding_left"><?=$stage->name?></td>
+                      <td id="planningTaskCount<?= $stage->id ?>" class="Ypadding_right">
+                      <?= count(array_filter($tasks, function($task) use ($stage) {
+                      return $task->stage_id === $stage->id;
+                      })) ?>
+                      </td>
                   </tr>
+                  <?php endforeach;?>
 
-                  <tr>
-                      <td class="Ypadding_left">Doing Task</td>
-                      <td id="doingTaskCount" class="Ypadding_right">$taskCounts</td>
-                  </tr>
-
-                  <tr>
-                      <td class="Ypadding_left">Report</td>
-                      <td id="reportTaskCount" class="Ypadding_right">$taskCounts</td>
-                  </tr>
-
-                  <tr>
-                      <td class="Ypadding_left">Done</td>
-                      <td id="doneTaskCount" class="Ypadding_right">$taskCounts</td>
-                  </tr>
+                  
               </tbody></table>
               </div>
 
@@ -185,7 +146,7 @@ $stages    =  $stageRepo -> ProjectID($id);
                         <canvas id="YbarChart_from_kanban_board" class="YChart mt-3"></canvas>
                   </div>
 
-      </div> -->
+      </div>
 
 
     </div>
