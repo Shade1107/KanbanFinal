@@ -108,8 +108,8 @@ $stages    =  $stageRepo -> ProjectID($id);
             
 
 
-        <!-- // -->
-                      <hr/>
+        <!-- // -->  
+        <hr/>
                       
       </div>
 

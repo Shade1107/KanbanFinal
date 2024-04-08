@@ -178,7 +178,7 @@ function Delete(task){
 
   // updateTaskCounts();
   
-  function updateTaskCounts() {
+function updateTaskCounts() {
     const columnContainers = document.querySelectorAll('.column-container .task-list');
     columnContainers.forEach(column => {
         const columnId = column.closest('.task-column').id;
