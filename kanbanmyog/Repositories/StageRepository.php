@@ -68,5 +68,18 @@
             $projectRepo = new ProjectRepository(DatabaseConnection::getInstance());
             return $projectRepo->find($stage->project_id);
         }
+
+        public function ProjectID($id){
+            $stages   = [];
+            $query  = "SELECT * FROM ".self::$table_name." WHERE project_id = $id;";
+            $result = $this->connection->query($query);
+            if($result) {
+                while($row = mysqli_fetch_object($result)){
+                    $stages[] = $this->toModel($row);
+                }
+            }
+            return $stages;
+          }
+
     }
 ?>  

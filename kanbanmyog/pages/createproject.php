@@ -1,8 +1,12 @@
 <?php 
 $isCreateProject = true;
 require_once('../header_footer/header.php');
+$stageError = isset($_SESSION['stageError']) ? $_SESSION['stageError'] : ''; 
+require_once('../Repositories/StageRepository.php');
 include('DB_connection.php');
 // require_once('header&footer/footer.php');
+
+$stageRepo = New StageRepository(DatabaseConnection::getInstance());
 
 ?>
 <!Doctype html>
@@ -78,6 +82,16 @@ include('DB_connection.php');
                 </table>  
               </div>
 
+      <!-- stage -->
+      <div class="select-con mt-4">
+           <select id="select-tags" multiple data-placeholder="Type to add stage" class="select"  name="stages[]" multiple>     
+           <option>Planing</option>
+           <option>Doing</option>
+           <option>Done</option>
+           
+       </select><?php if (isset($stageError)) echo '<div style="color:red;">'.$stageError.'</div>';?>
+      </div>
+
             <!-- discription -->
             <textarea placeholder="description..." id="des" name="Description" class="Mitext_area mt-4" ></textarea>
           
@@ -114,10 +128,10 @@ include('DB_connection.php');
 
 <?php require_once('../header_footer/footer.php'); ?>
 
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script> 
-<!-- <script src="../js/foraddtask_tomselect.js"></script>
-<script src="../js/forstage_tomselect.js"></script> -->
+<script src="../js/foraddtask_tomselect.js"></script>
+<script src="../js/forstage_tomselect.js"></script>
 
   </body>
 

@@ -11,6 +11,9 @@ $id = $_SESSION['user_id'];
 $userRepo = new UserRepository(DatabaseConnection::getInstance());
 $user = $userRepo->find($id);
 $role_id= $user->role_id;
+$selectedGender = $user->gender_id;
+$maleSelected = ($selectedGender == 1) ? 'selected' : '';
+$femaleSelected = ($selectedGender == 2) ? 'selected' : '';
 $result = false;
   // Check if the form has been submitted
   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])){
@@ -105,9 +108,8 @@ $result = false;
     <div>
     &nbsp;&nbsp;&nbsp;&nbsp; <label for="gender" class="labeledit mt-2">Gender :</label>&nbsp;&nbsp;&nbsp;&nbsp;
     <select class="Miinput-fieldedit bg-white  p-2 mb-2 rounded" name="gender" required>
-    <option value="">Select Gender</option>
-    <option value="1">Male</option>
-    <option value="2">Female</option>
+    <option value="1"  ". <?= $maleSelected ?> .">Male</option>
+    <option value="2"  ". <?= $femaleSelected ?> .">Female</option>
     </select>
     </div><br>
     </div>
