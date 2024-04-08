@@ -14,10 +14,12 @@ require_once('pages/chart_data_function.php');
 
 
 
+
 $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
 $stageRepo =  new StageRepository(DatabaseConnection::getInstance());
 $tasks     =  $taskRepo  -> getAll();
-$stages    =  $stageRepo -> getAll();
+$stages    =  $stageRepo -> ProjectID($id);
+ 
 
 // $projectId =   $id = intval($_GET["id"]);
 
@@ -143,7 +145,7 @@ $stages    =  $stageRepo -> getAll();
                       
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
             <div class="col-lg-4"> 
             
 
@@ -183,7 +185,7 @@ $stages    =  $stageRepo -> getAll();
                         <canvas id="YbarChart_from_kanban_board" class="YChart mt-3"></canvas>
                   </div>
 
-      </div>
+      </div> -->
 
 
     </div>
@@ -194,8 +196,13 @@ $stages    =  $stageRepo -> getAll();
   $id = intval($_GET["id"]);
   $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
   $project = $prorepo->find($id);
-  ?>
-    <section class="column-container mb-5 container-fluid row">
+ 
+?>
+
+
+<section class="column-container mb-5 container-fluid row">
+
+ 
     <?php
     foreach($stages as $stage):?>
 <div class="col-lg-3 col-md-3 col-sm-3">
