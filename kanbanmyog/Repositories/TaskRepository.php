@@ -41,14 +41,15 @@
         }
 
        
-        public function create($project_id, $short_description, $task_name, $user_ids, $task_priority_color,$task_priority_border){
+        public function create($project_id, $stage, $short_description, $task_name, $user_ids, $task_priority_color,$task_priority_border){
             // To prevent SQL injection
             $project_id = $this->connection->real_escape_string($project_id);
             $short_description = $this->connection->real_escape_string($short_description);
             $task_name = $this->connection->real_escape_string($task_name);
+            $stage = $this->connection->real_escape_string($stage);
 
             $query = "INSERT INTO " . self::$table_name . " (project_id, stage_id, short_description, task_name, task_priority_color, task_priority_border)  
-                      VALUES ('{$project_id}', 1, '{$short_description}', '{$task_name}', '{$task_priority_color}', '{$task_priority_border}')";
+                      VALUES ('{$project_id}','{$stage}', '{$short_description}', '{$task_name}', '{$task_priority_color}', '{$task_priority_border}')";
         
             $results = $this->connection->query($query);
         
