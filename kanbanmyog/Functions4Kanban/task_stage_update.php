@@ -14,10 +14,14 @@
     $stage = $stageRepo->find($stage_id);
     
     //need to check $task and $stage..
-    $task = $taskRepo->assignStage($task, $stage); 
+    $task    = $taskRepo->assignStage($task, $stage); 
+    $message = "";
     if($task!=null){
-        echo json_encode(["code"=>1, "message"=>"success"]);
+        echo json_encode(["code"=>1, $message=>"success"]);
     }else{
-        echo json_encode(["code"=>-1, "message"=>"failed"]);
+        echo json_encode(["code"=>-1, $message=>"failed"]);
     }
+    // if($message="success"){
+        
+    // }
 ?>

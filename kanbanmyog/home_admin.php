@@ -157,7 +157,6 @@ $stages    =  $stageRepo -> ProjectID($id);
   $id = intval($_GET["id"]);
   $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
   $project = $prorepo->find($id);
- 
 ?>
 
 
