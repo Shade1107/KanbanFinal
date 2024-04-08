@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $short_description = $_POST['short_description'];
         $task_name = $_POST['task_name'];
         $user_ids = $_POST['user_id'];
+        $stage     = $_POST['stage_id'];
         $priority_color = $_POST['task_priority_color'];
         $priority_border = $_POST['task_priority_border'];
        
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $error_message = "Task name is required.";
         } else {
             // Create the task
-            $result = $taskRepo->create($project_id, $short_description, $task_name, $user_ids,$priority_color,$priority_border);
+            $result = $taskRepo->create($project_id,$stage, $short_description, $task_name, $user_ids,$priority_color,$priority_border);
             if ($result) {
                 header('Location: ../home_admin.php?id=' . $project_id); 
                 exit;

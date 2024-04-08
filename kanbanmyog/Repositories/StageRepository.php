@@ -63,7 +63,6 @@
                 $stage = new Stage($obj->id, $obj->name, $obj->project_id);
             return $stage;
         }
-
         public static function getProjectName($stage){
             $projectRepo = new ProjectRepository(DatabaseConnection::getInstance());
             return $projectRepo->find($stage->project_id);
