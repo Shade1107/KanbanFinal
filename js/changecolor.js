@@ -6,9 +6,6 @@ function Delete(task){
     $('#exampleModalCenter').modal('hide');
     $('.modal-backdrop').remove(); // Remove the backdrop
 }
-
-
-
   
   function KdeleteMember(memberId) {
     console.log("hello");
