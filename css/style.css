@@ -887,18 +887,7 @@ canvas:hover + .tooltip {
  
     color: rgb(62, 48, 107);
   border-radius: 16px;
-  /* padding: 50px 30px;
-  margin: 20px 10px;
-  margin-top: 5px;
-  margin-top: 5px;
-  margin-top: 41px;
-  width: 283px;
-  background-color: #eecff0;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border: 3px solid rgb(159, 83, 158);
-  text-align: center; */
-
-  /* background: #15d072; */
+  
      
   }
 
@@ -1819,3 +1808,30 @@ padding: 10px 16px;
 
 
 
+.MiYcolumn-container a i{
+  font-size: 30px;
+  color: #3e306b;
+}
+
+.MiYcolumn-container{
+  background: linear-gradient(#ffcdee59,#c4e3ffc9);
+}
+
+
+
+.MiYcolumn-container .table  {
+
+  color: rgb(62, 48, 107);
+border-radius: 16px;
+}
+
+.MiYtable td,th{
+  /* background-color: #fed1dc !important;  */
+  background-color: inherit !important;
+  border-bottom: none;
+  
+}
+
+.MiYtable tr:nth-child(even) {
+  background-color: #e3cbe2; 
+}

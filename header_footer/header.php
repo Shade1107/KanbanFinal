@@ -23,13 +23,15 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
   $user = $userRepo->find($userID);
 }
 $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
-// if ($isMember) {
-//   // Display content for members
-//   echo "<script>alert('Welcome, Member!');</script>";
-// } else {
-//   // Display content for guests
-//   echo "Welcome, Guest!";
-// }
+
+// to check nav-link and photo  for each page
+$isCreateTask = $isCreateTask?? '';
+$isCreateProject = $isCreateProject??'';
+$isDetailTaskMember = $isDetailTaskMember ?? '';
+$isDetailTaskAdmin = $isDetailTaskAdmin ?? '';
+$isProfile = $isProfile ?? '';
+$isMemberListAdmin = $isMemberListAdmin ?? '';
+$isMemberListMember = $isMemberListMember??'';
 
 
 // Find the user with the specified ID
