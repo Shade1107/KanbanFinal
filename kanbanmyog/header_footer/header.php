@@ -84,7 +84,7 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
              <a href="pages/createtask.php?id=<?= isset($projects->id) ? $projects->id : ''; ?>" class="btn  mt-3">Add Task</a>
             <?php endif ?>
           
-            <a href="<?= ($isAdmin ? '../pages/memberlistadmin.php' : (isset($user) && $user->role_id == 2 ? '../pages/memberlistmember.php' : '../pages/memberlistadmin.php')) ?>" class="btn mt-3">Member List</a>
+            <a href="<?= ($isAdmin ? '../pages/memberlist_admin.php' : (isset($user) && $user->role_id == 2 ? '../pages/memberlist_member.php' : '../pages/memberlist_admin.php')) ?>" class="btn mt-3">Member List</a>
           <a href="../Functions4Kanban/signout.php" class="btn  mt-3 ">LogOut</a>
           <div class="d-flex Profilecircle mr-3">
                 <a href="viewprofile.php?id=<?= $userID ?>" class="circle-container">
