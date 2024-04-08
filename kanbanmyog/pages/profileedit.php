@@ -75,7 +75,7 @@ $result = false;
 
  </head>  
  <body>
- <section class="Ycolumn-container row  ">
+ <section class="Ycolumn-container MiYrow row  ">
  <div class="col-lg-3 MiYprofile-edit-leftsidebar">
   <form action="profileedit.php" method="POST" enctype="multipart/form-data">
      <!-- photo edit -->
@@ -98,10 +98,14 @@ $result = false;
     </div>
     <!-- <br> -->
 
-    <div>
+    <div class="psw-eye">
     &nbsp;&nbsp;&nbsp;&nbsp; <label for="password" class="labeledit mt-2">Password :</label>&nbsp;
-    <input type="password" value="<?= $user->password ?>" required name="password" class="Miinput-fieldedit  p-3 mb-2 rounded" ><br>
-    <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+    <input type="password" value="<?= $user->password ?>" required name="password" id="password" class="Miinput-fieldedit  p-3 mb-2 rounded" ><br>
+    <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
+     
+    <!-- add toggle eye (myo)   -->
+    <i class="fas fa-eye-slash toggle-password" ></i>
+                       
     </div>
     <!-- <br> -->
     
@@ -115,8 +119,11 @@ $result = false;
     </div>
     
     <div class="container-button-edit">
-    <button type="button" class="buttonMiedit"  ><a class="buttonlink" href="../home_admin.php">Back</a></button>
-   <input type="submit" class="buttonMiedit" name="save" value="Save">
+    <button type="button" class="buttonMiedit mr-2"  ><a class="buttonlink" href="../home_admin.php">Back</a></button>
+   <input type="submit" class=" buttonMiedit " name="save" value="Save">
+   
+   
+  
    </div>
 
   </form>
@@ -213,5 +220,8 @@ $result = false;
 
     generateLineChart_for_member('Yproject1', labels1, data1);
 </script> 
+
+<!-- for psw toggle eye js file(myo )   -->
+<script src="../js/psweyecloseopen.js"></script>
  </body>
  </html>

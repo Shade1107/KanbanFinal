@@ -25,16 +25,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
   $user = $userRepo->find($userID);
 }
 $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
-// if ($isMember) {
-//   // Display content for members
-//   echo "<script>alert('Welcome, Member!');</script>";
-// } else {
-//   // Display content for guests
-//   echo "Welcome, Guest!";
-// }
 
-
-// Find the user with the specified ID
 ?>
 <!DOCTYPE html>
 <html lang="en">

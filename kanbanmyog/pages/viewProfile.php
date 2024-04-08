@@ -41,8 +41,8 @@ $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img 
 </head>
 
 <body>
-  <div class="container_pc">
-	  <div class="pcside row">
+  <div class="container_pc ">
+	  <div class="pcside MiYrow row">
       <!-- left column -->
       <div class="pcdiv1 col-lg-3">
         
