@@ -49,7 +49,7 @@
 .Yimg1{
   left: 50px;
   top: 80px;
- 
+  background-color: #b3b9e6;
 }
 
 
@@ -57,6 +57,7 @@
 .Yimg2{
   left: 100px;
   top: 230px;
+  background-color: #aa7fa7;
 }
 
 .Yimg3{
@@ -64,6 +65,7 @@
   top: 312px;
   width: 250px;
   height: 148px;
+  background-color: #9393e8;
 }
 
 .Yimg4{
@@ -71,6 +73,7 @@
   top: 100px;
   width: 272px;
   height: 217px;
+  background-color: #e6aed6;
 }
 
 .Yimg5{
@@ -79,6 +82,9 @@
   top: 180px;
   width: 350px !important;
   height: 210px;
+  background-image: url('../image/img3.jpg');
+  background-size: cover;
+  border: 3px solid #3e306b;
 }
 .YspanBoard{
   font-size: 25px;
@@ -1796,6 +1802,19 @@ animation: YslideOutRight 0.5s ease-in-out forwards;
   /* padding: 20px; */
   box-shadow: 0 4px 15px rgba(60, 95, 125, 0.437);
 
+}
+
+
+/* change from myo  */
+
+.fa-eye-slash{
+  font-size: 20px;
+position: absolute;
+z-index: 3;
+left: 243px;
+top: -4px;
+color: #3e306b;
+padding: 10px 16px;
 }
 
 

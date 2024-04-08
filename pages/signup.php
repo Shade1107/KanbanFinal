@@ -10,18 +10,19 @@
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       
-    <link rel="icon" type="image/png" href="../image/logo.PNG">
+    <!-- title icon  -->
+    <link rel="icon" type="image/png" href="../image/logo2_2.PNG">
     <!-- custom css  -->
     <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body class="fed1dc">
 <div class="container-fluid row">
     <div class="col-lg-6  YloginImg ee92a9">
-        <div class="Yimg bg-info Yimg1"></div>
-        <div class="Yimg bg-secondary Yimg2"></div>
-        <div class="Yimg bg-danger Yimg3"></div>
-        <div class="Yimg bg-warning Yimg4"></div>
-        <div class="Yimg bg-success Yimg5"></div>
+        <div class="Yimg  Yimg1"></div>
+        <div class="Yimg  Yimg2"></div>
+        <div class="Yimg  Yimg3"></div>
+        <div class="Yimg  Yimg4"></div>
+        <div class="Yimg  Yimg5"></div>
     </div>
     <div class="loginForm  col-lg-6 ee92a9 ">
         <form action="func4signup.php" method="POST">
@@ -43,8 +44,10 @@
 
                     <div class="psw-eye">
                         <input type="password" id="password" class="input-field-psw  mb-5" name="password" placeholder="Enter Password">
-                        <i class="fa fa-eye toggle-password" onclick="togglePassword()" aria-hidden="true"></i>
-                        
+                         <!-- change  from fa-eye to fa-eye-slash (myo) -->
+                         <i class="fas fa-eye-slash toggle-password" ></i>
+
+
                         <?php if (isset($_GET['PasswordEmpty'])): ?>
                             <p class="text-info" style="color: red !important;">Password is required</p>
                         <?php endif; ?>
@@ -52,7 +55,8 @@
 
         <div>
             <select class="input-field" id="gender" name="gender_id">
-                <option value="">Gender</option>
+                <!-- to made user can't choose gender option .. can only choose for Male & Female (myo) -->
+                <option selected disabled value="">Gender</option>
                 <option value="1" <?= (isset($_SESSION['signup_data']['gender_id']) && $_SESSION['signup_data']['gender_id'] == '1') ? 'selected' : '' ?>>Male</option>
                 <option value="2" <?= (isset($_SESSION['signup_data']['gender_id']) && $_SESSION['signup_data']['gender_id'] == '2') ? 'selected' : '' ?>>Female</option>
             </select>
@@ -69,21 +73,7 @@
         </form>
     </div>
 </div>
-<script>
-    function togglePassword() {
-        var passwordField = document.getElementById("password");
-        var icon = document.querySelector(".toggle-password");
-
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        }
-    }
-</script>
+<!-- seperate psw toggle eye js file(myo )   -->
+<script src="../js/psweyecloseopen.js"></script>
 </body>
 </html>
