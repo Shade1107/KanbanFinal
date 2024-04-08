@@ -123,25 +123,16 @@ $stages    =  $stageRepo -> getAll();
                     <th class="Ypadding_left">Stages</th>
                     <th class="Ypadding_right">Tasks</th>
                   </tr>
+                  <?php foreach ($stages as $stage):?>
                   <tr class="Ynear_deadline" data-toggle="tooltip" data-placement="top" data-bs-original-title="Task : Task1 , your deadline is approaching!">
-                      <td class="Ypadding_left">Planning</td>
-                      <td id="planningTaskCount" class="Ypadding_right"><?=$taskCounts?></td>
+                      <td class="Ypadding_left"><?=$stage->name?></td>
+                      <td id="planningTaskCount<?= $stage->id ?>" class="Ypadding_right">
+                      <?= count(array_filter($tasks, function($task) use ($stage) {
+                      return $task->stage_id === $stage->id;
+                      })) ?>
+                      </td>
                   </tr>
-
-                  <tr>
-                      <td class="Ypadding_left">Doing Task</td>
-                      <td id="doingTaskCount" class="Ypadding_right">$taskCounts</td>
-                  </tr>
-
-                  <tr>
-                      <td class="Ypadding_left">Report</td>
-                      <td id="reportTaskCount" class="Ypadding_right">$taskCounts</td>
-                  </tr>
-
-                  <tr>
-                      <td class="Ypadding_left">Done</td>
-                      <td id="doneTaskCount" class="Ypadding_right">$taskCounts</td>
-                  </tr>
+                  <?php endforeach;?>
               </tbody></table>
               </div>
 
