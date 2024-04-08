@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
     $result = $userRepo->update($id, $new_img_name, $name, $email, $password, $gender, $role_id);
 
     if ($result) {
-        header('Location: memberlist.php');
+        header('Location: memberlist_admin.php');
         exit;
     } else {
         echo "Sorry, updating profile fails.";
