@@ -12,18 +12,30 @@ require_once('../Functions4Kanban/taskcreate.php');
   <!-- custom css  -->
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!-- <link rel="stylesheet" href="../css/Mistyle.css" /> -->
-    <!-- title logo  -->
+    <!-- title logo -->
     <link rel="icon" type="../image/png" href="../image/logo2_2.PNG">
 
- </head>  
+ </head>
  <body class="YHomeBodyColor">
  <section class="Ycolumn-container MiYcolumn-container pb-5">
-  <div class="row">
+ <div class="row">
   <!-- picture -->
- <div class="col-lg-7  d-flex justify-content-center align-items-center">
-  <div class="imgspace"></div>
+  <div class="col-lg-7  d-flex justify-content-center align-items-center">
 
- </div>
+<div id="carouselExampleSlidesOnly" class="carousel slide MiYimgspace ms-1" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../image/kb9.jpg" class="d-block w-100 rounded" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../image/kb10.jpg" class="d-block w-100 rounded" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../image/kb11.jpg" class="d-block w-100 rounded" alt="...">
+    </div>
+  </div>
+</div>
+</div>
 
  <!-- add  task -->
  <div class="col-lg-5">
@@ -117,7 +129,7 @@ require_once('../Functions4Kanban/taskcreate.php');
              
                   <div class="buttontask-container py-5">
                   <a href="../home_admin.php?id=<?= $project->id ?>" class="buttonlink"><button type="button" class="buttonMi " >Back</button></a>
-                  <button type="submit" class="buttonMi " >Create</button>
+                  <button type="submit" class="buttonMi">Create</button>
 
                   </div>
 
