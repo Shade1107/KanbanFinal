@@ -137,5 +137,19 @@
             }
             return $tasks;
         }    
+
+    
+
+    public function updateStage($task_id, $stage_id)
+    {
+        $sql = "UPDATE tasks SET stage_id = :stage_id WHERE id = :task_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':stage_id', $stage_id);
+        $stmt->bindParam(':task_id', $task_id);
+
+        return $stmt->execute();
+    }
+
 }
+
 ?>  
