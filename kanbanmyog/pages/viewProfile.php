@@ -83,8 +83,8 @@ $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img.
           <br>
           <!-- add back button (myo)   -->
           <div class="container-button-edit">
-            <button type="button" class="buttonMiedit"><a class="buttonlink" href="#">Back</a></button>
-           <button type="submit" class="buttonMiedit">Edit</button>
+          <a class="buttonlink" href="add_project_admin.php"><button type="button" class="buttonMiedit">Back</button></a>
+          <a class="buttonlink" href="profileedit.php"><button type="button" class="buttonMiedit">Edit</button></a>
           </div>
       </div>
       <div class="col-lg-9 row">
