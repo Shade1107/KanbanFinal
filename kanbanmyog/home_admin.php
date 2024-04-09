@@ -162,8 +162,7 @@ $stages    =  $stageRepo -> ProjectID($id);
 
 <section class="column-container mb-5 container-fluid row">
 
- 
-    <?php
+<?php
     foreach($stages as $stage):?>
 <div class="col-lg-3 col-md-3 col-sm-3">
     <div class="task-column">
@@ -171,6 +170,9 @@ $stages    =  $stageRepo -> ProjectID($id);
         <hr class="custom-hr">
         <div id="s_<?=$stage->id?>" stage_id="<?=$stage->id?>" class="task-list drop_stage dropzone" ondrop="drop(event)" ondragleave="dragLeave(event);" ondragover="allowDrop(event)">
     <?php foreach($tasks as $t):?>
+<div class="StageId" hidden>
+<input type="hidden" name="project_id" value="<?= $id ?>" id="project_id">
+</div>
       <?php if ($t->project_id == $id && $t->stage_id == $stage->id):?>
         
 
