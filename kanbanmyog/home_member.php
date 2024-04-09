@@ -7,16 +7,18 @@ require_once('../Repositories/Project_memberRepository.php');
 <!-- <div class="content" style="display: none;"> -->
 <?php 
 // require_once('pages/loader.php');
-$isMember = true;
+$isAdmin = true;
 require_once('header_footer/header.php');
 
 require_once('pages/chart_data_function.php');
 
+
+
+
 $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
 $stageRepo =  new StageRepository(DatabaseConnection::getInstance());
 $tasks     =  $taskRepo  -> getAll();
-$stages    =  $stageRepo -> getAll();
-
+$stages    =  $stageRepo -> ProjectID($id);
 
 ?>
 <!Doctype html>
@@ -153,7 +155,7 @@ $stages    =  $stageRepo -> getAll();
   $id = intval($_GET["id"]);
   $prorepo = new ProjectRepository(DatabaseConnection::getInstance());
   $project = $prorepo->find($id);
-  ?>
+?>
     <section class="column-container mb-5 container-fluid row">
     <?php
     foreach($stages as $stage):?>
