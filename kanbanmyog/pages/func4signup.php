@@ -8,11 +8,11 @@ $userRepo = new UserRepository(DatabaseConnection::getInstance());
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $_SESSION['signup_data'] = $_POST;
-    // Initialize variables to hold input values and error messages
-    $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $gender_id = $_POST['gender_id'] ?? '';
+
+     $name =  DatabaseConnection::getInstance()->real_escape_string($_POST['name'] ?? '');
+     $email = DatabaseConnection::getInstance()->real_escape_string($_POST['email'] ?? '');
+     $password =  DatabaseConnection::getInstance()->real_escape_string($_POST['password'] ?? '');
+     $gender_id = DatabaseConnection::getInstance()->real_escape_string($_POST['gender_id'] ?? '');
 
     $nameErr = $emailErr = $passwordErr = $genderErr = '';
 
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_id = $conn->insert_id;
         $_SESSION['loggedin'] = true;
         $_SESSION['user_id'] = $user_id;
-        header("Location: add_project_member.php");
+        header("Location: addProjectMember.php");
         exit;
     } else {
         // If insertion fails, display error message
