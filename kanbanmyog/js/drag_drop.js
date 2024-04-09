@@ -36,7 +36,7 @@ console.log(task_div);
 }
 function update_task_stage(task_id, new_stage_id, task_div, new_stage_div) {
     //get requerst formal querystring  => task_id=1&stage_id=2...
-    let url = '../tasks/task_stage_update.php?task_id=' + task_id + '&stage_id=' + new_stage_id;
+    let url = './Functions4Kanban/task_stage_update.php?task_id=' + task_id + '&stage_id=' + new_stage_id;
 
     //alternative approach use jquery $.get().... 
     const xhttp = new XMLHttpRequest();

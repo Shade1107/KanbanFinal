@@ -14,6 +14,9 @@ require_once('../Functions4Kanban/taskcreate.php');
     <!-- <link rel="stylesheet" href="../css/Mistyle.css" /> -->
     <!-- title logo -->
     <link rel="icon" type="../image/png" href="../image/logo2_2.PNG">
+<<<<<<< HEAD
+ </head>  
+=======
 
  </head>
  <body >
