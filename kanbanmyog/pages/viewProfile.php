@@ -6,8 +6,6 @@ require_once '../Repositories/UserRepository.php';
 require_once '../Repositories/RoleRepository.php';
 require_once '../Repositories/GenderRepository.php';
 
-
-
 // Get the user ID from the URL parameter
 $id = $_SESSION['user_id'];
 
