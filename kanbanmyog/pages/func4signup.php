@@ -8,11 +8,11 @@ $userRepo = new UserRepository(DatabaseConnection::getInstance());
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $_SESSION['signup_data'] = $_POST;
-    // Initialize variables to hold input values and error messages
-    $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $gender_id = $_POST['gender_id'] ?? '';
+
+     $name =  DatabaseConnection::getInstance()->real_escape_string($_POST['name'] ?? '');
+     $email = DatabaseConnection::getInstance()->real_escape_string($_POST['email'] ?? '');
+     $password =  DatabaseConnection::getInstance()->real_escape_string($_POST['password'] ?? '');
+     $gender_id = DatabaseConnection::getInstance()->real_escape_string($_POST['gender_id'] ?? '');
 
     $nameErr = $emailErr = $passwordErr = $genderErr = '';
 

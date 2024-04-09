@@ -80,5 +80,35 @@
             return $stages;
           }
 
+          public function findLastStageId($project_id) {
+            // Assuming $this->connection is a MySQLi connection object
+            $query = "SELECT MAX(id) AS last_stage_id FROM " . self::$table_name . " WHERE project_id = ?";
+            
+            // Prepare the statement to prevent SQL injection
+            if ($stmt = $this->connection->prepare($query)) {
+                // Bind the $project_id parameter to the query
+                $stmt->bind_param("i", $project_id); // 'i' denotes the data type integer
+                
+                // Execute the query
+                $stmt->execute();
+                
+                // Get the result of the query
+                $result = $stmt->get_result();
+                
+                // Fetch data from the result set
+                if ($row = $result->fetch_assoc()) {
+                    return $row['last_stage_id'];
+                } else {
+                    // Handle the case where no data was found or any other error occurred
+                    return null;
+                }
+                
+                // Close the prepared statement
+                $stmt->close();
+            } else {
+                // Handle error in preparation of statement
+                return null;
+            }
+        }   
     }
 ?>  

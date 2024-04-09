@@ -1,3 +1,6 @@
+let project_id_div = document.getElementById('project_id');
+let project_id = document.getElementById('project_id').getAttribute('value');
+
 function allowDrop(ev) {
     ev.preventDefault();
     ev.target.closest('.dropzone').classList.add('drag-over');
@@ -23,20 +26,20 @@ function drop(ev) {
     console.log(ev.target.closest('.drop_stage').id);
     ev.preventDefault();
     ev.target.classList.remove('drag-over');
-    //dragged task div
-    let task_div = document.getElementById(ev.dataTransfer.getData("task_div_id"));
-    let task_id = ev.dataTransfer.getData("task_id");
+    let task_div           = document.getElementById(ev.dataTransfer.getData("task_div_id"));
+    let task_id            = ev.dataTransfer.getData("task_id");
 console.log(task_div);
+console.log(project_id);
     let new_stage_div = document.getElementById(ev.target.closest('.drop_stage').id);
     //get new_stage_id from drop target stage div
     let new_stage_id = new_stage_div.getAttribute("stage_id");
 
     let target = ev.target.closest('.dropzone');    
-    update_task_stage(task_id, new_stage_id, task_div, target);
+    update_task_stage(task_id, new_stage_id, task_div, target,project_id);
 }
-function update_task_stage(task_id, new_stage_id, task_div, new_stage_div) {
+function update_task_stage(task_id, new_stage_id, task_div, new_stage_div,project_id) {
     //get requerst formal querystring  => task_id=1&stage_id=2...
-    let url = './Functions4Kanban/task_stage_update.php?task_id=' + task_id + '&stage_id=' + new_stage_id;
+    let url = './Functions4Kanban/task_stage_update.php?task_id=' + task_id + '&stage_id=' + new_stage_id + '&project_id=' + project_id;
 
     //alternative approach use jquery $.get().... 
     const xhttp = new XMLHttpRequest();
