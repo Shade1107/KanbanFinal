@@ -12,9 +12,6 @@ require_once('header_footer/header.php');
 
 require_once('pages/chart_data_function.php');
 
-
-
-
 $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
 $stageRepo =  new StageRepository(DatabaseConnection::getInstance());
 $tasks     =  $taskRepo  -> getAll();
@@ -159,9 +156,10 @@ $stages    =  $stageRepo -> ProjectID($id);
   $project = $prorepo->find($id);
 ?>
 
-
+<?php if(isset($_GET['laststageequaltotaltasks'])): ?>
+      echo "laststageequaltotasks"; 
+<?php endif; ?>
 <section class="column-container mb-5 container-fluid row">
-
 <?php
     foreach($stages as $stage):?>
 <div class="col-lg-3 col-md-3 col-sm-3">

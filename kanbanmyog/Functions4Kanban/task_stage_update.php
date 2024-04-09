@@ -28,6 +28,44 @@
             echo json_encode(["code"=>-1, $message=>"failed"]);
         }
     }else{
-        
+        $conn = DatabaseConnection::getInstance();
+        $table = "tasks";
+    
+        $query = " 
+            SELECT 
+                CASE
+                    WHEN COUNT(*) = SUM(CASE WHEN stage_id = ? THEN 1 ELSE 0 END)
+                    THEN 'Yes'
+                    ELSE 'No'
+                END as is_last_stage_equal_to_total
+            FROM `$table` ";
+            
+        $stmt = $conn->prepare($query);
+
+            // Bind the parameter for the last stage
+        $stmt->bindParam('?', $LastStage,PDO::PARAM_INT);
+
+            // Execute the query
+        $stmt->execute();
+
+            // Fetch the result
+            $result = $stmt->fetch();
+
+            // Check if the last stage is equal to total tasks
+            if ($result['is_last_stage_equal_to_total'] == 'Yes') {
+                // Redirect with a flag indicating that last stage is equal to total tasks
+                header("Location: signup.php?laststageequaltotaltasks=true&project_id=$project_id");
+                exit;
+            } else {
+                // Redirect with a flag indicating that last stage is not equal to total tasks
+                header("Location: signup.php?laststageequaltotaltasks=false");
+                $task    = $taskRepo->assignStage($task, $stage); 
+                $message = "";
+                if($task!=null){
+                    echo json_encode(["code"=> 1, $message=>"success"]);
+                }else{
+                    echo json_encode(["code"=>-1, $message=>"failed"]);
+                }
+            }
     }
 ?>
