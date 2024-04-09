@@ -16,7 +16,7 @@ $userRepo = new UserRepository(DatabaseConnection::getInstance());
 $user = $userRepo->find($id);
 $role_id = $user->role_id;
 //print_r($user);
-$imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+$imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img."?v=".time() : "../image/default.jpg";
 
 ?>
 

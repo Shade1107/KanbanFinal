@@ -54,7 +54,7 @@ $result = false;
  }
 ?>
 <!-- <?php
-  $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+  $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img."?v=".time() : "../image/default.jpg";
 
 ?> -->
 <!Doctype html>
@@ -80,7 +80,7 @@ $result = false;
   <form action="profileedit.php" method="POST" enctype="multipart/form-data">
      <!-- photo edit -->
      <div class="wrapper mt-4">
-     <img src="<?= $imagePath ?>" id="photoPrevieww">  
+     <img src="<?= $imagePath ?>" id="photoPreview1">  
  <input type="file" id="file" class="myfile" accept=".jpg, .jpeg, .png" name="profilePicture" onchange="previewPhoto(event)">
 </div>
 <!-- <br> -->

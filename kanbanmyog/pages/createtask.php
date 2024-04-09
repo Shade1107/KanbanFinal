@@ -15,9 +15,7 @@ require_once('../Functions4Kanban/taskcreate.php');
     <!-- title logo -->
     <link rel="icon" type="../image/png" href="../image/logo2_2.PNG">
  </head>  
-=======
 
- </head>
  <body >
  <section class="Ycolumn-container MiYcolumn-container pb-5">
  <div class="row">
