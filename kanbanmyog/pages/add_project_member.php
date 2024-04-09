@@ -4,7 +4,6 @@
     require_once('../Repositories/RoleRepository.php');
     require_once('../Repositories/GenderRepository.php');
     require_once('../header_footer/header.php');
-    // require_once('../Repositories/pie-chart.php');
     require_once('../Repositories/ProjectRepository.php');
 
     $isAdminMemberFromPJwebpage = true;
@@ -14,11 +13,14 @@
     $userRepo = new UserRepository(DatabaseConnection::getInstance());
     $user = $userRepo->find($id);
     $role_id = $user->role_id;
-    $totalProjects = $user->getTotalProjects();
+    // $totalProjects = $user->getTotalProjects();
 
     $dbConnection = DatabaseConnection::getInstance();
     $projectRepository = new ProjectRepository($dbConnection);
-    $projects = $projectRepository->getAll();
+    $projectMemberRepo = new ProjectMemberRepository($dbConnection);
+    $projects = $projectMemberRepo->findWithMemberID($id);
+    $totalProjects = count($projects);
+
 
 ?>
 
@@ -77,19 +79,18 @@
             <!-- <h3 class="text-center Ypjh3 mt-3 mb-3">Projects</h3> -->
             <?php if(isset($projects) && !empty($projects)) : ?>
           
-                <?php foreach ($projects as $project): ?>
-            <?php
-            
-
+          <?php foreach ($projects as $projectMember) : ?>
+          <?php
+            $project = $projectMemberRepo->getProjectName($projectMember);
             // Get stage data for the current project
-            $stages = $projectRepository->getPieBarChartData($project->id);
-           
-            ?>
+            $stages = $projectRepository->getPieBarChartData($projectMember->project_id);
+          ?>
 
                 <div class="col-lg-4 ">
-                <a href="../home_member.php?id=<?= $project->id ?>">
+                <a href="../home_member.php?id=<?= $projectMember->project_id ?>">
                   <div class="Ytask-column  ">
-                      <canvas id="YmyChart<?= $project->id ?>" class="YChart"></canvas>
+                  <h3><?= $project->name?></h3>
+                  <canvas id="YmyChart<?= $projectMember->project_id ?>" class="YChart<?= $projectMember->project_id ?>"></canvas>
                   </div>
                 </a>
                 </div>  

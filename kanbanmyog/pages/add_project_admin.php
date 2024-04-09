@@ -103,21 +103,23 @@
                         data<?= $project->id ?>.push(<?= $stage["count"] ?>);
                         <?php endforeach; ?>
 
-                        new Chart(document.getElementById("YmyChart<?= $project->id ?>"), {
-                            type: 'pie',
-                            data: {
-                                labels: labels<?= $project->id ?>,
-                                datasets: [{
-                                    data: data<?= $project->id ?>
-                                }]
-                            },
-                            options: {
-                                title: {
-                                    display: true,
-                                    text: 'Chart JS Pie Chart Example'
-                                }
-                            }
-                        });
+                        // new Chart(document.getElementById("YmyChart<?= $project->id ?>"), {
+                        //     type: 'pie',
+                        //     data: {
+                        //         labels: labels<?= $project->id ?>,
+                        //         datasets: [{
+                        //             data: data<?= $project->id ?>
+                        //         }]
+                        //     },
+                        //     options: {
+                        //         title: {
+                        //             display: true,
+                        //             text: 'Chart JS Pie Chart Example'
+                        //         }
+                        //     }
+                        // });
+                        generatePieChart("YmyChart<?= $project->id ?>", labels<?= $project->id ?>, data<?= $project->id ?> ,"<?= $project->name?>");
+
                     });
                 </script>
             <?php endforeach; ?>

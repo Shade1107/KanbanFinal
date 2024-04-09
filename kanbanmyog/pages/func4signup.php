@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_id = $conn->insert_id;
         $_SESSION['loggedin'] = true;
         $_SESSION['user_id'] = $user_id;
-        header("Location: addProjectMember.php");
+        header("Location: add_project_member.php");
         exit;
     } else {
         // If insertion fails, display error message
