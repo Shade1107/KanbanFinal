@@ -115,7 +115,7 @@ $result = false;
     </div>
     
     <div class="container-button-edit">
-    <button type="button" class="buttonMiedit"  ><a class="buttonlink" href="../home_admin.php">Back</a></button>
+    <button type="button" class="buttonMiedit"  ><a class="buttonlink" href="javascript:history.back()">Back</a></button>
    <input type="submit" class="buttonMiedit" name="save" value="Save">
    </div>
 
@@ -142,58 +142,7 @@ $result = false;
 
                     </div>
               </div>  
-
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-    </div>
+            </div>
    </section>
 
               <?php

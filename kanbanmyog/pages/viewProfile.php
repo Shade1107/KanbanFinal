@@ -101,61 +101,8 @@ $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img 
 
                     </div>
               </div> 
-
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-             
-              
+            </div>
       </div>
-    </div>
-  </div>
 
 	
 <?php 

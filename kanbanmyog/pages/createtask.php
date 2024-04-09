@@ -14,12 +14,7 @@ require_once('../Functions4Kanban/taskcreate.php');
     <!-- <link rel="stylesheet" href="../css/Mistyle.css" /> -->
     <!-- title logo -->
     <link rel="icon" type="../image/png" href="../image/logo2_2.PNG">
-<<<<<<< HEAD
  </head>  
-=======
-
- </head>
->>>>>>> 06c6532c1c25bba931b60b0a5cb6beff7104d31e
  <body class="YHomeBodyColor">
  <section class="Ycolumn-container MiYcolumn-container pb-5">
  <div class="row">
