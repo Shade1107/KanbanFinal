@@ -12,9 +12,6 @@ require_once('header_footer/header.php');
 
 require_once('pages/chart_data_function.php');
 
-
-
-
 $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
 $stageRepo =  new StageRepository(DatabaseConnection::getInstance());
 $tasks     =  $taskRepo  -> getAll();
@@ -72,24 +69,29 @@ $stages    =  $stageRepo -> ProjectID($id);
               <div class="Ycontainer">
               <div class="row  Yrow ">
               <?php foreach ($taskMembers as $taskMember) {
-        // Get the user name for each task member
-        $userName = taskMemberRepository::getUserName($taskMember);
-        ?>
+                // Get the user name for each task member
+                $userName = taskMemberRepository::getUserName($taskMember);
+                
+              ?>
                   <div class="col-lg-3 Ycol-lg-3">
                     <div class="Ymember_card ">
                       <div class="Ymember_img_name d-flex">
                           <div class="Ymember_img">
                             <img src="image/p1.jpg" width="120px" height="50px">
                           </div>
-                          <span class=" Ymember"> <?php echo $userName->name; ?></span>
+                            <span class=" Ymember"> 
+                              <?php $userName = taskMemberRepository::getUserName($taskMember);
+                                  if ($userName !== null) {
+                                      echo $userName->name . "<br>"; // Assuming 'name' is the property holding the user's name
+                                  } else {
+                                      echo "Unknown user<br>";
+                                  }?>
+                            </span>
                       </div>
-              
                       <div class="YlineChart_home_page">
-                      <canvas id="YmemberlineChart<?= $taskMember->id ?>"></canvas>
+                        <canvas id="YmemberlineChart<?= $taskMember->id ?>"></canvas>
                       </div>
-
                     </div>
-
                   </div>
                   <?php } ?>
 
@@ -229,9 +231,13 @@ $stages    =  $stageRepo -> ProjectID($id);
                         </div>
                     </div>
                 </div>
+                 <?php
+                  // $taskrepo = new TaskRepository($dbConnection);
+                  // $taskid = $taskrepo->find($id); 
+                ?> 
                 <div class="task-description-container">
                   <p><td><?=$t->short_description?></td></p>
-                  <a href="#" class="">Details</a>
+                  <a href="pages/detailTask_member.php?id=<?= $t->id ?>" class="">Details</a>
                 </div>
               </div>
     <?php endif;?>
