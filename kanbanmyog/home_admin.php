@@ -9,7 +9,6 @@ require_once('../Repositories/Project_memberRepository.php');
 // require_once('pages/loader.php');
 $isAdmin = true;
 require_once('header_footer/header.php');
-
 require_once('pages/chart_data_function.php');
 
 $taskRepo  =  new TaskRepository(DatabaseConnection::getInstance());
@@ -237,7 +236,7 @@ $stages    =  $stageRepo -> ProjectID($id);
                 </div>
                 <div class="task-description-container">
                   <p><td><?=$t->short_description?></td></p>
-                  <a href="#" class="">Details</a>
+                  <a href="" class="">Details</a>
                 </div>
               </div>
     <?php endif;?>

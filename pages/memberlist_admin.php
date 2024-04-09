@@ -16,37 +16,35 @@
     <!-- custom css  -->
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!-- title logo  -->
-    <link rel="icon" type="image/png" href="../image/logo.PNG">
+    <link rel="icon" type="image/png" href="../image/logo2_2.PNG">
    
     <title>Memberlist</title>
 
 </head>
-<body>
+<body class="YHomeBodyColor">
 
-<section class="column-container container" id="container">
-
-
-    <div class="task-column item" draggable="true" id="backlog" style="width:100%">
-        <h3>✔ Member list ✔</h3>
-        <hr class="custom-hr" />
-            <table class="table table-striped" >
-                <thead class="table-danger">
-                    <tr class="h5">
-                        <th>User ID</th>
-                        <th>Image </th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th onclick="togglePassword()">Password</th>
-                        <th>Gender</th>
-                        <th>Role</th>
-                        <th>Action</th>
+<section class="Ycolumn-container MiYcolumn-container pb-5">
+    <div class="container pt-3">
+       <a href="#" class=""><i class="fa-solid fa-left-long"> </i></a>
+            <table class="table MiYtable text-center" >
+                <thead >
+                    <!-- <tr class="h5"> -->
+                    <tr>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Image </th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col" onclick="togglePassword()">Password</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                     <tbody>
                         <?php foreach ($members as $m) : ?>
-                            <tr id="listItem_<?=$m->id?>" style="color:white">
+                            <tr id="listItem_<?=$m->id?>" >
                                 <td ><?= $m->id ?></td>
-                                <td><img src="../image/<?=$m->img?>" style="max-width: 50px; max-height: 50px;"></td>
+                                <td><img src="../image/<?=$m->img?>" ></td>
                                 <td><?= $m->name ?></td>
                                 <td><?= $m->email ?></td>  
                                 <td data-password="<?= $m->password ?>">***</td>   
@@ -63,11 +61,11 @@
                                   </a>
 
 
-                                <p type="button" class="mt-3 btn btn-danger" data-toggle="modal" data-target ="#<?=$m->id?>">
+                                <!-- <p type="button" class="mt-3 btn btn-danger" data-toggle="modal" data-target ="#<?=$m->id?>">
                                 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                </svg></a></p>
+                                </svg></a></p> -->
                                 <div class="modal fade" id="<?=$m->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                   <div class="modal-content ">

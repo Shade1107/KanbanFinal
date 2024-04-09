@@ -49,7 +49,7 @@
 .Yimg1{
   left: 50px;
   top: 80px;
- 
+  background-color: #b3b9e6;
 }
 
 
@@ -57,6 +57,7 @@
 .Yimg2{
   left: 100px;
   top: 230px;
+  background-color: #aa7fa7;
 }
 
 .Yimg3{
@@ -64,6 +65,7 @@
   top: 312px;
   width: 250px;
   height: 148px;
+  background-color: #9393e8;
 }
 
 .Yimg4{
@@ -71,6 +73,7 @@
   top: 100px;
   width: 272px;
   height: 217px;
+  background-color: #e6aed6;
 }
 
 .Yimg5{
@@ -79,6 +82,9 @@
   top: 180px;
   width: 350px !important;
   height: 210px;
+  background-image: url('../image/img3.jpg');
+  background-size: cover;
+  border: 3px solid #3e306b;
 }
 .YspanBoard{
   font-size: 25px;
@@ -881,18 +887,7 @@ canvas:hover + .tooltip {
  
     color: rgb(62, 48, 107);
   border-radius: 16px;
-  /* padding: 50px 30px;
-  margin: 20px 10px;
-  margin-top: 5px;
-  margin-top: 5px;
-  margin-top: 41px;
-  width: 283px;
-  background-color: #eecff0;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border: 3px solid rgb(159, 83, 158);
-  text-align: center; */
-
-  /* background: #15d072; */
+  
      
   }
 
@@ -1799,4 +1794,44 @@ animation: YslideOutRight 0.5s ease-in-out forwards;
 }
 
 
+/* change from myo  */
 
+.fa-eye-slash{
+  font-size: 20px;
+position: absolute;
+z-index: 3;
+left: 243px;
+top: -4px;
+color: #3e306b;
+padding: 10px 16px;
+}
+
+
+
+.MiYcolumn-container a i{
+  font-size: 30px;
+  color: #3e306b;
+}
+
+.MiYcolumn-container{
+  background: linear-gradient(#ffcdee59,#c4e3ffc9);
+}
+
+
+
+.MiYcolumn-container .table  {
+
+  color: rgb(62, 48, 107);
+border-radius: 16px;
+}
+
+.MiYtable td,th{
+  /* background-color: #fed1dc !important;  */
+  background-color: inherit !important;
+  border-bottom: none;
+  
+}
+
+.MiYtable tr:nth-child(even) {
+  background-color: #e3cbe2; 
+}

@@ -14,13 +14,9 @@ require_once('../Functions4Kanban/taskcreate.php');
     <!-- <link rel="stylesheet" href="../css/Mistyle.css" /> -->
     <!-- title logo -->
     <link rel="icon" type="../image/png" href="../image/logo2_2.PNG">
-<<<<<<< HEAD
  </head>  
-=======
 
- </head>
->>>>>>> 06c6532c1c25bba931b60b0a5cb6beff7104d31e
- <body class="YHomeBodyColor">
+ <body >
  <section class="Ycolumn-container MiYcolumn-container pb-5">
  <div class="row">
   <!-- picture -->
@@ -44,7 +40,7 @@ require_once('../Functions4Kanban/taskcreate.php');
  <!-- add  task -->
  <div class="col-lg-5">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-            <div class="text"><h1 class="loginFormText mt-5 ">⟁ Add Task</h1>
+            <div class="text"><h1 class="loginFormText mt-5 "> Add Task</h1>
             <div>
             <?php if(isset($error_message)) { ?>
                       <div style="color: red;"><?php echo $error_message; ?></div>
@@ -97,7 +93,7 @@ require_once('../Functions4Kanban/taskcreate.php');
            <!-- discription -->
             <textarea placeholder="detail description..." class="Mitext_area mt-4" name="short_description" ></textarea>
             
-            <div class="addmember"> 
+             <div class="addmember"> 
             <?php
               // Get the task members from the repository
               $stageRepository = new StageRepository(DatabaseConnection::getInstance());
@@ -112,9 +108,9 @@ require_once('../Functions4Kanban/taskcreate.php');
     <?php } ?>
     </select> 
 
-             </div>
+             </div> 
                   <!-- Priorty color -->
-               <div class="Micolorcontainer mt-2">
+               <div class="Micolorcontainer  Yalignelement_for_createtask mt-3">
                 <div class="Micolortext">
                 Choose your Priorty color :
                 </div> 

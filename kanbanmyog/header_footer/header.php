@@ -25,16 +25,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
   $user = $userRepo->find($userID);
 }
 $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
-// if ($isMember) {
-//   // Display content for members
-//   echo "<script>alert('Welcome, Member!');</script>";
-// } else {
-//   // Display content for guests
-//   echo "Welcome, Guest!";
-// }
 
-
-// Find the user with the specified ID
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +80,7 @@ $isAdminMemberFromPJwebpage = $isAdminMemberFromPJwebpage??'';
           <div class="d-flex Profilecircle mr-3">
                 <a href="viewprofile.php?id=<?= $userID ?>" class="circle-container">
                 <?php
-               $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+               $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img."?v=".time() : "../image/default.jpg";
                 ?>
                 <img src="<?= $imagePath ?>" id="photoPreview" class="avatar img-circle img-thumbnail" alt="avatar">
 
