@@ -81,6 +81,7 @@ $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img.
             </tr>    
           </table> 
           <br>
+            
           <a href="profileedit.php" style="text-decoration: none;"><button class="button mt-1 Ypfchangebtn mb-5">Edit</button></a>
       
       </div>
