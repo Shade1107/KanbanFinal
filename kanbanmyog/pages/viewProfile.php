@@ -16,7 +16,7 @@ $userRepo = new UserRepository(DatabaseConnection::getInstance());
 $user = $userRepo->find($id);
 $role_id = $user->role_id;
 //print_r($user);
-$imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img : "../image/default.jpg";
+$imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img."?v=".time() : "../image/default.jpg";
 
 ?>
 
@@ -41,8 +41,8 @@ $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img 
 </head>
 
 <body>
-  <div class="container_pc">
-	  <div class="pcside row">
+  <div class="container_pc ">
+	  <div class="pcside MiYrow row">
       <!-- left column -->
       <div class="pcdiv1 col-lg-3">
         
@@ -81,8 +81,11 @@ $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img 
             </tr>    
           </table> 
           <br>
-          <a href="profileedit.php" style="text-decoration: none;"><button class="button mt-1 Ypfchangebtn mb-5">Edit</button></a>
-      
+          <!-- add back button (myo)   -->
+          <div class="container-button-edit">
+          <a class="buttonlink" href="add_project_admin.php"><button type="button" class="buttonMiedit">Back</button></a>
+          <a class="buttonlink" href="profileedit.php"><button type="button" class="buttonMiedit">Edit</button></a>
+          </div>
       </div>
       <div class="col-lg-9 row">
              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
@@ -101,61 +104,8 @@ $imagePath = (isset($user->img) && !empty($user->img)) ? "../image/".$user->img 
 
                     </div>
               </div> 
-
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-              <div class="col-lg-4 Yprojectfromprofile d-flex justify-content-center align-items-center">
-              <!-- <div class="coloredit ">
-                   
-                </div> -->
-                <div class="Yproject_card ">
-                      <div class="Yproject_img_name d-flex">
-                          
-                          <span class=" Yproject"> Project 1</span>
-                      </div>
-
-                      <div class="YlineChart_profileview_page">
-                        <canvas id="Yproject1" class="Yprojectforspecuser"  width="435" height="217"></canvas>
-                      </div>
-
-                    </div>
-              </div>  
-             
-              
+            </div>
       </div>
-    </div>
-  </div>
 
 	
 <?php 
