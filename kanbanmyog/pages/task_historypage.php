@@ -1,12 +1,26 @@
 <?php 
 require_once('../header_footer/header.php');
 require_once('../Database/DatabaseConnection.php');
-require_once('../Repositories/TaskHistoryRepository.php'); // Include TaskHistoryRepository
-require_once('../Repositories/UserRepository.php');
-require_once('../Functions4Kanban/taskhistory.php');
+require_once('../Repositories/Task_historyRepository.php');
 
-$historyRepo = new TaskHistoryRepository(DatabaseConnection::getInstance()); // Initialize TaskHistoryRepository
-$histories = $historyRepo->getAll(); // Fetch all task histories
+$histories = []; // Initialize $histories as an empty array
+
+$historyRepo = new TaskHistoryRepository(DatabaseConnection::getInstance());    
+
+// Check if the request method is POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['task_id'], $_POST['project_id'], $_POST['details'], $_POST['user_id'], $_POST['stage_id'])) {
+        $task_id = $_POST['task_id'];
+        $project_id = $_POST['project_id'];
+        $details = $_POST['details'];
+        $user_id = $_POST['user_id'];
+        $stage_id = $_POST['stage_id'];
+
+        // Fetch filtered task histories using the custom method
+        $histories = $historyRepo->getFilteredHistories($task_id, $project_id, $details, $user_id, $stage_id);
+         
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,20 +28,27 @@ $histories = $historyRepo->getAll(); // Fetch all task histories
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom css  -->
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <!-- title logo  -->
     <link rel="icon" type="image/png" href="../image/logo.PNG">
-    <title>Task History</title>
+    <title>Memberlist</title>
 </head>
 <body>
+
 <section class="column-container container" id="container">
+
+
     <div class="task-column item" draggable="true" id="backlog" style="width:100%">
-        <h3>✔ Task History ✔</h3>
+        <h3>✔ Task history ✔</h3>
         <hr class="custom-hr" />
-        <table class="table table-striped">
-            <thead>
-                <tr class="h5">
+            <table class="table table-striped" >        
+            <thead class="table-danger">
+                    <tr class="h6">
                     <th>ID</th>
                     <th>Task_ID</th>
                     <th>Project_ID</th>
+                    <th>Stage_ID</th>
                     <th>Details</th>
                     <th>User_ID</th>
                     <th>Change State</th>
@@ -39,9 +60,10 @@ $histories = $historyRepo->getAll(); // Fetch all task histories
                         <td><?= $history->id ?></td>
                         <td><?= $history->task_id ?></td>
                         <td><?= $history->project_id ?></td>
+                        <td><?= $history->stage_id ?></td>
                         <td><?= $history->details ?></td>
                         <td><?= $history->user_id ?></td>
-                        <td><?= $history->created_at ?></td>
+                        <td><?= $history->created_at ?></td> 
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -52,9 +74,7 @@ $histories = $historyRepo->getAll(); // Fetch all task histories
             </svg></a>
         </div>
         <br>
-
     </div>
 </section>
-
 </body>
 </html>

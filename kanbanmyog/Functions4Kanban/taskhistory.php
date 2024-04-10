@@ -8,6 +8,24 @@ require_once('../Database/DatabaseConnection.php');
 $taskRepo = new TaskRepository(DatabaseConnection::getInstance());
 $history = new TaskHistoryRepository(DatabaseConnection::getInstance());
 
+class TaskHistory {
+    public $id;
+    public $task_id;
+    public $project_id;
+    public $details;
+    public $user_id;
+    public $changed_date;
+
+    public function __construct($id, $task_id, $project_id, $details, $user_id, $changed_date) {
+        $this->id = $id;
+        $this->task_id = $task_id;
+        $this->project_id = $project_id;
+        $this->details = $details;
+        $this->user_id = $user_id;
+        $this->changed_date = $changed_date;
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['task_id'], $_POST['project_id'], $_POST['details'], $_POST['user_id'], $_POST['stage_id'])) {
         $task_id = $_POST['task_id'];

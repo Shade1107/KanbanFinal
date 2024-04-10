@@ -94,5 +94,17 @@
             $taskRepo = new TaskRepository(DatabaseConnection::getInstance());
             return $taskRepo->find($taskMember->task_id);
         }
-    }
+
+       
+        
+            public function toModel2($obj){
+                $history = null;
+                if($obj)
+                    $history = new TaskHistory($obj->id, $obj->task_id, $obj->project_id, $obj->details, $obj->user_id, $obj->changed_date);
+                return $history;
+            }
+       
+        }
+    
+    
 ?> 

@@ -69,6 +69,16 @@
                 $history = new Stage($obj->id, $obj->name, $obj->project_id);
             return $history;
         }
+
+
+    
+        // Define a method to filter task histories based on parameters
+        public function getFilteredHistories($task_id, $project_id, $details, $user_id, $stage_id) {
+            // Construct your SQL query to filter task histories based on provided parameters
+            // Execute the query and fetch the filtered task histories
+            // Return the filtered task histories
+        }
+    
         // public static function getProjectName($stage){
         //     $projectRepo = new ProjectRepository(DatabaseConnection::getInstance());
         //     return $projectRepo->find($stage->project_id);
