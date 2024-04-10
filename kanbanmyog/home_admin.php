@@ -155,9 +155,10 @@ $stages    =  $stageRepo -> ProjectID($id);
   $project = $prorepo->find($id);
 ?>
 
-
+<?php if(isset($_GET['laststageequaltotaltasks'])): ?>
+      echo "laststageequaltotasks"; 
+<?php endif; ?>
 <section class="column-container mb-5 container-fluid row">
-
 <?php
     foreach($stages as $stage):?>
 <div class="col-lg-3 col-md-3 col-sm-3">

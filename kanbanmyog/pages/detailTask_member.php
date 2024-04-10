@@ -63,7 +63,7 @@ $taskmembers = $taskmemrepo->find($id); // Finding task members by task ID
             </td>
 
             <tr>
-              <td>Detail Description</td>
+              <td>Short Description</td>
               <td><?= $task->short_description ?></td> <!-- Assuming $task->description holds the task description -->
             </tr>
 
